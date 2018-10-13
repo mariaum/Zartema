@@ -60,11 +60,10 @@ if [[ "$gpgsign" == "true" ]]; then
     git config --global commit.gpgsign false
 fi
 
-basedir=$basedir/Travertine
 pushd Travertine
-sh applyPatches.sh
+git submodule update --recursive --init
+./applyPatches.sh
 popd
-basedir=$(dirname $basedir)
 
 # Apply patches
 applyPatch Travertine/Travertine-Proxy Zartema-Proxy HEAD
