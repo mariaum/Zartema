@@ -1,32 +1,36 @@
-From c7e3dfd38c41d85abbd541d96083358a21366d39 Mon Sep 17 00:00:00 2001
+From c3f250767ee203b69a4f4cf05729193d33335e6a Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:32:00 -0300
 Subject: [PATCH] Remove outdaded build warning
 
 
 diff --git a/bootstrap/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/bootstrap/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 773a7dda..5178e994 100644
+index 773a7dda..6e41411e 100644
 --- a/bootstrap/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/bootstrap/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -34,7 +34,8 @@ public class BungeeCordLauncher
+@@ -34,22 +34,6 @@ public class BungeeCordLauncher
              return;
          }
  
 -        if ( BungeeCord.class.getPackage().getSpecificationVersion() != null && System.getProperty( "IReallyKnowWhatIAmDoingISwear" ) == null )
-+        // Zartema - Remove outdated build warning
-+        /*if ( BungeeCord.class.getPackage().getSpecificationVersion() != null && System.getProperty( "IReallyKnowWhatIAmDoingISwear" ) == null )
-         {
-             Date buildDate = new SimpleDateFormat( "yyyyMMdd" ).parse( BungeeCord.class.getPackage().getSpecificationVersion() );
- 
-@@ -48,7 +49,7 @@ public class BungeeCordLauncher
-                 System.err.println( "*** Server will start in 10 seconds ***" );
-                 Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
-             }
+-        {
+-            Date buildDate = new SimpleDateFormat( "yyyyMMdd" ).parse( BungeeCord.class.getPackage().getSpecificationVersion() );
+-
+-            Calendar deadline = Calendar.getInstance();
+-            deadline.add( Calendar.WEEK_OF_YEAR, -4 );
+-            if ( buildDate.before( deadline.getTime() ) )
+-            {
+-                System.err.println( "*** Hey! This build is potentially outdated :( ***" );
+-                System.err.println( "*** Please check for a new build from https://ci.destroystokyo.com/job/Travertine/ ***" );
+-                System.err.println( "*** Should this build be outdated, you will get NO support for it. ***" );
+-                System.err.println( "*** Server will start in 10 seconds ***" );
+-                Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
+-            }
 -        }
-+        }*/
- 
+-
          BungeeCord bungee = new BungeeCord();
          ProxyServer.setInstance( bungee );
+         bungee.getLogger().info( "Enabled Zartema version " + bungee.getVersion() );
 -- 
 2.18.0.windows.1
 

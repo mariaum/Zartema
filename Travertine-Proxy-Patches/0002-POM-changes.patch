@@ -1,18 +1,19 @@
-From a845c9cc56184949e488e1bd1f2df1ad53ad64bb Mon Sep 17 00:00:00 2001
+From 7e85e342df29ce9768fc22ea5bd8c7ef5ba35fc0 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 01:08:02 -0300
 Subject: [PATCH] POM changes
 
 
 diff --git a/pom.xml b/pom.xml
-index cf52cb23..f0ff506c 100644
+index cf52cb23..68021b4e 100644
 --- a/pom.xml
 +++ b/pom.xml
-@@ -72,7 +72,7 @@
+@@ -72,7 +72,8 @@
          <dependency>
              <groupId>org.projectlombok</groupId>
              <artifactId>lombok</artifactId>
 -            <version>1.16.16</version>
++            <!-- Update Lombok to fix issues building with new Java -->
 +            <version>1.18.2</version>
              <scope>provided</scope>
          </dependency>
