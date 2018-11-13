@@ -1,14 +1,14 @@
-From 32e9923d9c046f584be7492a6e0654cf9f7994bc Mon Sep 17 00:00:00 2001
+From 9fafbdbfceca4e461f5470fb50f538279cf8f3c6 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:49:05 -0300
 Subject: [PATCH] Allow control over ServerPing's modinfo
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/ServerPing.java b/api/src/main/java/net/md_5/bungee/api/ServerPing.java
-index 8bf17f9c..249fce68 100644
+index fc92a7b5..cceb8ac8 100644
 --- a/api/src/main/java/net/md_5/bungee/api/ServerPing.java
 +++ b/api/src/main/java/net/md_5/bungee/api/ServerPing.java
-@@ -101,7 +101,7 @@ public class ServerPing
+@@ -100,7 +100,7 @@ public class ServerPing
  
      // Right now, we don't get the mods from the user, so we just use a stock ModInfo object to
      // create the server ping. Vanilla clients will ignore this.
@@ -17,7 +17,7 @@ index 8bf17f9c..249fce68 100644
  
      @Deprecated
      public ServerPing(Protocol version, Players players, String description, String favicon)
-@@ -115,6 +115,22 @@ public class ServerPing
+@@ -114,6 +114,22 @@ public class ServerPing
          this( version, players, new TextComponent( TextComponent.fromLegacyText( description ) ), favicon );
      }
  
@@ -41,10 +41,10 @@ index 8bf17f9c..249fce68 100644
      public String getFavicon()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index e0079030..a90119e6 100644
+index adf025ff..ec95c3e2 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -275,7 +275,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -273,7 +273,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
              pingBack.done( new ServerPing(
                      new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), protocol ),
                      new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),

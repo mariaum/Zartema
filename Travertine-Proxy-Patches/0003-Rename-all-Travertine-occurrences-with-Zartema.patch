@@ -1,4 +1,4 @@
-From 146c3c3c8076403393150c7edbb2ed3312b9982f Mon Sep 17 00:00:00 2001
+From 5b5e89187509bba77d8383f8e43f235d87da30ec Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
@@ -70,10 +70,10 @@ index c93c313a..f162145e 100644
  
          // Waterfall start - Use TerminalConsoleAppender
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 46848491..61aea636 100644
+index ba5fadc8..14ce4c69 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -190,7 +190,7 @@ public class BungeeCord extends ProxyServer
+@@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -82,7 +82,7 @@ index 46848491..61aea636 100644
  
          try
          {
-@@ -499,7 +499,7 @@ public class BungeeCord extends ProxyServer
+@@ -498,7 +498,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -118,10 +118,10 @@ index c50a05f7..08c8d401 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-index ff2c0725..18fcd0b1 100644
+index 631eabcf..c9452605 100644
 --- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 +++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-@@ -218,7 +218,7 @@ public class YamlConfig implements ConfigurationAdapter
+@@ -219,7 +219,7 @@ public class YamlConfig implements ConfigurationAdapter
              Map<String, Object> val = entry.getValue();
              String name = entry.getKey();
              String addr = get( "address", "localhost:25565", val );
