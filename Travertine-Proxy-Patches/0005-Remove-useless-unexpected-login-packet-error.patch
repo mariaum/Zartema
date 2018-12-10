@@ -1,4 +1,4 @@
-From 690a86c239f95ca407306d82734ee5eab0f8bfc4 Mon Sep 17 00:00:00 2001
+From 4a3d3e1bd8f11cde85182d8714f4cd82da1e28e6 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:51:26 -0300
 Subject: [PATCH] Remove useless unexpected login packet error
@@ -7,7 +7,7 @@ Mostly caused when someone disconnects while completing server join login phase,
 completly useless and annoying.
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index 5f086f4f..3a9516f7 100644
+index fb71e45d..fa3edcc8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 @@ -153,10 +153,6 @@ public class ServerConnector extends PacketHandler

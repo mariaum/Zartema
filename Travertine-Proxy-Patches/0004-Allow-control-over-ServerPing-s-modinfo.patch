@@ -1,4 +1,4 @@
-From 86cff4e068df3bb0bd25fceb30b48fd275e17762 Mon Sep 17 00:00:00 2001
+From 7ead81f1f72a46f3522cb02c4747c735ec036157 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:49:05 -0300
 Subject: [PATCH] Allow control over ServerPing's modinfo
