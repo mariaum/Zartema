@@ -1,4 +1,4 @@
-From 4a3d3e1bd8f11cde85182d8714f4cd82da1e28e6 Mon Sep 17 00:00:00 2001
+From 93bc9d0e2820e447fdf9600b57ea92c402c47839 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:51:26 -0300
 Subject: [PATCH] Remove useless unexpected login packet error
@@ -7,16 +7,16 @@ Mostly caused when someone disconnects while completing server join login phase,
 completly useless and annoying.
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index fb71e45d..fa3edcc8 100644
+index 41e26b9d..64fc1bba 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-@@ -153,10 +153,6 @@ public class ServerConnector extends PacketHandler
+@@ -155,10 +155,6 @@ public class ServerConnector extends PacketHandler
      @Override
      public void handle(PacketWrapper packet) throws Exception
      {
 -        if ( packet.packet == null )
 -        {
--            throw new IllegalArgumentException( "Unexpected packet received during server login process!\n" + BufUtil.dump( packet.buf, 64 ) );
+-            throw new QuietException( "Unexpected packet received during server login process!\n" + BufUtil.dump( packet.buf, 16 ) );
 -        }
      }
  

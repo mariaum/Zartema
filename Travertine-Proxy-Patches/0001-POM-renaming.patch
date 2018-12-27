@@ -1,4 +1,4 @@
-From bd8ae81014eb49fb797ac7b744c41245f7b52f36 Mon Sep 17 00:00:00 2001
+From 1d97fcc4ca698fff1faabc72fec68068277f41ab Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -65,7 +65,7 @@ index 6058e11c..6a84448e 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 4abe7a4a..430d0e1f 100644
+index 82ea6916..9c369c81 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -94,7 +94,7 @@ index 4abe7a4a..430d0e1f 100644
  
      <properties>
          <maven.deploy.skip>true</maven.deploy.skip>
-@@ -27,8 +27,8 @@
+@@ -27,15 +27,15 @@
  
      <dependencies>
          <dependency>
@@ -105,7 +105,6 @@ index 4abe7a4a..430d0e1f 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -41,7 +41,7 @@
      </dependencies>
  
      <build>
@@ -593,10 +592,10 @@ index a89ea60b..473788a3 100644
          <build.number>unknown</build.number>
          <netty.version>4.1.32.Final</netty.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index 15bdd19e..fbbb3f6d 100644
+index f53ace34..39723f11 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
-@@ -4,24 +4,24 @@
+@@ -4,19 +4,19 @@
      <modelVersion>4.0.0</modelVersion>
  
      <parent>
@@ -620,7 +619,11 @@ index 15bdd19e..fbbb3f6d 100644
 +    <name>Zartema-Protocol</name>
 +    <description>Minimal implementation of the Minecraft protocol for use in Zartema</description>
  
-     <dependencies>
+     <!-- We really shouldn't depend on external repositories, but at least this is the Central staging one -->
+     <repositories>
+@@ -41,8 +41,8 @@
+             <scope>compile</scope>
+         </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
 -            <artifactId>travertine-chat</artifactId>
@@ -630,7 +633,7 @@ index 15bdd19e..fbbb3f6d 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 3ecc651b..bb9116bc 100644
+index d83cf34f..795abc8e 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
