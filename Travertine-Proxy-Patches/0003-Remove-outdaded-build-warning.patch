@@ -1,11 +1,11 @@
-From 90884f3196746ef399162b6627902df238ada205 Mon Sep 17 00:00:00 2001
+From 008fe23db2793db7f82ce53c72fa05f16e4c2e46 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:32:00 -0300
 Subject: [PATCH] Remove outdaded build warning
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index d9ebef90..678230be 100644
+index c04cf020..678230be 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -34,22 +34,6 @@ public class BungeeCordLauncher
@@ -21,7 +21,7 @@ index d9ebef90..678230be 100644
 -            if ( buildDate.before( deadline.getTime() ) )
 -            {
 -                System.err.println( "*** Hey! This build is potentially outdated :( ***" );
--                System.err.println( "*** Please check for a new build from https://ci.destroystokyo.com/job/Travertine/ ***" );
+-                System.err.println( "*** Please check for a new build from https://papermc.io/ci/job/Travertine/ ***" );
 -                System.err.println( "*** Should this build be outdated, you will get NO support for it. ***" );
 -                System.err.println( "*** Server will start in 10 seconds ***" );
 -                Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );

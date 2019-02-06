@@ -1,4 +1,4 @@
-From f1753ba8c2db1fd87fb084449e9c95ec4afce9b1 Mon Sep 17 00:00:00 2001
+From 08408c923bd72790c582b3b89177e50247e4d04b Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
@@ -44,7 +44,7 @@ index d8dcdc1e..3c9f73b1 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index a196b994..c09dc649 100644
+index fdc23cc1..1b8c8ac2 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
@@ -56,7 +56,7 @@ index a196b994..c09dc649 100644
  
          try
          {
-@@ -498,7 +498,7 @@ public class BungeeCord extends ProxyServer
+@@ -504,7 +504,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -66,7 +66,7 @@ index a196b994..c09dc649 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index cd69896a..d9ebef90 100644
+index c9093462..c04cf020 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -52,7 +52,7 @@ public class BungeeCordLauncher
