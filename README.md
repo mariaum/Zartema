@@ -1,5 +1,6 @@
 # Zartema
-A [Travertine](https://github.com/PaperMC/Travertine) fork.
+A really basic [Travertine](https://github.com/PaperMC/Travertine) fork.
+Generally using this for projects i work on, really easy to add features/fixes when i need to.
 
 Special Thanks To:
 -------------
