@@ -60,19 +60,19 @@ if [[ "$gpgsign" == "true" ]]; then
     git config --global commit.gpgsign false
 fi
 
-realbasedir=$basedir
+executedir=$basedir
 
-# Apply waterfall patches
+# Apply waterfall & travertine patches
 pushd Travertine
 	pushd Waterfall
-	basedir=$realbasedir/Travertine/Waterfall
+	basedir=$executedir/Travertine/Waterfall-Proxy
 	applyPatch BungeeCord Waterfall-Proxy HEAD
 	popd
-basedir=$realbasedir/Travertine
+basedir=$executedir/Travertine
 applyPatch Waterfall Travertine-Proxy HEAD
 popd
 
-basedir=$realbasedir
+basedir=$executedir
 
 applyPatch Travertine Zartema-Proxy HEAD
 
