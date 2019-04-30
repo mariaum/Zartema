@@ -1,22 +1,22 @@
-From c6721ff321cec6c8c20ad07405877696b7e7321e Mon Sep 17 00:00:00 2001
+From 66db038dcb41295ea86598882181cffdb5bb2781 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:51:26 -0300
 Subject: [PATCH] Mute server connecting unknown packet exception.
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index 41e26b9d..62da3189 100644
+index bd3dc40..29ce4be 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-@@ -51,6 +51,7 @@ import net.md_5.bungee.protocol.packet.ScoreboardObjective;
- import net.md_5.bungee.protocol.packet.ScoreboardScore;
+@@ -52,6 +52,7 @@ import net.md_5.bungee.protocol.packet.ScoreboardScore;
  import net.md_5.bungee.protocol.packet.SetCompression;
+ import net.md_5.bungee.protocol.packet.ViewDistance;
  import net.md_5.bungee.util.BufUtil;
 +import net.md_5.bungee.util.MuteException; // Zartema
  import net.md_5.bungee.util.QuietException;
  
  @RequiredArgsConstructor
-@@ -157,7 +158,7 @@ public class ServerConnector extends PacketHandler
+@@ -158,7 +159,7 @@ public class ServerConnector extends PacketHandler
      {
          if ( packet.packet == null )
          {
@@ -26,7 +26,7 @@ index 41e26b9d..62da3189 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
-index a66099fc..5d9b47f9 100644
+index a66099f..5d9b47f 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
 @@ -16,6 +16,7 @@ import net.md_5.bungee.connection.PingHandler;
@@ -47,7 +47,7 @@ index a66099fc..5d9b47f9 100644
                      ProxyServer.getInstance().getLogger().log( Level.SEVERE, handler + " - encountered exception", cause );
 diff --git a/proxy/src/main/java/net/md_5/bungee/util/MuteException.java b/proxy/src/main/java/net/md_5/bungee/util/MuteException.java
 new file mode 100644
-index 00000000..f7ac466c
+index 0000000..f7ac466
 --- /dev/null
 +++ b/proxy/src/main/java/net/md_5/bungee/util/MuteException.java
 @@ -0,0 +1,27 @@
@@ -79,5 +79,5 @@ index 00000000..f7ac466c
 +    }
 +}
 -- 
-2.18.0.windows.1
+2.7.4
 

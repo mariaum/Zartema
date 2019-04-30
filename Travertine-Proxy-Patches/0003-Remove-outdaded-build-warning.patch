@@ -1,14 +1,14 @@
-From 008fe23db2793db7f82ce53c72fa05f16e4c2e46 Mon Sep 17 00:00:00 2001
+From 251cf3628f3cd7bf8bbc2a78258d8e505f71938d Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:32:00 -0300
 Subject: [PATCH] Remove outdaded build warning
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index c04cf020..678230be 100644
+index 182b5bb..444a04a 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -34,22 +34,6 @@ public class BungeeCordLauncher
+@@ -40,22 +40,6 @@ public class BungeeCordLauncher
              return;
          }
  
@@ -32,5 +32,5 @@ index c04cf020..678230be 100644
          ProxyServer.setInstance( bungee );
          bungee.getLogger().info( "Enabled Zartema version " + bungee.getVersion() );
 -- 
-2.18.0.windows.1
+2.7.4
 
