@@ -64,7 +64,7 @@ realbasedir=$basedir
 
 # Apply waterfall patches
 pushd Travertine
-	pushd Zartema
+	pushd Waterfall
 	basedir=$realbasedir/Travertine/Waterfall
 	applyPatch BungeeCord Waterfall-Proxy HEAD
 	popd
