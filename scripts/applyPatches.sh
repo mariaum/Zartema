@@ -60,12 +60,21 @@ if [[ "$gpgsign" == "true" ]]; then
     git config --global commit.gpgsign false
 fi
 
+realbasedir=$basedir
+
+# Apply waterfall patches
 pushd Travertine
-git submodule update --recursive --init
-./applyPatches.sh
+	pushd Zartema
+	basedir=$realbasedir/Travertine/Waterfall
+	applyPatch BungeeCord Waterfall-Proxy HEAD
+	popd
+basedir=$realbasedir/Travertine
+applyPatch Waterfall Travertine-Proxy HEAD
 popd
 
-# Apply patches
-applyPatch Travertine/Travertine-Proxy Zartema-Proxy HEAD
+basedir=$realbasedir
 
+applyPatch Travertine Zartema-Proxy HEAD
+
+# Apply travertine patches
 enableCommitSigningIfNeeded
