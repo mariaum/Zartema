@@ -69,12 +69,12 @@ pushd Travertine
 	applyPatch BungeeCord Waterfall-Proxy HEAD
 	popd
 basedir=$executedir/Travertine
-applyPatch Waterfall-Proxy Travertine-Proxy HEAD
+applyPatch Waterfall/Waterfall-Proxy Travertine-Proxy HEAD
 popd
 
 basedir=$executedir
 
-applyPatch Travertine-Proxy Zartema-Proxy HEAD
+applyPatch Travertine/Travertine-Proxy Zartema-Proxy HEAD
 
 # Apply travertine patches
 enableCommitSigningIfNeeded
