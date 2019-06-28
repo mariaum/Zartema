@@ -1,0 +1,53 @@
+From ea0947aab2b293716b0527ceb6b5c06a2368d2c7 Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Thu, 27 Jun 2019 23:48:59 -0300
+Subject: [PATCH] Add packet timing debug.
+
+
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/PacketWrapper.java b/protocol/src/main/java/net/md_5/bungee/protocol/PacketWrapper.java
+index 8eba797b..406ba2ae 100644
+--- a/protocol/src/main/java/net/md_5/bungee/protocol/PacketWrapper.java
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/PacketWrapper.java
+@@ -21,4 +21,9 @@ public class PacketWrapper
+             released = true;
+         }
+     }
++
++    @Override
++    public String toString() {
++        return this.packet != null ? packet.getClass().getSimpleName() : "~null~";
++    }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+index a66099fc..33d0b559 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+@@ -101,7 +101,12 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
+                 {
+                     try
+                     {
++                        long start = System.currentTimeMillis();
+                         packet.packet.handle( handler );
++                        long elapsed = System.currentTimeMillis() - start;
++                        if (elapsed > 100) {
++                            ProxyServer.getInstance().getLogger().log(Level.WARNING, "[{2}] Packet {0} took {1}ms to process!", new Object[]{packet.toString(), elapsed, handler.toString()});
++                        }
+                     } catch ( CancelSendSignal ex )
+                     {
+                         sendPacket = false;
+@@ -109,7 +114,12 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
+                 }
+                 if ( sendPacket )
+                 {
++                    long start = System.currentTimeMillis();
+                     handler.handle( packet );
++                    long elapsed = System.currentTimeMillis() - start;
++                    if (elapsed > 100) {
++                        ProxyServer.getInstance().getLogger().log(Level.WARNING, "[{2}] Packet {0} took {1}ms to process!", new Object[]{packet.toString(), elapsed, handler.toString()});
++                    }
+                 }
+             } finally
+             {
+-- 
+2.17.1
+
