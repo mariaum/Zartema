@@ -1,0 +1,22 @@
+From 634ab5cdfe2066343bdc3dc47bb69370c7421772 Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Sun, 30 Jun 2019 21:41:52 -0300
+Subject: [PATCH] Update Netty to 4.1.37.Final.
+
+
+diff --git a/pom.xml b/pom.xml
+index 14285f32..a0dbb38e 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -43,7 +43,7 @@
+ 	
+     <properties>
+         <build.number>unknown</build.number>
+-        <netty.version>4.1.34.Final</netty.version>
++        <netty.version>4.1.37.Final</netty.version>
+         <!-- Require Java 8 -->
+         <maven.compiler.source>1.8</maven.compiler.source>
+         <maven.compiler.target>1.8</maven.compiler.target>
+-- 
+2.17.1
+
