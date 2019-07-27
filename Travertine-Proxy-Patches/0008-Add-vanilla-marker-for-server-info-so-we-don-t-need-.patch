@@ -1,0 +1,80 @@
+From 72c7e74015e6a352f0e0688b132ee9c1fbb67710 Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Sat, 27 Jul 2019 08:37:40 -0300
+Subject: [PATCH] Add vanilla marker for server info, so we don't need to use
+ ip forward.
+
+If you have a vanilla server with ip forward enabled, vanilla will disconnect you
+because the hostname size exceeds its max limit, this is just a hack to workaround it.
+
+diff --git a/api/src/main/java/net/md_5/bungee/api/config/ServerInfo.java b/api/src/main/java/net/md_5/bungee/api/config/ServerInfo.java
+index 19773843..5fcb559c 100644
+--- a/api/src/main/java/net/md_5/bungee/api/config/ServerInfo.java
++++ b/api/src/main/java/net/md_5/bungee/api/config/ServerInfo.java
+@@ -1,12 +1,13 @@
+ package net.md_5.bungee.api.config;
+ 
+-import java.net.InetSocketAddress;
+-import java.util.Collection;
+ import net.md_5.bungee.api.Callback;
+ import net.md_5.bungee.api.CommandSender;
+ import net.md_5.bungee.api.ServerPing;
+ import net.md_5.bungee.api.connection.ProxiedPlayer;
+ 
++import java.net.InetSocketAddress;
++import java.util.Collection;
++
+ /**
+  * Class used to represent a server to connect to.
+  */
+@@ -104,4 +105,12 @@ public interface ServerInfo
+      * @param callback the callback to call when the count has been retrieved.
+      */
+     void ping(Callback<ServerPing> callback);
++
++    default boolean isIpForward() {
++        return false;
++    }
++
++    default void setVanilla(boolean vanilla) {
++    }
++
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeServerInfo.java b/proxy/src/main/java/net/md_5/bungee/BungeeServerInfo.java
+index 4c0637b9..869ff0b2 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeServerInfo.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeServerInfo.java
+@@ -158,4 +158,17 @@ public class BungeeServerInfo implements ServerInfo
+                 .connect()
+                 .addListener( listener );
+     }
++
++    private boolean vanilla = false;
++
++    @Override
++    public boolean isIpForward() {
++        return BungeeCord.getInstance().config.isIpForward() && !this.vanilla;
++    }
++
++    @Override
++    public void setVanilla(boolean vanilla) {
++        this.vanilla = vanilla;
++    }
++
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
+index a92b979a..c11fa50d 100644
+--- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
++++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
+@@ -100,7 +100,7 @@ public class ServerConnector extends PacketHandler
+         Handshake originalHandshake = user.getPendingConnection().getHandshake();
+         Handshake copiedHandshake = new Handshake( originalHandshake.getProtocolVersion(), originalHandshake.getHost(), originalHandshake.getPort(), 2 );
+ 
+-        if ( BungeeCord.getInstance().config.isIpForward() )
++        if ( target.isIpForward() )
+         {
+             String newHost = copiedHandshake.getHost() + "\00" + user.getAddress().getHostString() + "\00" + user.getUUID();
+ 
+-- 
+2.21.0.windows.1
+
