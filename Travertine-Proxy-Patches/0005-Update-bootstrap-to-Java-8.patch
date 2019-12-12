@@ -1,11 +1,11 @@
-From c03108bf14b245e07935f27fa3147ccd34685b37 Mon Sep 17 00:00:00 2001
+From b7378ebcf1178f328322391b214e3f234cf42988 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Mon, 22 Jul 2019 01:19:30 -0300
 Subject: [PATCH] Update bootstrap to Java 8.
 
 
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index de25a162..79a993f5 100644
+index 4a20ddbe..ebf9e93b 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -20,8 +20,9 @@

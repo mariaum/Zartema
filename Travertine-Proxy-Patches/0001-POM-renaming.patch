@@ -1,11 +1,11 @@
-From ce8d55cd93ae24b0b9de0ef2e003e015df46ba13 Mon Sep 17 00:00:00 2001
+From 8f1192ca5fb21b67e67ee61f731e6ae1bf55bde1 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index dc49e44..947c147 100644
+index 24a14986..2845a181 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -16,7 +16,7 @@ index dc49e44..947c147 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -24,7 +24,7 @@ index dc49e44..947c147 100644
 -    <artifactId>travertine-api</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-api</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-API</name>
@@ -65,7 +65,7 @@ index dc49e44..947c147 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index d2f0293..de25a16 100644
+index 5c971ed0..4a20ddbe 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -76,7 +76,7 @@ index d2f0293..de25a16 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -84,7 +84,7 @@ index d2f0293..de25a16 100644
 -    <artifactId>travertine-bootstrap</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-bootstrap</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Bootstrap</name>
@@ -114,7 +114,7 @@ index d2f0293..de25a16 100644
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 7c0f54b..2e04c26 100644
+index 3cbe1abf..3fbee742 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -4,18 +4,18 @@
@@ -125,7 +125,7 @@ index 7c0f54b..2e04c26 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -133,7 +133,7 @@ index 7c0f54b..2e04c26 100644
 -    <artifactId>travertine-chat</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-chat</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Chat</name>
@@ -142,7 +142,7 @@ index 7c0f54b..2e04c26 100644
  
      <dependencies>
 diff --git a/config/pom.xml b/config/pom.xml
-index b1b313d..b9c57fd 100644
+index 48184d59..e1e4cf79 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -153,7 +153,7 @@ index b1b313d..b9c57fd 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -161,7 +161,7 @@ index b1b313d..b9c57fd 100644
 -    <artifactId>travertine-config</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-config</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Config</name>
@@ -172,7 +172,7 @@ index b1b313d..b9c57fd 100644
      <dependencies>
          <dependency>
 diff --git a/event/pom.xml b/event/pom.xml
-index a447a4a..ec5aef2 100644
+index 0be68542..502b3028 100644
 --- a/event/pom.xml
 +++ b/event/pom.xml
 @@ -4,17 +4,17 @@
@@ -183,7 +183,7 @@ index a447a4a..ec5aef2 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -191,7 +191,7 @@ index a447a4a..ec5aef2 100644
 -    <artifactId>travertine-event</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-event</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Event</name>
@@ -200,7 +200,7 @@ index a447a4a..ec5aef2 100644
 +    <description>Generic java event dispatching API intended for use with Zartema.</description>
  </project>
 diff --git a/log/pom.xml b/log/pom.xml
-index 280b3ce..1b56ec8 100644
+index b4520832..e8c2d7d0 100644
 --- a/log/pom.xml
 +++ b/log/pom.xml
 @@ -4,19 +4,19 @@
@@ -211,7 +211,7 @@ index 280b3ce..1b56ec8 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -219,7 +219,7 @@ index 280b3ce..1b56ec8 100644
 -    <artifactId>travertine-log</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Log</name>
@@ -241,7 +241,7 @@ index 280b3ce..1b56ec8 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
-index 4b04cbd..3f488c0 100644
+index acb4a43d..6dc0c6c6 100644
 --- a/log4j/pom.xml
 +++ b/log4j/pom.xml
 @@ -3,18 +3,18 @@
@@ -252,7 +252,7 @@ index 4b04cbd..3f488c0 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -260,7 +260,7 @@ index 4b04cbd..3f488c0 100644
 -    <artifactId>travertine-log4j</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log4j</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Log</name>
@@ -280,7 +280,7 @@ index 4b04cbd..3f488c0 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
-index 5ee87a9..428a3b4 100644
+index a881b245..40759cc6 100644
 --- a/module/cmd-alert/pom.xml
 +++ b/module/cmd-alert/pom.xml
 @@ -4,14 +4,14 @@
@@ -291,7 +291,7 @@ index 5ee87a9..428a3b4 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -299,11 +299,11 @@ index 5ee87a9..428a3b4 100644
 -    <artifactId>travertine-module-cmd-alert</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-alert</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
-index af8a7d9..03007ad 100644
+index a54d6029..7345b838 100644
 --- a/module/cmd-find/pom.xml
 +++ b/module/cmd-find/pom.xml
 @@ -4,14 +4,14 @@
@@ -314,7 +314,7 @@ index af8a7d9..03007ad 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -322,11 +322,11 @@ index af8a7d9..03007ad 100644
 -    <artifactId>travertine-module-cmd-find</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-find</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
-index 3d055bb..7884ea2 100644
+index 9bb18c7d..3707e9a4 100644
 --- a/module/cmd-list/pom.xml
 +++ b/module/cmd-list/pom.xml
 @@ -4,14 +4,14 @@
@@ -337,7 +337,7 @@ index 3d055bb..7884ea2 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -345,11 +345,11 @@ index 3d055bb..7884ea2 100644
 -    <artifactId>travertine-module-cmd-list</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-list</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
-index b594da4..f937f61 100644
+index 5753b492..6c015a81 100644
 --- a/module/cmd-send/pom.xml
 +++ b/module/cmd-send/pom.xml
 @@ -4,14 +4,14 @@
@@ -360,7 +360,7 @@ index b594da4..f937f61 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -368,11 +368,11 @@ index b594da4..f937f61 100644
 -    <artifactId>travertine-module-cmd-send</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-send</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
-index a94a57d..2e34ddc 100644
+index 5c457f76..b354342f 100644
 --- a/module/cmd-server/pom.xml
 +++ b/module/cmd-server/pom.xml
 @@ -4,14 +4,14 @@
@@ -383,7 +383,7 @@ index a94a57d..2e34ddc 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -391,11 +391,11 @@ index a94a57d..2e34ddc 100644
 -    <artifactId>travertine-module-cmd-server</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-server</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/pom.xml b/module/pom.xml
-index 520df1f..4338c85 100644
+index 266678f4..15c0d48f 100644
 --- a/module/pom.xml
 +++ b/module/pom.xml
 @@ -4,19 +4,19 @@
@@ -406,7 +406,7 @@ index 520df1f..4338c85 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -414,7 +414,7 @@ index 520df1f..4338c85 100644
 -    <artifactId>travertine-module</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>pom</packaging>
  
 -    <name>Travertine Modules</name>
@@ -443,7 +443,7 @@ index 520df1f..4338c85 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
-index 1d82a29..894ee3c 100644
+index 4774659f..ed906b56 100644
 --- a/module/reconnect-yaml/pom.xml
 +++ b/module/reconnect-yaml/pom.xml
 @@ -4,14 +4,14 @@
@@ -454,7 +454,7 @@ index 1d82a29..894ee3c 100644
 -        <artifactId>travertine-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -462,11 +462,11 @@ index 1d82a29..894ee3c 100644
 -    <artifactId>travertine-module-reconnect-yaml</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-reconnect-yaml</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/native/pom.xml b/native/pom.xml
-index 67386de..c71a45e 100644
+index b4459ace..ec3bfe04 100644
 --- a/native/pom.xml
 +++ b/native/pom.xml
 @@ -4,19 +4,19 @@
@@ -477,7 +477,7 @@ index 67386de..c71a45e 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -485,7 +485,7 @@ index 67386de..c71a45e 100644
 -    <artifactId>travertine-native</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-native</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Native</name>
@@ -496,7 +496,7 @@ index 67386de..c71a45e 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 9357e9a..14285f3 100644
+index cf13c377..54edd760 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -515,7 +515,7 @@ index 9357e9a..14285f3 100644
 -    <artifactId>travertine-parent</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-parent</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>pom</packaging>
  
 -    <name>Travertine-Parent</name>
@@ -590,9 +590,9 @@ index 9357e9a..14285f3 100644
 +	
      <properties>
          <build.number>unknown</build.number>
-         <netty.version>4.1.34.Final</netty.version>
+         <netty.version>4.1.43.Final</netty.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index 2bd5507..33b51e8 100644
+index 0501a835..268522c5 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
 @@ -4,19 +4,19 @@
@@ -603,7 +603,7 @@ index 2bd5507..33b51e8 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -611,7 +611,7 @@ index 2bd5507..33b51e8 100644
 -    <artifactId>travertine-protocol</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-protocol</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Protocol</name>
@@ -633,7 +633,7 @@ index 2bd5507..33b51e8 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 2d4e4d7..89a8850 100644
+index a53571fc..21e4c198 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -644,7 +644,7 @@ index 2d4e4d7..89a8850 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -652,7 +652,7 @@ index 2d4e4d7..89a8850 100644
 -    <artifactId>travertine-proxy</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-proxy</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Proxy</name>
@@ -721,7 +721,7 @@ index 2d4e4d7..89a8850 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/query/pom.xml b/query/pom.xml
-index 86f7aab..f9cefec 100644
+index 109574c0..6fb5fd0d 100644
 --- a/query/pom.xml
 +++ b/query/pom.xml
 @@ -4,19 +4,19 @@
@@ -732,7 +732,7 @@ index 86f7aab..f9cefec 100644
 -        <artifactId>travertine-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.14-SNAPSHOT</version>
+         <version>1.15-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -740,7 +740,7 @@ index 86f7aab..f9cefec 100644
 -    <artifactId>travertine-query</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-query</artifactId>
-     <version>1.14-SNAPSHOT</version>
+     <version>1.15-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Travertine-Query</name>
@@ -762,5 +762,5 @@ index 86f7aab..f9cefec 100644
              <scope>compile</scope>
          </dependency>
 -- 
-2.7.4
+2.17.1
 
