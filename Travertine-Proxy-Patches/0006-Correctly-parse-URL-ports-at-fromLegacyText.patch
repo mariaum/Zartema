@@ -1,4 +1,4 @@
-From a9390fe2f3ad8b3b55c6e24013f8ac0f5204da1e Mon Sep 17 00:00:00 2001
+From 23c41084bcbc2c10b5a42afc5d100123e3b3330d Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 10 Aug 2019 13:17:29 -0300
 Subject: [PATCH] Correctly parse URL ports at fromLegacyText.
@@ -6,10 +6,10 @@ Subject: [PATCH] Correctly parse URL ports at fromLegacyText.
 It currently allows invalid ports, since validating numbers in Regex seems to be a nightmare.
 
 diff --git a/chat/src/main/java/net/md_5/bungee/api/chat/TextComponent.java b/chat/src/main/java/net/md_5/bungee/api/chat/TextComponent.java
-index 3caf9544..874cd019 100644
+index dc5d5043..c4514fa9 100644
 --- a/chat/src/main/java/net/md_5/bungee/api/chat/TextComponent.java
 +++ b/chat/src/main/java/net/md_5/bungee/api/chat/TextComponent.java
-@@ -17,7 +17,7 @@ import net.md_5.bungee.api.ChatColor;
+@@ -18,7 +18,7 @@ import net.md_5.bungee.api.ChatColor;
  public final class TextComponent extends BaseComponent
  {
  
