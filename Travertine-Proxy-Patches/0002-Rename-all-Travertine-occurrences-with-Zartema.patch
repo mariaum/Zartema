@@ -1,11 +1,11 @@
-From 1c435184872b6d1f0b20917b9cb007d29b53cd14 Mon Sep 17 00:00:00 2001
+From d7dbf5da3179ea6c5cfa3714db9cb1442f905082 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
 
 
 diff --git a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
-index 1f63a2c..7312813 100644
+index 1f63a2c2..7312813f 100644
 --- a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 +++ b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 @@ -7,7 +7,7 @@ public class Bootstrap
@@ -18,7 +18,7 @@ index 1f63a2c..7312813 100644
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 2e04c26..62afb91 100644
+index 3fbee742..f94e53d7 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -16,7 +16,7 @@
@@ -31,7 +31,7 @@ index 2e04c26..62afb91 100644
      <dependencies>
          <dependency>
 diff --git a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
-index d8dcdc1..3c9f73b 100644
+index d8dcdc1e..3c9f73b1 100644
 --- a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 +++ b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 @@ -12,7 +12,7 @@ public class LogDispatcher extends Thread
@@ -44,10 +44,10 @@ index d8dcdc1..3c9f73b 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 1296c1f..91febaf 100644
+index 6f929030..a4acd4b3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -188,7 +188,7 @@ public class BungeeCord extends ProxyServer
+@@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -56,7 +56,7 @@ index 1296c1f..91febaf 100644
  
          try
          {
-@@ -503,7 +503,7 @@ public class BungeeCord extends ProxyServer
+@@ -506,7 +506,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -66,7 +66,7 @@ index 1296c1f..91febaf 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index bc3d875..182b5bb 100644
+index ad9a6d0c..aa9093c3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -58,7 +58,7 @@ public class BungeeCordLauncher
@@ -79,7 +79,7 @@ index bc3d875..182b5bb 100644
  
          if ( !options.has( "noconsole" ) )
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
-index 4e2c612..6a331d1 100644
+index 4e2c6129..6a331d11 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 @@ -16,6 +16,6 @@ public class CommandBungee extends Command
@@ -91,7 +91,7 @@ index 4e2c612..6a331d1 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
-index dca7601..f1e74ad 100644
+index dca7601b..f1e74ad0 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 @@ -23,7 +23,7 @@ public class CommandReload extends Command
@@ -105,7 +105,7 @@ index dca7601..f1e74ad 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-index 8cceac2..4778846 100644
+index 86a247be..9cef1e0d 100644
 --- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 +++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 @@ -224,7 +224,7 @@ public class YamlConfig implements ConfigurationAdapter
@@ -115,8 +115,8 @@ index 8cceac2..4778846 100644
 -            String motd = ChatColor.translateAlternateColorCodes( '&', get( "motd", "&1Just another Travertine - Forced Host", val ) );
 +            String motd = ChatColor.translateAlternateColorCodes( '&', get( "motd", "&1Just another Zartema - Forced Host", val ) );
              boolean restricted = get( "restricted", false, val );
-             InetSocketAddress address = Util.getAddr( addr );
+             SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
 -- 
-2.7.4
+2.17.1
 

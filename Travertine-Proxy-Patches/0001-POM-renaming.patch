@@ -1,11 +1,11 @@
-From 9675176a757c6e78bbba2f2af9dba397dbef1a1f Mon Sep 17 00:00:00 2001
+From 832faabdd66f768d76aefc74ddaad232955e3c29 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index 24a14986..2845a181 100644
+index f95b96e0..337c626a 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -496,7 +496,7 @@ index b4459ace..ec3bfe04 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 7b7435d8..a3c47652 100644
+index 508022b7..5afc6a18 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -590,7 +590,7 @@ index 7b7435d8..a3c47652 100644
 +	
      <properties>
          <build.number>unknown</build.number>
-         <netty.version>4.1.44.Final</netty.version>
+         <netty.version>4.1.45.Final</netty.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
 index 0501a835..268522c5 100644
 --- a/protocol/pom.xml
@@ -633,7 +633,7 @@ index 0501a835..268522c5 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index a53571fc..21e4c198 100644
+index 1c4b009f..a9d808c6 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
