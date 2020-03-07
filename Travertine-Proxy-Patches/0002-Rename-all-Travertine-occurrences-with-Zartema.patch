@@ -1,4 +1,4 @@
-From d7dbf5da3179ea6c5cfa3714db9cb1442f905082 Mon Sep 17 00:00:00 2001
+From b37c1baf2fed3d0180c2297c305a1208f58f832a Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
@@ -105,10 +105,10 @@ index dca7601b..f1e74ad0 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-index 86a247be..9cef1e0d 100644
+index d4fad294..84b01279 100644
 --- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 +++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-@@ -224,7 +224,7 @@ public class YamlConfig implements ConfigurationAdapter
+@@ -227,7 +227,7 @@ public class YamlConfig implements ConfigurationAdapter
              Map<String, Object> val = entry.getValue();
              String name = entry.getKey();
              String addr = get( "address", "localhost:25565", val );

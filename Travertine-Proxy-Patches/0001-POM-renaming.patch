@@ -1,11 +1,11 @@
-From 832faabdd66f768d76aefc74ddaad232955e3c29 Mon Sep 17 00:00:00 2001
+From a38b4d46407c18eb4823be5312dab60837583383 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index f95b96e0..337c626a 100644
+index 08395f48..e155b801 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -65,7 +65,7 @@ index f95b96e0..337c626a 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 5c971ed0..4a20ddbe 100644
+index 6ac1da55..557df8aa 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -94,7 +94,7 @@ index 5c971ed0..4a20ddbe 100644
  
      <properties>
          <maven.deploy.skip>true</maven.deploy.skip>
-@@ -27,15 +27,15 @@
+@@ -29,15 +29,15 @@
  
      <dependencies>
          <dependency>
@@ -142,7 +142,7 @@ index 3cbe1abf..3fbee742 100644
  
      <dependencies>
 diff --git a/config/pom.xml b/config/pom.xml
-index 48184d59..e1e4cf79 100644
+index 3e2b707b..c81f08c9 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -395,7 +395,7 @@ index 5c457f76..b354342f 100644
      <packaging>jar</packaging>
  
 diff --git a/module/pom.xml b/module/pom.xml
-index 266678f4..15c0d48f 100644
+index b60e8ecc..86f44c42 100644
 --- a/module/pom.xml
 +++ b/module/pom.xml
 @@ -4,19 +4,19 @@
@@ -424,13 +424,14 @@ index 266678f4..15c0d48f 100644
  
      <modules>
          <module>cmd-alert</module>
-@@ -28,14 +28,14 @@
+@@ -28,15 +28,15 @@
      </modules>
  
      <properties>
 -        <module.author>WaterfallMC</module.author>
 +        <module.author>Zartema</module.author>
          <maven.deploy.skip>true</maven.deploy.skip>
+         <maven.javadoc.skip>true</maven.javadoc.skip>
      </properties>
  
      <dependencies>
@@ -496,7 +497,7 @@ index b4459ace..ec3bfe04 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 508022b7..5afc6a18 100644
+index 047bc3de..ad1727f3 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -633,7 +634,7 @@ index 0501a835..268522c5 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 1c4b009f..a9d808c6 100644
+index 43c334db..29cf7487 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -660,7 +661,7 @@ index 1c4b009f..a9d808c6 100644
      <description>Proxy component of the Elastic Portal Suite</description>
  
      <properties>
-@@ -41,14 +41,14 @@
+@@ -42,14 +42,14 @@
              <version>${netty.version}</version>
              <scope>compile</scope>
          </dependency>
@@ -677,7 +678,7 @@ index 1c4b009f..a9d808c6 100644
          <dependency>
              <groupId>io.netty</groupId>
              <artifactId>netty-handler</artifactId>
-@@ -63,32 +63,32 @@
+@@ -64,32 +64,32 @@
              <scope>compile</scope>
          </dependency>
          <dependency>
