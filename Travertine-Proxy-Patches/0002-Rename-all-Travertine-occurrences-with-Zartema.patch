@@ -1,4 +1,4 @@
-From b37c1baf2fed3d0180c2297c305a1208f58f832a Mon Sep 17 00:00:00 2001
+From 3a95856710c29790a35b541140a30b9713d180f5 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
@@ -44,10 +44,10 @@ index d8dcdc1e..3c9f73b1 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 6f929030..a4acd4b3 100644
+index 37e33b38..407f8b80 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
+@@ -195,7 +195,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -56,7 +56,7 @@ index 6f929030..a4acd4b3 100644
  
          try
          {
-@@ -506,7 +506,7 @@ public class BungeeCord extends ProxyServer
+@@ -541,7 +541,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
