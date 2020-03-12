@@ -1,36 +1,22 @@
-From 1229755ab2e55f0d1f142913a1edc308eb164fce Mon Sep 17 00:00:00 2001
+From a79985029eec9d505f9e7c162927cf6da383b16d Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:32:00 -0300
 Subject: [PATCH] Remove outdaded build warning
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index aa9093c3..444a04a5 100644
+index aa9093c3..bc8da881 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -40,22 +40,6 @@ public class BungeeCordLauncher
+@@ -40,7 +40,7 @@ public class BungeeCordLauncher
              return;
          }
  
 -        if ( BungeeCord.class.getPackage().getSpecificationVersion() != null && System.getProperty( "IReallyKnowWhatIAmDoingISwear" ) == null )
--        {
--            Date buildDate = new SimpleDateFormat( "yyyyMMdd" ).parse( BungeeCord.class.getPackage().getSpecificationVersion() );
--
--            Calendar deadline = Calendar.getInstance();
--            deadline.add( Calendar.WEEK_OF_YEAR, -8 );
--            if ( buildDate.before( deadline.getTime() ) )
--            {
--                System.err.println( "*** Hey! This build is potentially outdated :( ***" );
--                System.err.println( "*** Please check for a new build from https://papermc.io/ci/job/Travertine/ ***" );
--                System.err.println( "*** Should this build be outdated, you will get NO support for it. ***" );
--                System.err.println( "*** Server will start in 10 seconds ***" );
--                Thread.sleep( TimeUnit.SECONDS.toMillis( 10 ) );
--            }
--        }
--
-         BungeeCord bungee = new BungeeCord();
-         ProxyServer.setInstance( bungee );
-         bungee.getLogger().info( "Enabled Zartema version " + bungee.getVersion() );
++        if ( false && BungeeCord.class.getPackage().getSpecificationVersion() != null && System.getProperty( "IReallyKnowWhatIAmDoingISwear" ) == null )
+         {
+             Date buildDate = new SimpleDateFormat( "yyyyMMdd" ).parse( BungeeCord.class.getPackage().getSpecificationVersion() );
+ 
 -- 
 2.17.1
 
