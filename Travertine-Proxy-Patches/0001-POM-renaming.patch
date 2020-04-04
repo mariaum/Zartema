@@ -1,4 +1,4 @@
-From a38b4d46407c18eb4823be5312dab60837583383 Mon Sep 17 00:00:00 2001
+From 77e46c34697ce3df9fc345b8d410438f13a4303f Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -497,7 +497,7 @@ index b4459ace..ec3bfe04 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 047bc3de..ad1727f3 100644
+index 88e2fec6..762d4db1 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -591,7 +591,7 @@ index 047bc3de..ad1727f3 100644
 +	
      <properties>
          <build.number>unknown</build.number>
-         <netty.version>4.1.45.Final</netty.version>
+         <netty.version>4.1.48.Final</netty.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
 index 0501a835..268522c5 100644
 --- a/protocol/pom.xml
