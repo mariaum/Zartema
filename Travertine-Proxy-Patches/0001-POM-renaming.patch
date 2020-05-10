@@ -1,4 +1,4 @@
-From 2a82d5f9f32b78d52b1232de53d497b0f8336264 Mon Sep 17 00:00:00 2001
+From 4e83412f0333af80c7d1eccebb30b04e99cffd31 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -634,7 +634,7 @@ index 0501a835..268522c5 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 43c334db..29cf7487 100644
+index b95c4b72..970301dd 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -661,7 +661,7 @@ index 43c334db..29cf7487 100644
      <description>Proxy component of the Elastic Portal Suite</description>
  
      <properties>
-@@ -42,14 +42,14 @@
+@@ -36,14 +36,14 @@
              <version>${netty.version}</version>
              <scope>compile</scope>
          </dependency>
@@ -678,7 +678,7 @@ index 43c334db..29cf7487 100644
          <dependency>
              <groupId>io.netty</groupId>
              <artifactId>netty-handler</artifactId>
-@@ -64,32 +64,32 @@
+@@ -58,32 +58,32 @@
              <scope>compile</scope>
          </dependency>
          <dependency>
