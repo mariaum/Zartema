@@ -1,4 +1,4 @@
-From 363af4cce39783d4ee8fa1b4bedbd8c2aaa2cc32 Mon Sep 17 00:00:00 2001
+From abb61d32cf170a6d69263bc345df158e750685fa Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -498,7 +498,7 @@ index 71a17773..ca628a15 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index a4216bc5..babfda25 100644
+index d7704223..d569c22a 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -533,7 +533,7 @@ index a4216bc5..babfda25 100644
 +    <url>https://github.com/mariaum0/Zartema</url>
      <licenses>
          <license>
-             <name>The BSD 3-Clause License</name>
+             <name>Modified BSD 3-Clause License</name>
 @@ -31,24 +26,6 @@
          </license>
      </licenses>
