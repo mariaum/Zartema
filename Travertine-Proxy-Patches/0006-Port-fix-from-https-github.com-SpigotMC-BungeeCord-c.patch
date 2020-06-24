@@ -1,0 +1,87 @@
+From 861f63992daf944d23605ee0710032c527a2eacf Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Wed, 24 Jun 2020 02:15:13 -0300
+Subject: [PATCH] Port fix from
+ https://github.com/SpigotMC/BungeeCord/commit/b41e9be4c9ca4c65f628697f9e63a129727b60e1
+
+
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Login.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Login.java
+index 58eb1f61..6ca80e2b 100644
+--- a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Login.java
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Login.java
+@@ -74,7 +74,7 @@ public class Login extends DefinedPacket
+             dimension = buf.readInt();
+         } else
+         {
+-            dimension = buf.readByte();
++            dimension = (int) buf.readByte();
+         }
+         if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_15 )
+         {
+@@ -138,10 +138,10 @@ public class Login extends DefinedPacket
+             writeString( worldName, buf );
+         } else if ( protocolVersion > ProtocolConstants.MINECRAFT_1_9 )
+         {
+-            buf.writeInt( ( (Number) dimension ).intValue() );
++            buf.writeInt( (Integer) dimension );
+         } else
+         {
+-            buf.writeByte( ( (Number) dimension ).byteValue() );
++            buf.writeByte( (Integer) dimension );
+         }
+         if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_15 )
+         {
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Respawn.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Respawn.java
+index 6a8c9c54..accaab81 100644
+--- a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Respawn.java
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Respawn.java
+@@ -68,7 +68,7 @@ public class Respawn extends DefinedPacket
+             writeString( worldName, buf );
+         } else
+         {
+-            buf.writeInt( ( (Number) dimension ).intValue() );
++            buf.writeInt( (Integer) dimension );
+         }
+         if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_15 )
+         {
+diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
+index eec0e0e1..6ca69da9 100644
+--- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
++++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
+@@ -309,9 +309,9 @@ public class ServerConnector extends PacketHandler
+             {
+                 Object newDim;
+                 String worldName = login.getWorldName();
+-                if ( login.getDimension() instanceof Number )
++                if ( login.getDimension() instanceof Integer )
+                 {
+-                    newDim = ( ( (Number) login.getDimension() ).intValue() >= 0 ? -1 : 0 );
++                    newDim = ( (Integer) login.getDimension() >= 0 ? -1 : 0 );
+                 } else
+                 {
+                     newDim = worldName = ( "minecraft:overworld".equals( login.getDimension() ) ) ? "minecraft:the_nether" : "minecraft:overworld";
+@@ -332,8 +332,8 @@ public class ServerConnector extends PacketHandler
+                 {
+                     Object newDim;
+                     String worldName = login.getWorldName();
+-                    if (login.getDimension() instanceof Number) {
+-                        newDim = (((Number) login.getDimension()).intValue() >= 0 ? -1 : 0);
++                    if (login.getDimension() instanceof Integer) {
++                        newDim = ((Integer) login.getDimension() >= 0 ? -1 : 0);
+                     } else {
+                         newDim = worldName = ("minecraft:overworld".equals(login.getDimension())) ? "minecraft:the_nether" : "minecraft:overworld";
+                     }
+@@ -350,8 +350,8 @@ public class ServerConnector extends PacketHandler
+                 {
+                     Object newDim;
+                     String worldName = login.getWorldName();
+-                    if (login.getDimension() instanceof Number) {
+-                        newDim = (((Number) login.getDimension()).intValue() >= 0 ? -1 : 0);
++                    if (login.getDimension() instanceof Integer) {
++                        newDim = ((Integer) login.getDimension() >= 0 ? -1 : 0);
+                     } else {
+                         newDim = worldName = ("minecraft:overworld".equals(login.getDimension())) ? "minecraft:the_nether" : "minecraft:overworld";
+                     }
+-- 
+2.17.1
+
