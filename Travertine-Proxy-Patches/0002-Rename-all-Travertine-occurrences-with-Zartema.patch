@@ -1,4 +1,4 @@
-From 60d72fe639d1975c147933760ce50e32e6624872 Mon Sep 17 00:00:00 2001
+From b5bd1cf0a3ba9f43bb9caf809533df17d768f5d7 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Travertine occurrences with Zartema
@@ -18,10 +18,10 @@ index 1f63a2c2..7312813f 100644
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 67c83f17..78c0f6f9 100644
+index af8879d4..d01ce881 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
-@@ -14,7 +14,7 @@
+@@ -16,7 +16,7 @@
      <packaging>jar</packaging>
  
      <name>Zartema-Chat</name>
