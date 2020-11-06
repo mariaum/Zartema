@@ -1,0 +1,51 @@
+From 1d660a016da8fbc335e62a6022cb57b4c8899ba8 Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Thu, 5 Nov 2020 21:33:37 -0300
+Subject: [PATCH] Don't disable connection throttle for every listener when
+ using proxy protocol.
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index 37fbbd41..e586814d 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -332,12 +332,12 @@ public class BungeeCord extends ProxyServer
+             if ( info.isProxyProtocol() )
+             {
+                 getLogger().log( Level.WARNING, "Using PROXY protocol for listener {0}, please ensure this listener is adequately firewalled.", info.getSocketAddress() );
+-
++                /* Zartema - Don't disable connection throttle for every listener when using proxy protocol.
+                 if ( connectionThrottle != null )
+                 {
+                     connectionThrottle = null;
+                     getLogger().log( Level.WARNING, "Since PROXY protocol is in use, internal connection throttle has been disabled." );
+-                }
++                }*/
+             }
+ 
+             ChannelFutureListener listener = new ChannelFutureListener()
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+index 9a39f69e..997f23f0 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+@@ -59,13 +59,15 @@ public class PipelineUtils
+         protected void initChannel(Channel ch) throws Exception
+         {
+             SocketAddress remoteAddress = ( ch.remoteAddress() == null ) ? ch.parent().localAddress() : ch.remoteAddress();
++            // Zartema start - Don't disable connection throttle for every listener when using proxy protocol.
++            ListenerInfo listener = ch.attr( LISTENER ).get();
+ 
+-            if ( BungeeCord.getInstance().getConnectionThrottle() != null && BungeeCord.getInstance().getConnectionThrottle().throttle( remoteAddress ) )
++            if ( !listener.isProxyProtocol() && BungeeCord.getInstance().getConnectionThrottle() != null && BungeeCord.getInstance().getConnectionThrottle().throttle( remoteAddress ) )
+             {
+                 ch.close();
+                 return;
+             }
+-            ListenerInfo listener = ch.attr( LISTENER ).get();
++            // Zartema end
+ 
+             if ( BungeeCord.getInstance().getPluginManager().callEvent( new ClientConnectEvent( remoteAddress, listener ) ).isCancelled() )
+             {
+-- 
+2.21.0.windows.1
+
