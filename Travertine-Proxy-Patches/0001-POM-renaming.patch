@@ -1,11 +1,11 @@
-From ef4bba44dc2bf84430f4b9de335cf1e773fca947 Mon Sep 17 00:00:00 2001
+From 46f2bacf42062b9541b8c1dbd13dcc434dab1068 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index 1cd99ed30..52473fd98 100644
+index adec9d39f..327043061 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -630,7 +630,7 @@ index 993cbca95..fe995c80b 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 330697bc7..c303143c5 100644
+index d67d1a5d3..85d2642c5 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -657,7 +657,7 @@ index 330697bc7..c303143c5 100644
      <description>Proxy component of the Elastic Portal Suite</description>
  
      <properties>
-@@ -58,32 +58,32 @@
+@@ -64,32 +64,32 @@
              <scope>compile</scope>
          </dependency>
          <dependency>
