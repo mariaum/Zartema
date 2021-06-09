@@ -1,4 +1,4 @@
-From f301509f475138d424928996a1812aed317574df Mon Sep 17 00:00:00 2001
+From 0a124d959b69ca73d54aa72a6165bfd8c59bc0cf Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 10 Aug 2019 13:17:29 -0300
 Subject: [PATCH] Correctly parse URL ports at fromLegacyText.
