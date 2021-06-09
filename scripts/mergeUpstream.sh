@@ -10,7 +10,7 @@ function update {
     git add $1
 }
 
-update Travertine
+update Waterfall
 
 # Update submodules
 git submodule update --recursive

@@ -1,4 +1,4 @@
-From 4177a922ccc66f2bca919dd9868a70222539ed6d Mon Sep 17 00:00:00 2001
+From 0ef3e084041545b1526e6c6c025cc8e435eb0c47 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Fri, 16 Oct 2020 00:38:17 -0300
 Subject: [PATCH] Allow to hide sensitive command args from logs.
@@ -39,5 +39,5 @@ index 90031156f..3451b3f49 100644
                  }
                  command.execute( sender, args );
 -- 
-2.27.0
+2.31.1
 

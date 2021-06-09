@@ -7,13 +7,13 @@ function changelog() {
     base=$(git ls-tree HEAD $1  | cut -d' ' -f3 | cut -f1)
     cd $1 && git log --oneline ${base}...HEAD
 }
-travertine=$(changelog Travertine)
+waterfall=$(changelog Waterfall)
 
 updated=""
 logsuffix=""
-if [ ! -z "$travertine" ]; then
-    logsuffix="$logsuffix\n\nTravertine Changes:\n$travertine"
-    if [ -z "$updated" ]; then updated="Travertine"; else updated="$updated/Travertine"; fi
+if [ ! -z "$waterfall" ]; then
+    logsuffix="$logsuffix\n\nWaterfall Changes:\n$waterfall"
+    if [ -z "$updated" ]; then updated="Waterfall"; else updated="$updated/Waterfall"; fi
 fi
 disclaimer="Upstream has released updates that appears to apply and compile correctly."
 

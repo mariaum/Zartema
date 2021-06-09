@@ -1,3 +1,3 @@
-[submodule "Travertine"]
-	path = Travertine
-	url = https://github.com/PaperMC/Travertine.git
+[submodule "Waterfall"]
+	path = Waterfall
+	url = https://github.com/papermc/waterfall

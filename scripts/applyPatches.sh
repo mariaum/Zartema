@@ -62,19 +62,15 @@ fi
 
 executedir=$basedir
 
-# Apply waterfall & travertine patches
-pushd Travertine
-	pushd Waterfall
-	basedir=$executedir/Travertine/Waterfall
-	applyPatch BungeeCord Waterfall-Proxy HEAD
-	popd
-basedir=$executedir/Travertine
-applyPatch Waterfall/Waterfall-Proxy Travertine-Proxy HEAD
+# Apply upstream patches
+pushd Waterfall
+basedir=$executedir/Waterfall
+applyPatch BungeeCord Waterfall-Proxy HEAD
 popd
 
 basedir=$executedir
 
-applyPatch Travertine/Travertine-Proxy Zartema-Proxy HEAD
+applyPatch Waterfall/Waterfall-Proxy Zartema-Proxy HEAD
 
-# Apply travertine patches
+# Apply waterfall patches
 enableCommitSigningIfNeeded

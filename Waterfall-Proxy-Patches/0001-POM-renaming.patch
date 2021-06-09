@@ -1,11 +1,11 @@
-From 46f2bacf42062b9541b8c1dbd13dcc434dab1068 Mon Sep 17 00:00:00 2001
+From 1ead0741a0a2dd2b234733b2fa7f7d83e14bb1f5 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index adec9d39f..327043061 100644
+index 87c170461..8ffe40797 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -13,28 +13,28 @@ index adec9d39f..327043061 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-api</artifactId>
+-    <artifactId>waterfall-api</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-api</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-API</name>
+-    <name>Waterfall-API</name>
 +    <name>Zartema-API</name>
      <description>API implemented by the Elastic Portal Suite</description>
  
      <dependencies>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-chat</artifactId>
+-            <artifactId>waterfall-chat</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-chat</artifactId>
              <version>${project.version}</version>
@@ -42,7 +42,7 @@ index adec9d39f..327043061 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-config</artifactId>
+-            <artifactId>waterfall-config</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-config</artifactId>
              <version>${project.version}</version>
@@ -50,7 +50,7 @@ index adec9d39f..327043061 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-event</artifactId>
+-            <artifactId>waterfall-event</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-event</artifactId>
              <version>${project.version}</version>
@@ -58,14 +58,14 @@ index adec9d39f..327043061 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-protocol</artifactId>
+-            <artifactId>waterfall-protocol</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-protocol</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 139b7ac12..0fc3c27c4 100644
+index 7a9e82587..ba1c47215 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -73,22 +73,22 @@ index 139b7ac12..0fc3c27c4 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-bootstrap</artifactId>
+-    <artifactId>waterfall-bootstrap</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-bootstrap</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Bootstrap</name>
--    <description>Java 1.6 loader for Travertine</description>
+-    <name>Waterfall-Bootstrap</name>
+-    <description>Java 1.6 loader for Waterfall</description>
 +    <name>Zartema-Bootstrap</name>
 +    <description>Java 1.6 loader for Zartema</description>
  
@@ -99,7 +99,7 @@ index 139b7ac12..0fc3c27c4 100644
      <dependencies>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-proxy</artifactId>
+-            <artifactId>waterfall-proxy</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-proxy</artifactId>
              <version>${project.version}</version>
@@ -108,41 +108,43 @@ index 139b7ac12..0fc3c27c4 100644
      </dependencies>
  
      <build>
--        <finalName>Travertine</finalName>
+-        <finalName>Waterfall</finalName>
 +        <finalName>Zartema</finalName>
          <plugins>
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 5cc621414..180459e0e 100644
+index cfa0e16ee..7ccbd6fc4 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
-@@ -4,18 +4,18 @@
+@@ -4,19 +4,19 @@
      <modelVersion>4.0.0</modelVersion>
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-chat</artifactId>
+-    <artifactId>waterfall-chat</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-chat</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Chat</name>
+-    <name>Waterfall-Chat</name>
+-    <description>Minecraft JSON chat API intended for use with Waterfall</description>
 +    <name>Zartema-Chat</name>
-     <description>Minecraft JSON chat API intended for use with Travertine</description>
++    <description>Minecraft JSON chat API intended for use with Travertine</description>
  
      <dependencies>
+         <dependency>
 diff --git a/config/pom.xml b/config/pom.xml
-index 7cdcbd8b3..e1e1f0fcc 100644
+index 6c122954e..8eacf67b3 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -150,29 +152,29 @@ index 7cdcbd8b3..e1e1f0fcc 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-config</artifactId>
+-    <artifactId>waterfall-config</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-config</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Config</name>
--    <description>Generic java configuration API intended for use with Travertine</description>
+-    <name>Waterfall-Config</name>
+-    <description>Generic java configuration API intended for use with Waterfall</description>
 +    <name>Zartema-Config</name>
 +    <description>Generic java configuration API intended for use with Zartema</description>
  
      <dependencies>
          <dependency>
 diff --git a/event/pom.xml b/event/pom.xml
-index b1a990c93..401a120d3 100644
+index 563783e90..120824c6b 100644
 --- a/event/pom.xml
 +++ b/event/pom.xml
 @@ -4,17 +4,17 @@
@@ -180,27 +182,27 @@ index b1a990c93..401a120d3 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-event</artifactId>
+-    <artifactId>waterfall-event</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-event</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Event</name>
--    <description>Generic java event dispatching API intended for use with Travertine.</description>
+-    <name>Waterfall-Event</name>
+-    <description>Generic java event dispatching API intended for use with Waterfall.</description>
 +    <name>Zartema-Event</name>
 +    <description>Generic java event dispatching API intended for use with Zartema.</description>
  </project>
 diff --git a/log/pom.xml b/log/pom.xml
-index 00f7b9c92..f30878ba4 100644
+index 3663d6d93..1a565cc00 100644
 --- a/log/pom.xml
 +++ b/log/pom.xml
 @@ -4,19 +4,19 @@
@@ -208,22 +210,22 @@ index 00f7b9c92..f30878ba4 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-log</artifactId>
+-    <artifactId>waterfall-log</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Log</name>
--    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with Travertine and Minecraft related applications.</description>
+-    <name>Waterfall-Log</name>
+-    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
 +    <name>Zartema-Log</name>
 +    <description>Simplistic and performant java.util.Logger based logger and console API designed for use with Zartema and Minecraft related applications.</description>
  
@@ -234,53 +236,44 @@ index 00f7b9c92..f30878ba4 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-chat</artifactId>
+-            <artifactId>waterfall-chat</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-chat</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
-index 9fe7044f9..fc24309e9 100644
+index 7ec6e530b..f25295714 100644
 --- a/log4j/pom.xml
 +++ b/log4j/pom.xml
-@@ -3,18 +3,18 @@
+@@ -3,19 +3,19 @@
      <modelVersion>4.0.0</modelVersion>
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-log4j</artifactId>
+-    <artifactId>waterfall-log4j</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log4j</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Log</name>
+-    <name>Waterfall-Log</name>
+-    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Waterfall and Minecraft related applications.</description>
 +    <name>Zartema-Log</name>
-     <description>Simplistic and performant Log4j2 based logger and console API designed for use with Travertine and Minecraft related applications.</description>
++    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Travertine and Minecraft related applications.</description>
  
      <properties>
-@@ -64,8 +64,8 @@
-         </dependency>
- 
-         <dependency>
--            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-chat</artifactId>
-+            <groupId>com.mariaum</groupId>
-+            <artifactId>zartema-chat</artifactId>
-             <version>${project.version}</version>
-             <scope>compile</scope>
-         </dependency>
+         <log4j2.version>2.14.0</log4j2.version>
 diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
-index 8eb065721..389d56fc6 100644
+index 11e990d9c..6a8aa60d6 100644
 --- a/module/cmd-alert/pom.xml
 +++ b/module/cmd-alert/pom.xml
 @@ -4,14 +4,14 @@
@@ -288,22 +281,22 @@ index 8eb065721..389d56fc6 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-cmd-alert</artifactId>
+-    <artifactId>waterfall-module-cmd-alert</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-alert</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
-index 09e2835aa..87f4f7182 100644
+index b732d67f4..39c86b2c4 100644
 --- a/module/cmd-find/pom.xml
 +++ b/module/cmd-find/pom.xml
 @@ -4,14 +4,14 @@
@@ -311,22 +304,22 @@ index 09e2835aa..87f4f7182 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-cmd-find</artifactId>
+-    <artifactId>waterfall-module-cmd-find</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-find</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
-index 5d1ff0424..cf45fd7d7 100644
+index d17cb7873..99718df56 100644
 --- a/module/cmd-list/pom.xml
 +++ b/module/cmd-list/pom.xml
 @@ -4,14 +4,14 @@
@@ -334,22 +327,22 @@ index 5d1ff0424..cf45fd7d7 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-cmd-list</artifactId>
+-    <artifactId>waterfall-module-cmd-list</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-list</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
-index 1f6a7c681..9d6095ba6 100644
+index d1972708d..0273a7832 100644
 --- a/module/cmd-send/pom.xml
 +++ b/module/cmd-send/pom.xml
 @@ -4,14 +4,14 @@
@@ -357,22 +350,22 @@ index 1f6a7c681..9d6095ba6 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-cmd-send</artifactId>
+-    <artifactId>waterfall-module-cmd-send</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-send</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
-index c353e8293..160726174 100644
+index 3b2c49526..03ee2c3dc 100644
 --- a/module/cmd-server/pom.xml
 +++ b/module/cmd-server/pom.xml
 @@ -4,14 +4,14 @@
@@ -380,22 +373,22 @@ index c353e8293..160726174 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-cmd-server</artifactId>
+-    <artifactId>waterfall-module-cmd-server</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-server</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/pom.xml b/module/pom.xml
-index ca0a9c87d..cad289bfe 100644
+index 0ef98d584..b06bc88d0 100644
 --- a/module/pom.xml
 +++ b/module/pom.xml
 @@ -4,19 +4,19 @@
@@ -403,22 +396,22 @@ index ca0a9c87d..cad289bfe 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module</artifactId>
+-    <artifactId>waterfall-module</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>pom</packaging>
  
--    <name>Travertine Modules</name>
--    <description>Parent project for all Travertine modules.</description>
+-    <name>Waterfall Modules</name>
+-    <description>Parent project for all Waterfall modules.</description>
 +    <name>Zartema Modules</name>
 +    <description>Parent project for all Zartema modules.</description>
  
@@ -437,14 +430,14 @@ index ca0a9c87d..cad289bfe 100644
      <dependencies>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-api</artifactId>
+-            <artifactId>waterfall-api</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-api</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
-index d1a2d86c8..61978ea95 100644
+index b88398cfb..5026302ca 100644
 --- a/module/reconnect-yaml/pom.xml
 +++ b/module/reconnect-yaml/pom.xml
 @@ -4,14 +4,14 @@
@@ -452,22 +445,22 @@ index d1a2d86c8..61978ea95 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-module</artifactId>
+-        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-module-reconnect-yaml</artifactId>
+-    <artifactId>waterfall-module-reconnect-yaml</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-reconnect-yaml</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/native/pom.xml b/native/pom.xml
-index a2efb5e52..518199ec6 100644
+index 652a869d5..3bad75e74 100644
 --- a/native/pom.xml
 +++ b/native/pom.xml
 @@ -4,19 +4,19 @@
@@ -475,29 +468,29 @@ index a2efb5e52..518199ec6 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-native</artifactId>
+-    <artifactId>waterfall-native</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-native</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Native</name>
--    <description>Optional native code to speed up and enhance Travertine functionality.</description>
+-    <name>Waterfall-Native</name>
+-    <description>Optional native code to speed up and enhance Waterfall functionality.</description>
 +    <name>Zartema-Native</name>
 +    <description>Optional native code to speed up and enhance zartema functionality.</description>
  
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index b3ee7b0cd..7728f3246 100644
+index fd71cdbdd..75703ba49 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -505,7 +498,7 @@ index b3ee7b0cd..7728f3246 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-super</artifactId>
+-        <artifactId>waterfall-super</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-super</artifactId>
          <version>dev-SNAPSHOT</version>
@@ -513,15 +506,15 @@ index b3ee7b0cd..7728f3246 100644
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-parent</artifactId>
+-    <artifactId>waterfall-parent</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-parent</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>pom</packaging>
  
--    <name>Travertine-Parent</name>
--    <description>Parent project for all Travertine modules.</description>
--    <url>https://github.com/PaperMC/Travertine</url>
+-    <name>Waterfall-Parent</name>
+-    <description>Parent project for all Waterfall modules.</description>
+-    <url>https://github.com/WaterfallMC/Waterfall</url>
 -    <inceptionYear>2015</inceptionYear>
 -    <organization>
 -        <name>WaterfallMC</name>
@@ -558,19 +551,19 @@ index b3ee7b0cd..7728f3246 100644
      <modules>
          <module>api</module>
          <module>bootstrap</module>
-@@ -63,28 +40,7 @@
-         <module>query</module>
+@@ -64,28 +41,7 @@
+         <!--<module>slf4j</module>-->
          <module>native</module>
      </modules>
 -
 -    <scm>
--        <connection>scm:git:git@github.com:com:PaperMC/Travertine.git</connection>
--        <developerConnection>scm:git:git@github.com:PaperMC/Travertine.git</developerConnection>
--        <url>git@github.com:PaperMC/Travertine.git</url>
+-        <connection>scm:git:git@github.com:com:WaterfallMC/Waterfall.git</connection>
+-        <developerConnection>scm:git:git@github.com:WaterfallMC/Waterfall.git</developerConnection>
+-        <url>git@github.com:WaterfallMC/Waterfall.git</url>
 -    </scm>
 -    <issueManagement>
 -        <system>GitHub</system>
--        <url>https://github.com/PaperMC/Travertine/issues</url>
+-        <url>https://github.com/PaperMC/Waterfall/issues</url>
 -    </issueManagement>
 -
 -    <distributionManagement>
@@ -589,7 +582,7 @@ index b3ee7b0cd..7728f3246 100644
          <build.number>unknown</build.number>
          <lombok.version>1.18.20</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index 993cbca95..fe995c80b 100644
+index dbc0a3abc..72637a3f8 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
 @@ -4,19 +4,19 @@
@@ -597,22 +590,22 @@ index 993cbca95..fe995c80b 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-protocol</artifactId>
+-    <artifactId>waterfall-protocol</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-protocol</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Protocol</name>
--    <description>Minimal implementation of the Minecraft protocol for use in Travertine</description>
+-    <name>Waterfall-Protocol</name>
+-    <description>Minimal implementation of the Minecraft protocol for use in Waterfall</description>
 +    <name>Zartema-Protocol</name>
 +    <description>Minimal implementation of the Minecraft protocol for use in Zartema</description>
  
@@ -623,14 +616,14 @@ index 993cbca95..fe995c80b 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-chat</artifactId>
+-            <artifactId>waterfall-chat</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-chat</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index d67d1a5d3..85d2642c5 100644
+index c3a2eeb6f..5fd0cde87 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -638,21 +631,21 @@ index d67d1a5d3..85d2642c5 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-proxy</artifactId>
+-    <artifactId>waterfall-proxy</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-proxy</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Proxy</name>
+-    <name>Waterfall-Proxy</name>
 +    <name>Zartema-Proxy</name>
      <description>Proxy component of the Elastic Portal Suite</description>
  
@@ -662,7 +655,7 @@ index d67d1a5d3..85d2642c5 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-api</artifactId>
+-            <artifactId>waterfall-api</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-api</artifactId>
              <version>${project.version}</version>
@@ -670,7 +663,7 @@ index d67d1a5d3..85d2642c5 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-log4j</artifactId>
+-            <artifactId>waterfall-log4j</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-log4j</artifactId>
              <version>${project.version}</version>
@@ -678,7 +671,7 @@ index d67d1a5d3..85d2642c5 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-native</artifactId>
+-            <artifactId>waterfall-native</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-native</artifactId>
              <version>${project.version}</version>
@@ -686,7 +679,7 @@ index d67d1a5d3..85d2642c5 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-protocol</artifactId>
+-            <artifactId>waterfall-protocol</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-protocol</artifactId>
              <version>${project.version}</version>
@@ -694,14 +687,14 @@ index d67d1a5d3..85d2642c5 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-query</artifactId>
+-            <artifactId>waterfall-query</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-query</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 diff --git a/query/pom.xml b/query/pom.xml
-index 813696e45..216a8e824 100644
+index dea7d85fc..cdfe54df7 100644
 --- a/query/pom.xml
 +++ b/query/pom.xml
 @@ -4,19 +4,19 @@
@@ -709,22 +702,22 @@ index 813696e45..216a8e824 100644
  
      <parent>
 -        <groupId>io.github.waterfallmc</groupId>
--        <artifactId>travertine-parent</artifactId>
+-        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.16-R0.5-SNAPSHOT</version>
+         <version>1.17-R0.1-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
 -    <groupId>io.github.waterfallmc</groupId>
--    <artifactId>travertine-query</artifactId>
+-    <artifactId>waterfall-query</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-query</artifactId>
-     <version>1.16-R0.5-SNAPSHOT</version>
+     <version>1.17-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
--    <name>Travertine-Query</name>
--    <description>Minecraft query implementation based on the Travertine API.</description>
+-    <name>Waterfall-Query</name>
+-    <description>Minecraft query implementation based on the Waterfall API.</description>
 +    <name>Zartema-Query</name>
 +    <description>Minecraft query implementation based on the Zartema API.</description>
  
@@ -735,12 +728,12 @@ index 813696e45..216a8e824 100644
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>
--            <artifactId>travertine-api</artifactId>
+-            <artifactId>waterfall-api</artifactId>
 +            <groupId>com.mariaum</groupId>
 +            <artifactId>zartema-api</artifactId>
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
 -- 
-2.27.0
+2.31.1
 
