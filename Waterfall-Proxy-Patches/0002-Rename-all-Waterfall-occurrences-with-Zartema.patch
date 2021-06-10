@@ -1,7 +1,7 @@
-From 414d318e1ede11e974fdeda0b46d346b814c6f99 Mon Sep 17 00:00:00 2001
+From 9c12234664eb16f3375136a4f5f8cfe10b0d288a Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
-Subject: [PATCH] Rename all Travertine occurrences with Zartema
+Subject: [PATCH] Rename all Waterfall occurrences with Zartema
 
 
 diff --git a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
