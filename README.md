@@ -1,6 +1,9 @@
 # Zartema
-[Travertine](https://github.com/PaperMC/Travertine) fork.
-Using on projects I work on, it makes it really easy to make changes when needed.
+A [Waterfall](https://github.com/PaperMC/Waterfall) fork.
+Made for my personal use.
+
+1.7.x support from an old Travertine patch (which has been discontinued): https://github.com/PaperMC/Travertine/blob/master/Waterfall-Proxy-Patches/0003-1.7.x-Protocol-Patch.patch
+
 
 Special Thanks To:
 -------------
