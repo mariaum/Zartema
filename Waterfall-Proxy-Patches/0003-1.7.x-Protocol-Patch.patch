@@ -1,4 +1,4 @@
-From 42ade7171861736a3c754e7e9451d86492f1f1f6 Mon Sep 17 00:00:00 2001
+From ebbefe3f2029c24dfdd8b7beaf66b68bc698b942 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -154,13 +154,13 @@ index d4b038434..9aac7ca9f 100644
      }
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index d2a11a826..2cc0f825b 100644
+index e95431a0f..91bcdfb72 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 @@ -58,7 +58,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      Handshake.class,
-                     Handshake::new, // Waterfall - speed up packet construction
+                     Handshake::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
              );
@@ -169,7 +169,7 @@ index d2a11a826..2cc0f825b 100644
 @@ -70,7 +70,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      KeepAlive.class,
-                     KeepAlive::new, // Waterfall - speed up packet construction
+                     KeepAlive::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x1F ),
@@ -178,7 +178,7 @@ index d2a11a826..2cc0f825b 100644
 @@ -82,7 +82,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Login.class,
-                     Login::new, // Waterfall - speed up packet construction
+                     Login::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x23 ),
@@ -187,7 +187,7 @@ index d2a11a826..2cc0f825b 100644
 @@ -93,7 +93,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Chat.class,
-                     Chat::new, // Waterfall - speed up packet construction
+                     Chat::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x02 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x02 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x0F ),
@@ -196,23 +196,23 @@ index d2a11a826..2cc0f825b 100644
 @@ -103,7 +103,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Respawn.class,
-                     Respawn::new, // Waterfall - speed up packet construction
+                     Respawn::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x07 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x07 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x33 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x34 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x35 ),
-@@ -126,20 +126,19 @@ public enum Protocol
+@@ -126,20 +126,20 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      EntityEffect.class,
-                     EntityEffect::new, // Waterfall - speed up packet construction
+                     EntityEffect::new,
 -                    map(ProtocolConstants.MINECRAFT_1_8, 0x1D),
 +                    map(ProtocolConstants.MINECRAFT_1_7_2, 0x1D), // Travertine
                      map(ProtocolConstants.MINECRAFT_1_9, Integer.MIN_VALUE)
              );
              TO_CLIENT.registerPacket(
                      EntityRemoveEffect.class,
-                     EntityRemoveEffect::new, // Waterfall - speed up packet construction
+                     EntityRemoveEffect::new,
 -                    map(ProtocolConstants.MINECRAFT_1_8, 0x1E),
 +                    map(ProtocolConstants.MINECRAFT_1_7_2, 0x1E), // Travertine
                      map(ProtocolConstants.MINECRAFT_1_9, Integer.MIN_VALUE)
@@ -220,230 +220,230 @@ index d2a11a826..2cc0f825b 100644
              // Waterfall end
              TO_CLIENT.registerPacket(
                      PlayerListItem.class, // PlayerInfo
--                    PlayerListItem::new, // Waterfall - speed up packet construction
+                     PlayerListItem::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x38 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x38 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x2D ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x2E ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x30 ),
-@@ -152,7 +151,7 @@ public enum Protocol
+@@ -152,7 +152,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      TabCompleteResponse.class,
-                     TabCompleteResponse::new, // Waterfall - speed up packet construction
+                     TabCompleteResponse::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3A ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3A ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x0E ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x10 ),
                      map( ProtocolConstants.MINECRAFT_1_15, 0x11 ),
-@@ -163,7 +162,7 @@ public enum Protocol
+@@ -163,7 +163,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      ScoreboardObjective.class,
-                     ScoreboardObjective::new, // Waterfall - speed up packet construction
+                     ScoreboardObjective::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3B ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3B ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x3F ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x41 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x42 ),
-@@ -175,7 +174,7 @@ public enum Protocol
+@@ -175,7 +175,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      ScoreboardScore.class,
-                     ScoreboardScore::new, // Waterfall - speed up packet construction
+                     ScoreboardScore::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3C ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3C ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x42 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x44 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x45 ),
-@@ -187,7 +186,7 @@ public enum Protocol
+@@ -187,7 +187,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      ScoreboardDisplay.class,
-                     ScoreboardDisplay::new, // Waterfall - speed up packet construction
+                     ScoreboardDisplay::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3D ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3D ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x38 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x3A ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x3B ),
-@@ -199,7 +198,7 @@ public enum Protocol
+@@ -199,7 +199,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Team.class,
-                     Team::new, // Waterfall - speed up packet construction
+                     Team::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3E ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3E ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x41 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x43 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x44 ),
-@@ -211,7 +210,7 @@ public enum Protocol
+@@ -211,7 +211,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      PluginMessage.class,
-                     PluginMessage::new, // Waterfall - speed up packet construction
+                     PluginMessage::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x3F ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x3F ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x18 ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x19 ),
                      map( ProtocolConstants.MINECRAFT_1_14, 0x18 ),
-@@ -223,7 +222,7 @@ public enum Protocol
+@@ -223,7 +223,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Kick.class,
-                     Kick::new, // Waterfall - speed up packet construction
+                     Kick::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x40 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x40 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x1A ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x1B ),
                      map( ProtocolConstants.MINECRAFT_1_14, 0x1A ),
-@@ -235,7 +234,7 @@ public enum Protocol
+@@ -235,7 +235,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Title.class,
-                     Title::new, // Waterfall - speed up packet construction
+                     Title::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x45 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x45 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_12, 0x47 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x48 ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x4B ),
-@@ -257,7 +256,7 @@ public enum Protocol
+@@ -262,7 +262,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      PlayerListHeaderFooter.class,
-                     PlayerListHeaderFooter::new, // Waterfall - speed up packet construction
+                     PlayerListHeaderFooter::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x47 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x47 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x48 ),
                      map( ProtocolConstants.MINECRAFT_1_9_4, 0x47 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x49 ),
-@@ -271,7 +270,7 @@ public enum Protocol
+@@ -276,7 +276,7 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      EntityStatus.class,
-                     EntityStatus::new, // Waterfall - speed up packet construction
+                     EntityStatus::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x1A ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x1A ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x1B ),
                      map( ProtocolConstants.MINECRAFT_1_13, 0x1C ),
                      map( ProtocolConstants.MINECRAFT_1_14, 0x1B ),
-@@ -309,7 +308,7 @@ public enum Protocol
+@@ -314,7 +314,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      KeepAlive.class,
-                     KeepAlive::new, // Waterfall - speed up packet construction
+                     KeepAlive::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x0B ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x0C ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x0B ),
-@@ -321,7 +320,7 @@ public enum Protocol
+@@ -326,7 +326,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      Chat.class,
-                     Chat::new, // Waterfall - speed up packet construction
+                     Chat::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x02 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x03 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x02 ),
-@@ -330,7 +329,7 @@ public enum Protocol
+@@ -335,7 +335,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      TabCompleteRequest.class,
-                     TabCompleteRequest::new, // Waterfall - speed up packet construction
+                     TabCompleteRequest::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x14 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x14 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x01 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x02 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x01 ),
-@@ -340,7 +339,7 @@ public enum Protocol
+@@ -345,7 +345,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      ClientSettings.class,
-                     ClientSettings::new, // Waterfall - speed up packet construction
+                     ClientSettings::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x15 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x15 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x04 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x05 ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x04 ),
-@@ -349,7 +348,7 @@ public enum Protocol
+@@ -354,7 +354,7 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      PluginMessage.class,
-                     PluginMessage::new, // Waterfall - speed up packet construction
+                     PluginMessage::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x17 ),
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x17 ), // Travertine
                      map( ProtocolConstants.MINECRAFT_1_9, 0x09 ),
                      map( ProtocolConstants.MINECRAFT_1_12, 0x0A ),
                      map( ProtocolConstants.MINECRAFT_1_12_1, 0x09 ),
-@@ -367,23 +366,23 @@ public enum Protocol
+@@ -372,23 +372,23 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      StatusResponse.class,
-                     StatusResponse::new, // Waterfall - speed up packet construction
+                     StatusResponse::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 )
-+                            map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
++                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
              );
              TO_CLIENT.registerPacket(
                      PingPacket.class,
-                     PingPacket::new, // Waterfall - speed up packet construction
+                     PingPacket::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ) // Travertine
              );
  
              TO_SERVER.registerPacket(
                      StatusRequest.class,
-                     StatusRequest::new, // Waterfall - speed up packet construction
+                     StatusRequest::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
              );
              TO_SERVER.registerPacket(
                      PingPacket.class,
-                     PingPacket::new, // Waterfall - speed up packet construction
+                     PingPacket::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ) // Travertine
              );
          }
      },
-@@ -395,22 +394,22 @@ public enum Protocol
+@@ -400,22 +400,22 @@ public enum Protocol
              TO_CLIENT.registerPacket(
                      Kick.class,
-                     Kick::new, // Waterfall - speed up packet construction
+                     Kick::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
              );
              TO_CLIENT.registerPacket(
                      EncryptionRequest.class,
-                     EncryptionRequest::new, // Waterfall - speed up packet construction
+                     EncryptionRequest::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ) // Travertine
              );
              TO_CLIENT.registerPacket(
                      LoginSuccess.class,
-                     LoginSuccess::new, // Waterfall - speed up packet construction
+                     LoginSuccess::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x02 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x02 ) // Travertine
              );
              TO_CLIENT.registerPacket(
                      SetCompression.class,
-                     SetCompression::new, // Waterfall - speed up packet construction
+                     SetCompression::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x03 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x03 ) // Travertine
              );
              TO_CLIENT.registerPacket(
                      LoginPayloadRequest.class,
-@@ -421,12 +420,12 @@ public enum Protocol
+@@ -426,12 +426,12 @@ public enum Protocol
              TO_SERVER.registerPacket(
                      LoginRequest.class,
-                     LoginRequest::new, // Waterfall - speed up packet construction
+                     LoginRequest::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x00 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x00 ) // Travertine
              );
              TO_SERVER.registerPacket(
                      EncryptionResponse.class,
-                     EncryptionResponse::new, // Waterfall - speed up packet construction
+                     EncryptionResponse::new,
 -                    map( ProtocolConstants.MINECRAFT_1_8, 0x01 )
 +                    map( ProtocolConstants.MINECRAFT_1_7_2, 0x01 ) // Travertine
              );
              TO_SERVER.registerPacket(
                      LoginPayloadResponse.class,
-@@ -546,7 +545,11 @@ public enum Protocol
+@@ -552,7 +552,11 @@ public enum Protocol
              }
              if ( !hasPacket(id, supportsForge) )
              {
--                throw new BadPacketException( "Packet with id " + id + " outside of range " );
+-                throw new BadPacketException( "Packet with id " + id + " outside of range" );
 +                if ( ProtocolConstants.isBeforeOrEq( version, ProtocolConstants.MINECRAFT_1_7_6 ) ) {
 +                    return null;
 +                } else {
-+                    throw new BadPacketException( "Packet with id " + id + " outside of range " );
++                    throw new BadPacketException( "Packet with id " + id + " outside of range" );
 +                }
              }
  
-             java.util.function.Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id]; // Waterfall - speed up packet construction
+             Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id];
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 index e208209e1..34c57ad5c 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
