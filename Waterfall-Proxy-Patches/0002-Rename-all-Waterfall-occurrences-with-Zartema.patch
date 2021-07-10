@@ -1,4 +1,4 @@
-From 9c12234664eb16f3375136a4f5f8cfe10b0d288a Mon Sep 17 00:00:00 2001
+From dec219009a28dd63829777581db09ab9722b2a39 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Waterfall occurrences with Zartema
@@ -44,7 +44,7 @@ index d703d6d24..3c9f73b16 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index c09f5b4c3..8096c638d 100644
+index 07d74c673..72207bd09 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -188,7 +188,7 @@ public class BungeeCord extends ProxyServer
@@ -66,10 +66,10 @@ index c09f5b4c3..8096c638d 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 356805285..7f1787d93 100644
+index 0db3d76ae..3635b0bec 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -76,7 +76,7 @@ public class BungeeCordLauncher
+@@ -63,7 +63,7 @@ public class BungeeCordLauncher
  
          BungeeCord bungee = new BungeeCord();
          ProxyServer.setInstance( bungee );
@@ -118,5 +118,5 @@ index 0644b8cd3..eec665e3d 100644
              SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
 -- 
-2.31.1
+2.32.0
 
