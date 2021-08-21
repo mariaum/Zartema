@@ -1,0 +1,169 @@
+From b08a87e989944a02ab5654b5efb4463e8c58702c Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Fri, 20 Aug 2021 22:53:24 -0300
+Subject: [PATCH] Add io_uring support.
+
+
+diff --git a/pom.xml b/pom.xml
+index a020c09b..f3964429 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -45,7 +45,7 @@
+     <properties>
+         <build.number>unknown</build.number>
+         <lombok.version>1.18.20</lombok.version>
+-        <netty.version>4.1.65.Final</netty.version>
++        <netty.version>4.1.67.Final</netty.version>
+         <maven.compiler.source>1.8</maven.compiler.source>
+         <maven.compiler.target>1.8</maven.compiler.target>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+diff --git a/proxy/pom.xml b/proxy/pom.xml
+index 5fd0cde8..1c59cb85 100644
+--- a/proxy/pom.xml
++++ b/proxy/pom.xml
+@@ -63,6 +63,12 @@
+             <classifier>linux-x86_64</classifier>
+             <scope>compile</scope>
+         </dependency>
++        <dependency>
++            <groupId>io.netty.incubator</groupId>
++            <artifactId>netty-incubator-transport-native-io_uring</artifactId>
++            <version>0.0.8.Final</version>
++            <classifier>linux-x86_64</classifier>
++        </dependency>
+         <dependency>
+             <groupId>com.mariaum</groupId>
+             <artifactId>zartema-api</artifactId>
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+index 926e6519..33396e66 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+@@ -3,13 +3,7 @@ package net.md_5.bungee.netty;
+ import com.google.common.base.Preconditions;
+ import io.github.waterfallmc.waterfall.event.ConnectionInitEvent;
+ import io.netty.buffer.PooledByteBufAllocator;
+-import io.netty.channel.Channel;
+-import io.netty.channel.ChannelException;
+-import io.netty.channel.ChannelInitializer;
+-import io.netty.channel.ChannelOption;
+-import io.netty.channel.EventLoopGroup;
+-import io.netty.channel.ServerChannel;
+-import io.netty.channel.WriteBufferWaterMark;
++import io.netty.channel.*;
+ import io.netty.channel.epoll.Epoll;
+ import io.netty.channel.epoll.EpollDatagramChannel;
+ import io.netty.channel.epoll.EpollDomainSocketChannel;
+@@ -25,6 +19,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
+ import io.netty.channel.unix.DomainSocketAddress;
+ import io.netty.handler.codec.haproxy.HAProxyMessageDecoder;
+ import io.netty.handler.timeout.ReadTimeoutHandler;
++import io.netty.incubator.channel.uring.*;
+ import io.netty.util.AttributeKey;
+ import io.netty.util.internal.PlatformDependent;
+ import java.net.SocketAddress;
+@@ -119,56 +114,56 @@ public class PipelineUtils
+     public static final String LEGACY_DECODER = "legacy-decoder";
+     public static final String LEGACY_KICKER = "legacy-kick";
+ 
+-    private static boolean epoll;
++    private static EventLoopType eventLoopType = EventLoopType.NIO;
+ 
+     static
+     {
+-        if ( !PlatformDependent.isWindows() && Boolean.parseBoolean( System.getProperty( "bungee.epoll", "true" ) ) )
++        if ( !PlatformDependent.isWindows() )
+         {
+-            ProxyServer.getInstance().getLogger().info( "Not on Windows, attempting to use enhanced EpollEventLoop" );
+-
+-            if ( epoll = Epoll.isAvailable() )
++            if ( Boolean.parseBoolean( System.getProperty("zartema.io_uring", "false" ) ) && IOUring.isAvailable() )
+             {
+-                ProxyServer.getInstance().getLogger().info( "Epoll is working, utilising it!" );
+-            } else
++                eventLoopType = EventLoopType.IO_URING;
++            }
++            else if ( Boolean.parseBoolean( System.getProperty( "bungee.epoll", "true" ) ) && Epoll.isAvailable() )
+             {
+-                ProxyServer.getInstance().getLogger().log( Level.WARNING, "Epoll is not working, falling back to NIO: {0}", Util.exception( Epoll.unavailabilityCause() ) );
++                eventLoopType = EventLoopType.EPOLL;
+             }
+         }
++        ProxyServer.getInstance().getLogger().info( "Using event loop type: " + eventLoopType );
+     }
+ 
+     public static EventLoopGroup newEventLoopGroup(int threads, ThreadFactory factory)
+     {
+-        return epoll ? new EpollEventLoopGroup( threads, factory ) : new NioEventLoopGroup( threads, factory );
++        return eventLoopType.factory.create( threads, factory );
+     }
+ 
+     public static Class<? extends ServerChannel> getServerChannel(SocketAddress address)
+     {
+         if ( address instanceof DomainSocketAddress )
+         {
+-            Preconditions.checkState( epoll, "Epoll required to have UNIX sockets" );
++            Preconditions.checkState( eventLoopType == EventLoopType.EPOLL, "Epoll required to have UNIX sockets" );
+ 
+             return EpollServerDomainSocketChannel.class;
+         }
+ 
+-        return epoll ? EpollServerSocketChannel.class : NioServerSocketChannel.class;
++        return eventLoopType.serverChannel;
+     }
+ 
+     public static Class<? extends Channel> getChannel(SocketAddress address)
+     {
+         if ( address instanceof DomainSocketAddress )
+         {
+-            Preconditions.checkState( epoll, "Epoll required to have UNIX sockets" );
++            Preconditions.checkState( eventLoopType == EventLoopType.EPOLL, "Epoll required to have UNIX sockets" );
+ 
+             return EpollDomainSocketChannel.class;
+         }
+ 
+-        return epoll ? EpollSocketChannel.class : NioSocketChannel.class;
++        return eventLoopType.channel;
+     }
+ 
+     public static Class<? extends DatagramChannel> getDatagramChannel()
+     {
+-        return epoll ? EpollDatagramChannel.class : NioDatagramChannel.class;
++        return eventLoopType.datagramChannel;
+     }
+ 
+     private static final int LOW_MARK = Integer.getInteger( "net.md_5.bungee.low_mark", 2 << 18 ); // 0.5 mb
+@@ -199,4 +194,31 @@ public class PipelineUtils
+             ch.pipeline().addLast( BOSS_HANDLER, new HandlerBoss() );
+         }
+     }
++
++    enum EventLoopType
++    {
++        IO_URING( IOUringEventLoopGroup::new, IOUringServerSocketChannel.class, IOUringSocketChannel.class, IOUringDatagramChannel.class ),
++        EPOLL( EpollEventLoopGroup::new, EpollServerSocketChannel.class, EpollSocketChannel.class, EpollDatagramChannel.class ),
++        NIO( NioEventLoopGroup::new, NioServerSocketChannel.class, NioSocketChannel.class, NioDatagramChannel.class );
++
++        final EventLoopGroupFactory factory;
++        final Class<? extends ServerChannel> serverChannel;
++        final Class<? extends Channel> channel;
++        final Class<? extends DatagramChannel> datagramChannel;
++
++        EventLoopType( final EventLoopGroupFactory factory, Class<? extends ServerChannel> serverChannel,
++                      Class<? extends Channel> channel, Class<? extends DatagramChannel> datagramChannel )
++        {
++            this.factory = factory;
++            this.serverChannel = serverChannel;
++            this.channel = channel;
++            this.datagramChannel = datagramChannel;
++        }
++    }
++
++    private interface EventLoopGroupFactory
++    {
++        EventLoopGroup create( int threads, ThreadFactory factory );
++    }
++
+ }
+-- 
+2.21.0.windows.1
+
