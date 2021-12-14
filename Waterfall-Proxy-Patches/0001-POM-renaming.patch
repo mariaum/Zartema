@@ -1,4 +1,4 @@
-From 2bd94aed920336ec547fc7dc42ab83fc791e9505 Mon Sep 17 00:00:00 2001
+From 7ca6568aecd1801890de4a54328e6b4c2f929ea0 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -243,7 +243,7 @@ index 465ebbf2..52fac72d 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
-index 34740637..9d736f09 100644
+index d3512fca..bb92d590 100644
 --- a/log4j/pom.xml
 +++ b/log4j/pom.xml
 @@ -3,19 +3,19 @@
@@ -271,7 +271,7 @@ index 34740637..9d736f09 100644
 +    <description>Simplistic and performant Log4j2 based logger and console API designed for use with Travertine and Minecraft related applications.</description>
  
      <properties>
-         <log4j2.version>2.14.1</log4j2.version>
+         <log4j2.version>2.16.0</log4j2.version>
 diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
 index b41791f1..8e068abe 100644
 --- a/module/cmd-alert/pom.xml
