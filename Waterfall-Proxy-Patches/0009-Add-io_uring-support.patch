@@ -1,15 +1,15 @@
-From 7c2f73b1630bd95edc6624ea9cc32eb492c86778 Mon Sep 17 00:00:00 2001
+From 2cf709017de0c44ed662c2cd6915ecf00d41c6f3 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Fri, 20 Aug 2021 22:53:24 -0300
 Subject: [PATCH] Add io_uring support.
 
 
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 9054987e..80738ad5 100644
+index f80b2095..4f500dfa 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
-@@ -63,6 +63,12 @@
-             <classifier>linux-x86_64</classifier>
+@@ -70,6 +70,12 @@
+             <classifier>linux-aarch_64</classifier>
              <scope>compile</scope>
          </dependency>
 +        <dependency>
@@ -152,5 +152,5 @@ index 832b9292..1ede7b2f 100644
 +
  }
 -- 
-2.32.0
+2.37.1
 
