@@ -1,4 +1,4 @@
-From 117a0baae58ae50d2ecdc93e32c73a173623a5fe Mon Sep 17 00:00:00 2001
+From 339777f9da6338c6fbab4212bac1e2bff47aef21 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -315,6 +315,29 @@ index c4ad20de..97296521 100644
 -    <artifactId>waterfall-module-cmd-find</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-find</artifactId>
+     <version>1.19-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+diff --git a/module/cmd-kick/pom.xml b/module/cmd-kick/pom.xml
+index 17d3dc71..497b322c 100644
+--- a/module/cmd-kick/pom.xml
++++ b/module/cmd-kick/pom.xml
+@@ -4,14 +4,14 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <parent>
+-        <groupId>io.github.waterfallmc</groupId>
+-        <artifactId>waterfall-module</artifactId>
++        <groupId>com.mariaum</groupId>
++        <artifactId>zartema-module</artifactId>
+         <version>1.19-R0.1-SNAPSHOT</version>
+         <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>io.github.waterfallmc</groupId>
+-    <artifactId>waterfall-module-cmd-kick</artifactId>
++    <groupId>com.mariaum</groupId>
++    <artifactId>zartema-module-cmd-kick</artifactId>
      <version>1.19-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
  
