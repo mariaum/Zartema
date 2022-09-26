@@ -1,7 +1,7 @@
-From 212e0cc7b8c9b74060981fc7b330457195aba7d7 Mon Sep 17 00:00:00 2001
+From 8d1e0f824c15e7414274f5aa23e88c41e1b08525 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
-Subject: [PATCH] 1.7.x Protocol Patch
+Subject: [PATCH] 0.7.x Protocol Patch
 
 
 diff --git a/protocol/src/main/java/io/github/waterfallmc/travertine/protocol/MultiVersionPacketV17.java b/protocol/src/main/java/io/github/waterfallmc/travertine/protocol/MultiVersionPacketV17.java
@@ -1754,10 +1754,10 @@ index 00000000..65c1a9ec
 +// Travertine end
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_7_6.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_7_6.java
 new file mode 100644
-index 00000000..6755fe84
+index 00000000..8a1ce63a
 --- /dev/null
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_7_6.java
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,63 @@
 +// Travertine start
 +package net.md_5.bungee.entitymap;
 +
@@ -1767,6 +1767,7 @@ index 00000000..6755fe84
 +import net.md_5.bungee.UserConnection;
 +import net.md_5.bungee.connection.LoginResult;
 +import net.md_5.bungee.protocol.DefinedPacket;
++import net.md_5.bungee.protocol.Property;
 +
 +class EntityMap_1_7_6 extends EntityMap_1_7_2
 +{
@@ -1804,7 +1805,7 @@ index 00000000..6755fe84
 +                        DefinedPacket.writeString( player.getUniqueId().toString(), packet );
 +                        DefinedPacket.writeString( username, packet );
 +                        DefinedPacket.writeVarInt( profile.getProperties().length, packet );
-+                        for ( LoginResult.Property property : profile.getProperties() )
++                        for ( Property property : profile.getProperties() )
 +                        {
 +                            DefinedPacket.writeString( property.getName(), packet );
 +                            DefinedPacket.writeString( property.getValue(), packet );
@@ -1999,5 +2000,5 @@ index daf12f74..e33861ab 100644
  
      @Override
 -- 
-2.37.1
+2.35.1.windows.2
 
