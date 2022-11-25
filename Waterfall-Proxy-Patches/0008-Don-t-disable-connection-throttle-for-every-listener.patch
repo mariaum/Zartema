@@ -1,4 +1,4 @@
-From 86b0cbc2ebf5548bc3fe28555616ab8ed7042ad5 Mon Sep 17 00:00:00 2001
+From 8a108c0dca7dd960640292f31364d451984fd440 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Thu, 5 Nov 2020 21:33:37 -0300
 Subject: [PATCH] Don't disable connection throttle for every listener when
@@ -6,10 +6,10 @@ Subject: [PATCH] Don't disable connection throttle for every listener when
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 3bca2ed8..f0320cbe 100644
+index 19c3b205..e835212c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -333,12 +333,12 @@ public class BungeeCord extends ProxyServer
+@@ -342,12 +342,12 @@ public class BungeeCord extends ProxyServer
              if ( info.isProxyProtocol() )
              {
                  getLogger().log( Level.WARNING, "Using PROXY protocol for listener {0}, please ensure this listener is adequately firewalled.", info.getSocketAddress() );
@@ -47,5 +47,5 @@ index 2a21243b..832b9292 100644
              if ( BungeeCord.getInstance().getPluginManager().callEvent( new ClientConnectEvent( remoteAddress, listener ) ).isCancelled() )
              {
 -- 
-2.32.0
+2.37.1
 

@@ -1,4 +1,4 @@
-From 8d1e0f824c15e7414274f5aa23e88c41e1b08525 Mon Sep 17 00:00:00 2001
+From 6120045992c1ce6cdc2ae8d74ca7b8190815f6bf Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 0.7.x Protocol Patch
@@ -1286,10 +1286,10 @@ index a5555f6a..415a4bcd 100644
      public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 6514f048..3bca2ed8 100644
+index c0228064..19c3b205 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -170,6 +170,14 @@ public class BungeeCord extends ProxyServer
+@@ -171,6 +171,14 @@ public class BungeeCord extends ProxyServer
              .registerTypeAdapter( SelectorComponent.class, new SelectorComponentSerializer() )
              .registerTypeAdapter( ServerPing.PlayerInfo.class, new PlayerInfoSerializer() )
              .registerTypeAdapter( Favicon.class, Favicon.getFaviconTypeAdapter() ).create();
@@ -1547,7 +1547,7 @@ index 59d204ce..b8ca2b76 100644
              con.unsafe().sendPacket( pluginMessage );
              throw CancelSendSignal.INSTANCE;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 975b6996..f025eb7f 100644
+index c1fbf84c..9da0e990 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -3,6 +3,8 @@ package net.md_5.bungee.connection;
@@ -2000,5 +2000,5 @@ index daf12f74..e33861ab 100644
  
      @Override
 -- 
-2.35.1.windows.2
+2.37.1
 
