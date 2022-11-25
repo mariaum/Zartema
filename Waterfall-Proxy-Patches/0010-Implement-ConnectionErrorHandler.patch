@@ -1,0 +1,63 @@
+From 1d8fb8166e5e01252bb58452b66f4e195bae5866 Mon Sep 17 00:00:00 2001
+From: Mariaum <me@mariaum.com>
+Date: Mon, 26 Sep 2022 05:04:29 -0300
+Subject: [PATCH] Implement ConnectionErrorHandler.
+
+
+diff --git a/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java b/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java
+new file mode 100644
+index 00000000..d045bf30
+--- /dev/null
++++ b/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java
+@@ -0,0 +1,22 @@
++package com.mariaum.zartema;
++
++import java.net.InetSocketAddress;
++
++/**
++ * Written by Mariaum <mariaum@mushmc.com.br>, 26 Sep 2022
++ */
++public abstract class ConnectionErrorHandler {
++
++    public static ConnectionErrorHandler EMPTY = new ConnectionErrorHandler() {
++        @Override
++        public void handle(InetSocketAddress address, Type type) {
++        }
++    };
++
++    abstract public void handle(final InetSocketAddress address, Type type);
++
++    public enum Type {
++        UNEXPECTED_PACKET
++    }
++
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+index e835212c..41578017 100644
+--- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
++++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
+@@ -182,6 +182,9 @@ public class BungeeCord extends ProxyServer
+     @Getter
+     private ConnectionThrottle connectionThrottle;
+     private final ModuleManager moduleManager = new ModuleManager();
++    @Getter
++    @Setter
++    private com.mariaum.zartema.ConnectionErrorHandler connectionErrorHandler = com.mariaum.zartema.ConnectionErrorHandler.EMPTY;
+ 
+     {
+         // TODO: Proper fallback when we interface the manager
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
+index baa20ef4..e3e424a7 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
+@@ -158,6 +158,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+     {
+         if ( packet.packet == null )
+         {
++            BungeeCord.getInstance().getConnectionErrorHandler().handle( this.getAddress(), com.mariaum.zartema.ConnectionErrorHandler.Type.UNEXPECTED_PACKET );
+             throw new QuietException( "Unexpected packet received during login process! " + BufUtil.dump( packet.buf, 16 ) );
+         }
+     }
+-- 
+2.37.1
+
