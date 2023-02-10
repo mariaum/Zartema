@@ -1,4 +1,4 @@
-From b6333c516097c87697600611f990a9a8cf8efe47 Mon Sep 17 00:00:00 2001
+From 6ae8697449157d0b5c1e6a7be1c3a715f62a067a Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -928,7 +928,7 @@ index 07fb3d79..9e30a11c 100644
 +    // Travertine end
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PlayerListItem.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PlayerListItem.java
-index 9b9c412d..5c651e14 100644
+index 9b9c412d..4fe33409 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PlayerListItem.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PlayerListItem.java
 @@ -1,5 +1,7 @@
@@ -976,7 +976,7 @@ index 9b9c412d..5c651e14 100644
 +        Item item = items[0]; // Only one at a time
 +        writeString( item.displayName, buf ); // TODO: Server unique only!
 +        buf.writeBoolean( action != Action.REMOVE_PLAYER );
-+        buf.writeShort( item.ping );
++        buf.writeShort( item.ping != null ? item.ping : 0 );
 +    }
 +    // Travertine end
 +
