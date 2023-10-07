@@ -1,4 +1,4 @@
-From 26a3ea0d90ecf91ed3c10588f019d46ca397a2e8 Mon Sep 17 00:00:00 2001
+From 56cb8e8ea1f9e97daa566c8ec645e68f3b1b7408 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -129,7 +129,7 @@ index 70ec6c53..daa747c2 100644
      {
          return null;
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftDecoder.java b/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftDecoder.java
-index b89a2e16..3cd6b324 100644
+index 636ecc6d..1245dbcd 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftDecoder.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftDecoder.java
 @@ -59,7 +59,7 @@ public class MinecraftDecoder extends MessageToMessageDecoder<ByteBuf>
@@ -142,10 +142,10 @@ index b89a2e16..3cd6b324 100644
                  if ( in.isReadable() )
                  {
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftEncoder.java b/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftEncoder.java
-index 5d0ca482..a68e3fe6 100644
+index 2245dc56..e4542a5a 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftEncoder.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/MinecraftEncoder.java
-@@ -23,6 +23,6 @@ public class MinecraftEncoder extends MessageToByteEncoder<DefinedPacket>
+@@ -24,6 +24,6 @@ public class MinecraftEncoder extends MessageToByteEncoder<DefinedPacket>
      {
          Protocol.DirectionData prot = ( server ) ? protocol.TO_CLIENT : protocol.TO_SERVER;
          DefinedPacket.writeVarInt( prot.getId( msg.getClass(), protocolVersion ), out );
@@ -154,7 +154,7 @@ index 5d0ca482..a68e3fe6 100644
      }
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index dd10c1e1..ad384441 100644
+index 82bfc51b..5f4c2327 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 @@ -67,7 +67,7 @@ public enum Protocol
@@ -1290,7 +1290,7 @@ index 5bfaf12d..9fa81732 100644
      private ConnectionThrottle connectionThrottle;
      private final ModuleManager moduleManager = new ModuleManager();
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java b/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
-index 1d377a65..6c7d4abb 100644
+index c1686a93..0fef13ce 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
 @@ -183,6 +183,7 @@ public class BungeeTitle implements Title
@@ -1357,7 +1357,7 @@ index 491cf1a1..299a216c 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index 55218447..6b5e35a7 100644
+index 57136c2d..d2c3f9e1 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 @@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
@@ -1368,7 +1368,7 @@ index 55218447..6b5e35a7 100644
  import java.util.Queue;
  import java.util.Set;
  import java.util.UUID;
-@@ -297,10 +298,20 @@ public class ServerConnector extends PacketHandler
+@@ -296,10 +297,20 @@ public class ServerConnector extends PacketHandler
              {
                  user.unsafe().sendPacket( BungeeCord.getInstance().registerChannels( user.getPendingConnection().getVersion() ) );
  
@@ -1393,7 +1393,7 @@ index 55218447..6b5e35a7 100644
              }
  
              user.setDimension( login.getDimension() );
-@@ -313,7 +324,7 @@ public class ServerConnector extends PacketHandler
+@@ -312,7 +323,7 @@ public class ServerConnector extends PacketHandler
              if ( !user.isDisableEntityMetadataRewrite() ) { // Waterfall
              for ( Objective objective : serverScoreboard.getObjectives() )
              {
@@ -1402,7 +1402,7 @@ index 55218447..6b5e35a7 100644
              }
              for ( Score score : serverScoreboard.getScores() )
              {
-@@ -504,6 +515,14 @@ public class ServerConnector extends PacketHandler
+@@ -503,6 +514,14 @@ public class ServerConnector extends PacketHandler
              {
                  this.handshakeHandler.handle( pluginMessage );
  
@@ -1418,10 +1418,10 @@ index 55218447..6b5e35a7 100644
                  throw CancelSendSignal.INSTANCE;
              }
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 96f4d017..f05c0187 100644
+index 7d9a0f38..0c9575f0 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -197,6 +197,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -220,6 +220,7 @@ public final class UserConnection implements ProxiedPlayer
      public void setDisplayName(String name)
      {
          Preconditions.checkNotNull( name, "displayName" );
@@ -1429,7 +1429,7 @@ index 96f4d017..f05c0187 100644
          displayName = name;
      }
  
-@@ -527,7 +528,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -550,7 +551,7 @@ public final class UserConnection implements ProxiedPlayer
          // transform score components
          message = ChatComponentTransformer.getInstance().transform( this, true, message );
  
@@ -1438,7 +1438,7 @@ index 96f4d017..f05c0187 100644
          {
              // Versions older than 1.11 cannot send the Action bar with the new JSON formattings
              // Fix by converting to a legacy message, see https://bugs.mojang.com/browse/MC-119145
-@@ -723,6 +724,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -746,6 +747,7 @@ public final class UserConnection implements ProxiedPlayer
      @Override
      public void setTabHeader(BaseComponent header, BaseComponent footer)
      {
@@ -1446,7 +1446,7 @@ index 96f4d017..f05c0187 100644
          header = ChatComponentTransformer.getInstance().transform( this, true, header )[0];
          footer = ChatComponentTransformer.getInstance().transform( this, true, footer )[0];
  
-@@ -735,6 +737,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -758,6 +760,7 @@ public final class UserConnection implements ProxiedPlayer
      @Override
      public void setTabHeader(BaseComponent[] header, BaseComponent[] footer)
      {
@@ -1454,7 +1454,7 @@ index 96f4d017..f05c0187 100644
          header = ChatComponentTransformer.getInstance().transform( this, true, header );
          footer = ChatComponentTransformer.getInstance().transform( this, true, footer );
  
-@@ -764,6 +767,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -787,6 +790,7 @@ public final class UserConnection implements ProxiedPlayer
  
      public void setCompressionThreshold(int compressionThreshold)
      {
@@ -1532,7 +1532,7 @@ index 76acae0e..9e17998b 100644
              con.unsafe().sendPacket( pluginMessage );
              throw CancelSendSignal.INSTANCE;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 395e36b4..c6117d23 100644
+index 98b78de2..22d7d605 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -3,6 +3,8 @@ package net.md_5.bungee.connection;
@@ -1544,7 +1544,7 @@ index 395e36b4..c6117d23 100644
  import java.math.BigInteger;
  import java.net.InetSocketAddress;
  import java.net.SocketAddress;
-@@ -292,12 +294,28 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -291,12 +293,28 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                      @Override
                      public void done(ProxyPingEvent pingResult, Throwable error)
                      {
@@ -1597,10 +1597,10 @@ index 6df3f3dd..6cd71071 100644
          ( (BungeeServerInfo) target ).cachePing( serverPing );
          callback.done( serverPing, null );
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 7bcd317e..5f4b4b67 100644
+index b9d250d9..09e69ddc 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -101,7 +101,7 @@ public class UpstreamBridge extends PacketHandler
+@@ -103,7 +103,7 @@ public class UpstreamBridge extends PacketHandler
                  if ( player.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_19_3 )
                  {
                      player.unsafe().sendPacket( newPacket );
