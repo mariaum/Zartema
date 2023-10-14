@@ -1,4 +1,4 @@
-From 56cb8e8ea1f9e97daa566c8ec645e68f3b1b7408 Mon Sep 17 00:00:00 2001
+From 966e311fa846adccf8babe49a2489c72269f0750 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -1357,7 +1357,7 @@ index 491cf1a1..299a216c 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index 57136c2d..d2c3f9e1 100644
+index 8f0bacd4..df870c03 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 @@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
@@ -1368,7 +1368,7 @@ index 57136c2d..d2c3f9e1 100644
  import java.util.Queue;
  import java.util.Set;
  import java.util.UUID;
-@@ -296,10 +297,20 @@ public class ServerConnector extends PacketHandler
+@@ -297,10 +298,20 @@ public class ServerConnector extends PacketHandler
              {
                  user.unsafe().sendPacket( BungeeCord.getInstance().registerChannels( user.getPendingConnection().getVersion() ) );
  
@@ -1393,7 +1393,7 @@ index 57136c2d..d2c3f9e1 100644
              }
  
              user.setDimension( login.getDimension() );
-@@ -312,7 +323,7 @@ public class ServerConnector extends PacketHandler
+@@ -313,7 +324,7 @@ public class ServerConnector extends PacketHandler
              if ( !user.isDisableEntityMetadataRewrite() ) { // Waterfall
              for ( Objective objective : serverScoreboard.getObjectives() )
              {
@@ -1402,7 +1402,7 @@ index 57136c2d..d2c3f9e1 100644
              }
              for ( Score score : serverScoreboard.getScores() )
              {
-@@ -503,6 +514,14 @@ public class ServerConnector extends PacketHandler
+@@ -504,6 +515,14 @@ public class ServerConnector extends PacketHandler
              {
                  this.handshakeHandler.handle( pluginMessage );
  
