@@ -1,4 +1,4 @@
-From 1d1fec51cf82bdebf747daf47c8d914b7789e950 Mon Sep 17 00:00:00 2001
+From b9693fec2abd6ef2c1854236f3759d2326d8dd53 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Mon, 26 Sep 2022 05:04:29 -0300
 Subject: [PATCH] Implement ConnectionErrorHandler.
@@ -33,7 +33,7 @@ index 00000000..d045bf30
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 4e84c96a..f5c70afa 100644
+index d60d8d8f..8df0010b 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 @@ -182,6 +182,9 @@ public class BungeeCord extends ProxyServer
@@ -47,10 +47,10 @@ index 4e84c96a..f5c70afa 100644
      {
          // TODO: Proper fallback when we interface the manager
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 653fa9ae..300ee96d 100644
+index 44b40f7d..64fc25e9 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -159,6 +159,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -157,6 +157,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
      {
          if ( packet.packet == null )
          {

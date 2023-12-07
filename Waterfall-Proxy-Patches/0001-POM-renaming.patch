@@ -1,4 +1,4 @@
-From 9b54792290f9e85fd06e11d395c0a9b9e766d1ef Mon Sep 17 00:00:00 2001
+From 24f64730080b6e421d90759d196eb417b0720794 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -65,7 +65,7 @@ index bdccbd78..6e4149f0 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 672a813d..2af5fd7d 100644
+index 7fbac761..0f4fd2be 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -513,7 +513,7 @@ index 5e9d29d7..1eaa6150 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index 57ee7f23..75c0cd09 100644
+index cb5c42d4..01aa38cc 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,25 +4,20 @@
@@ -605,7 +605,7 @@ index 57ee7f23..75c0cd09 100644
          <build.number>unknown</build.number>
          <lombok.version>1.18.30</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index 12096614..122a6c5b 100644
+index 76a3510d..a8ab7ae9 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
 @@ -4,19 +4,19 @@
@@ -632,9 +632,9 @@ index 12096614..122a6c5b 100644
 +    <name>Zartema-Protocol</name>
 +    <description>Minimal implementation of the Minecraft protocol for use in Zartema</description>
  
-     <!-- We really shouldn't depend on external repositories, but at least this is the Central staging one -->
+     <!-- We really shouldn't depend on external repositories -->
      <repositories>
-@@ -41,8 +41,8 @@
+@@ -35,8 +35,8 @@
              <scope>compile</scope>
          </dependency>
          <dependency>
