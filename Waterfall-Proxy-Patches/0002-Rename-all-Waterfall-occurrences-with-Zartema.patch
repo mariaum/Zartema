@@ -1,4 +1,4 @@
-From 02bbff264c1ca66e06c0da85eca5eb05b97d7a16 Mon Sep 17 00:00:00 2001
+From b3213237240690a00c9729cafb9aa372fbaed6af Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Waterfall occurrences with Zartema
@@ -18,7 +18,7 @@ index a4516ed9..7312813f 100644
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 8acc0d98..4e97ce80 100644
+index 459cd6dd..0c4bfb8c 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -16,7 +16,7 @@
@@ -44,10 +44,10 @@ index d703d6d2..3c9f73b1 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index e0fcd8fb..c0228064 100644
+index 9b93d2c3..5a445e0d 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -189,7 +189,7 @@ public class BungeeCord extends ProxyServer
+@@ -192,7 +192,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -56,7 +56,7 @@ index e0fcd8fb..c0228064 100644
  
          reloadMessages();
  
-@@ -545,7 +545,7 @@ public class BungeeCord extends ProxyServer
+@@ -548,7 +548,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -105,7 +105,7 @@ index 720d0c3b..f1e74ad0 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-index 0dd69778..755c727b 100644
+index f6b5e8b8..8d6eb010 100644
 --- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 +++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 @@ -227,7 +227,7 @@ public class YamlConfig implements ConfigurationAdapter
@@ -118,5 +118,5 @@ index 0dd69778..755c727b 100644
              SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
 -- 
-2.37.1
+2.34.1
 
