@@ -1,4 +1,4 @@
-From d47be24ebf30352ed062696ffd624968a414ba95 Mon Sep 17 00:00:00 2001
+From 7053e11387d7ddfe7f09f1b24bd3cdc7456c5360 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Mon, 26 Sep 2022 05:04:29 -0300
 Subject: [PATCH] Implement ConnectionErrorHandler.
@@ -47,10 +47,10 @@ index 3b0e3b5a..dbdd0fa0 100644
      {
          // TODO: Proper fallback when we interface the manager
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 44b40f7d..64fc25e9 100644
+index fecec189..48083166 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -157,6 +157,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -181,6 +181,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
      {
          if ( packet.packet == null )
          {
