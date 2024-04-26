@@ -1,4 +1,4 @@
-From a1cb4fbdcb237bab0a21a5b9c9eca6811f8daffc Mon Sep 17 00:00:00 2001
+From b8b94f39241c3c13ac5644fbfa49a5dd6e787300 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:49:05 -0300
 Subject: [PATCH] Allow control over ServerPing's modinfo
@@ -41,10 +41,10 @@ index 29cd91dd..874f1c54 100644
      public String getFavicon()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index abb3463f..fecec189 100644
+index 58fd00ec..17b41f90 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -286,7 +286,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -288,7 +288,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
          return new ServerPing(
                  new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), protocol ),
                  new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),

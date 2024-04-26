@@ -1,4 +1,4 @@
-From ff691d21a8dac8b119b3c18287fc87eb9305abf5 Mon Sep 17 00:00:00 2001
+From 9b52c7fecd4fc62a985062444dbac7976b217c62 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Thu, 5 Nov 2020 21:33:37 -0300
 Subject: [PATCH] Don't disable connection throttle for every listener when
@@ -25,10 +25,10 @@ index 1012c17f..3b0e3b5a 100644
  
              ChannelFutureListener listener = new ChannelFutureListener()
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index 6a045d16..63f3df01 100644
+index 52c308f7..4f33f93a 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-@@ -59,13 +59,15 @@ public class PipelineUtils
+@@ -64,13 +64,15 @@ public class PipelineUtils
          protected void initChannel(Channel ch) throws Exception
          {
              SocketAddress remoteAddress = ( ch.remoteAddress() == null ) ? ch.parent().localAddress() : ch.remoteAddress();

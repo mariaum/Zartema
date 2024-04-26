@@ -1,4 +1,4 @@
-From 225c318d9f8e268d1679cb29a40abf087aab7ae8 Mon Sep 17 00:00:00 2001
+From 47405a1ecb7bc9ca34f3bfe73bcd9e1ae2251192 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -65,7 +65,7 @@ index a4ccb90c..e1c1318d 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 187c2138..e1691133 100644
+index 0cb96e7c..f915fe6b 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -513,7 +513,7 @@ index f7bae2fe..8bdd8e56 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index ef7b3fa1..ff6c5cf4 100644
+index a1cd1953..969c0d56 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,19 +3,14 @@
@@ -595,7 +595,7 @@ index ef7b3fa1..ff6c5cf4 100644
 +	
      <properties>
          <build.number>unknown</build.number>
-         <lombok.version>1.18.30</lombok.version>
+         <lombok.version>1.18.32</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
 index db62c340..01f1fc4e 100644
 --- a/protocol/pom.xml
@@ -638,7 +638,7 @@ index db62c340..01f1fc4e 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 15887222..ffa0ccea 100644
+index 1786d303..1fe2f052 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -665,8 +665,8 @@ index 15887222..ffa0ccea 100644
      <description>Proxy component of the Elastic Portal Suite</description>
  
      <properties>
-@@ -64,32 +64,32 @@
-             <scope>compile</scope>
+@@ -76,32 +76,32 @@
+             <classifier>linux-aarch_64</classifier>
          </dependency>
          <dependency>
 -            <groupId>io.github.waterfallmc</groupId>

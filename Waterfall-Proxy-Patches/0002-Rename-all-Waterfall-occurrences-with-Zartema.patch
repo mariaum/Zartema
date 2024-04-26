@@ -1,4 +1,4 @@
-From b3213237240690a00c9729cafb9aa372fbaed6af Mon Sep 17 00:00:00 2001
+From e8897363dd751e8449db5870234467e06a8e732a Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Waterfall occurrences with Zartema
@@ -18,7 +18,7 @@ index a4516ed9..7312813f 100644
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 459cd6dd..0c4bfb8c 100644
+index c2a6796d..83c5b0ad 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -16,7 +16,7 @@
@@ -66,7 +66,7 @@ index 9b93d2c3..5a445e0d 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 96a9998d..d11c94bf 100644
+index 72d6a15d..c0da1b0e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 @@ -63,7 +63,7 @@ public class BungeeCordLauncher
@@ -75,9 +75,9 @@ index 96a9998d..d11c94bf 100644
          ProxyServer.setInstance( bungee );
 -        bungee.getLogger().info( "Enabled Waterfall version " + bungee.getVersion() );
 +        bungee.getLogger().info( "Enabled Zartema version " + bungee.getVersion() );
+         bungee.getLogger().warning("Waterfall has reached end of life and is no longer maintained. We recommend you transition to Velocity (https://papermc.io/software/velocity). For more information, see the announcement (https://forums.papermc.io/threads/1088/)."); // Waterfall - eol message
          bungee.start();
  
-         if ( !options.has( "noconsole" ) )
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 index b26035cf..6a331d11 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
