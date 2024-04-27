@@ -1,0 +1,24 @@
+From 1c859bec4d96c667fa394799f4bd08c9a0747ac6 Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Sat, 27 Apr 2024 04:08:32 -0300
+Subject: [PATCH] Allow spoofing chat in 1.19+.
+
+Should work with ViaVersion at least.
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+index 29fa3429e..872128b2b 100644
+--- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
++++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+@@ -478,7 +478,8 @@ public final class UserConnection implements ProxiedPlayer
+         Preconditions.checkState( server != null, "Not connected to server" );
+         if ( getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_19 )
+         {
+-            throw new UnsupportedOperationException( "Cannot spoof chat on this client version!" );
++            server.getCh().write( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.SeenMessages( 0, new java.util.BitSet() ) ) ); // Zartema - Allow spoofing chat in 1.19+.
++            return;
+         }
+         server.getCh().write( new Chat( message ) );
+     }
+-- 
+2.40.1.windows.1
+
