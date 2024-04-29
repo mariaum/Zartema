@@ -1,0 +1,344 @@
+From c405d20c6e5a23a9f452afd419931fc46fb1baf1 Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Mon, 29 Apr 2024 03:48:33 -0300
+Subject: [PATCH] Add support for resource pack de-duplication.
+
+This adds support for de-duplicating resource packs for version 1.20.3+.
+
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
+index 7f5935c33..37b48f06b 100644
+--- a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
+@@ -53,6 +53,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
+ import net.md_5.bungee.protocol.packet.Transfer;
+ import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
+ import net.md_5.bungee.protocol.packet.ViewDistance;
++import net.md_5.bungee.protocol.packet.PushResourcePack;
++import net.md_5.bungee.protocol.packet.PopResourcePack;
++import net.md_5.bungee.protocol.packet.ResourcePack;
+ 
+ public abstract class AbstractPacketHandler
+ {
+@@ -282,4 +285,14 @@ public abstract class AbstractPacketHandler
+     {
+     }
+     // Waterfall end
++
++    public void handle(PushResourcePack packet) throws Exception {
++    }
++
++    public void handle(PopResourcePack packet) throws Exception {
++    }
++
++    public void handle(ResourcePack packet) throws Exception {
++    }
++
+ }
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
+index 018d3273b..73950be3d 100644
+--- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
+@@ -61,6 +61,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
+ import net.md_5.bungee.protocol.packet.Transfer;
+ import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
+ import net.md_5.bungee.protocol.packet.ViewDistance;
++import net.md_5.bungee.protocol.packet.PushResourcePack;
++import net.md_5.bungee.protocol.packet.PopResourcePack;
++import net.md_5.bungee.protocol.packet.ResourcePack;
+ 
+ public enum Protocol
+ {
+@@ -613,6 +616,24 @@ public enum Protocol
+                     CookieResponse::new,
+                     map( ProtocolConstants.MINECRAFT_1_20_5, 0x11 )
+             );
++            TO_CLIENT.registerPacket(
++                    PushResourcePack.class,
++                    PushResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x44),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x46)
++            );
++            TO_CLIENT.registerPacket(
++                    PopResourcePack.class,
++                    PopResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x43),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x45)
++            );
++            TO_SERVER.registerPacket(
++                    ResourcePack.class,
++                    ResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x28),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x2B)
++            );
+         }
+     },
+     // 1
+@@ -775,6 +796,24 @@ public enum Protocol
+                     map( ProtocolConstants.MINECRAFT_1_20_2, 0x03 ),
+                     map( ProtocolConstants.MINECRAFT_1_20_5, 0x04 )
+             );
++            TO_CLIENT.registerPacket(
++                    PushResourcePack.class,
++                    PushResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x07),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x09)
++            );
++            TO_CLIENT.registerPacket(
++                    PopResourcePack.class,
++                    PopResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x06),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x08)
++            );
++            TO_SERVER.registerPacket(
++                    ResourcePack.class,
++                    ResourcePack::new,
++                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x05),
++                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x06)
++            );
+         }
+     };
+     /*========================================================================*/
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
+new file mode 100644
+index 000000000..e400e56ff
+--- /dev/null
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
+@@ -0,0 +1,45 @@
++package net.md_5.bungee.protocol.packet;
++
++import io.netty.buffer.ByteBuf;
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.EqualsAndHashCode;
++import lombok.NoArgsConstructor;
++import net.md_5.bungee.protocol.AbstractPacketHandler;
++import net.md_5.bungee.protocol.DefinedPacket;
++import net.md_5.bungee.protocol.ProtocolConstants;
++
++import java.util.UUID;
++
++/**
++ * Written by mariaum <mariaumhere@gmail.com>, 29 Apr 2024
++ */
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode(callSuper = false)
++public class PopResourcePack extends DefinedPacket {
++
++    private UUID uuid;
++
++    @Override
++    public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        buf.writeBoolean(this.uuid != null);
++        if (this.uuid != null) {
++            writeUUID(this.uuid, buf);
++        }
++    }
++
++    @Override
++    public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        if (buf.readBoolean()) {
++            this.uuid = readUUID(buf);
++        }
++    }
++
++    @Override
++    public void handle(AbstractPacketHandler handler) throws Exception {
++        handler.handle(this);
++    }
++
++}
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
+new file mode 100644
+index 000000000..d58ea5b1a
+--- /dev/null
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
+@@ -0,0 +1,58 @@
++package net.md_5.bungee.protocol.packet;
++
++import io.netty.buffer.ByteBuf;
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.EqualsAndHashCode;
++import lombok.NoArgsConstructor;
++import net.md_5.bungee.api.chat.BaseComponent;
++import net.md_5.bungee.protocol.AbstractPacketHandler;
++import net.md_5.bungee.protocol.DefinedPacket;
++import net.md_5.bungee.protocol.ProtocolConstants;
++
++import java.util.UUID;
++
++/**
++ * Written by mariaum <mariaumhere@gmail.com>, 29 Apr 2024
++ */
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode(callSuper = false)
++public class PushResourcePack extends DefinedPacket {
++
++    private UUID uuid;
++    private String url;
++    private String hash;
++    private boolean required;
++    private BaseComponent prompt;
++
++    @Override
++    public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        writeUUID(this.uuid, buf);
++        writeString(this.url, buf);
++        writeString(this.hash, buf);
++        buf.writeBoolean(this.required);
++        buf.writeBoolean(this.prompt != null);
++        if (this.prompt != null) {
++            writeBaseComponent(this.prompt, buf, protocolVersion);
++        }
++    }
++
++    @Override
++    public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        this.uuid = readUUID(buf);
++        this.url = readString(buf);
++        this.hash = readString(buf);
++        this.required = buf.readBoolean();
++        if (buf.readBoolean()) {
++            this.prompt = readBaseComponent(buf, protocolVersion);
++        }
++    }
++
++    @Override
++    public void handle(AbstractPacketHandler handler) throws Exception {
++        handler.handle(this);
++    }
++
++}
+diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
+new file mode 100644
+index 000000000..f499a6fa8
+--- /dev/null
++++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
+@@ -0,0 +1,43 @@
++package net.md_5.bungee.protocol.packet;
++
++import io.netty.buffer.ByteBuf;
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.EqualsAndHashCode;
++import lombok.NoArgsConstructor;
++import net.md_5.bungee.protocol.AbstractPacketHandler;
++import net.md_5.bungee.protocol.DefinedPacket;
++import net.md_5.bungee.protocol.ProtocolConstants;
++
++import java.util.UUID;
++
++/**
++ * Written by mariaum <mariaumhere@gmail.com>, 29 Apr 2024
++ */
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@EqualsAndHashCode(callSuper = false)
++public class ResourcePack extends DefinedPacket {
++
++    private UUID uuid;
++    private int action;
++
++    @Override
++    public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        writeUUID(this.uuid, buf);
++        writeVarInt(this.action, buf);
++    }
++
++    @Override
++    public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion) {
++        this.uuid = readUUID(buf);
++        this.action = readVarInt(buf);
++    }
++
++    @Override
++    public void handle(AbstractPacketHandler handler) throws Exception {
++        handler.handle(this);
++    }
++
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+index 872128b2b..710224da3 100644
+--- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
++++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+@@ -138,6 +138,8 @@ public final class UserConnection implements ProxiedPlayer
+     @Getter
+     @Setter
+     private String lastCommandTabbed;
++    @Getter
++    private final HashSet<UUID> pushedPacks = new HashSet<>();
+     /*========================================================================*/
+     @Getter
+     private String displayName;
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+index f0b1358c9..9af1c7ff4 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+@@ -73,6 +73,9 @@ import net.md_5.bungee.protocol.packet.ServerData;
+ import net.md_5.bungee.protocol.packet.SetCompression;
+ import net.md_5.bungee.protocol.packet.TabCompleteResponse;
+ import net.md_5.bungee.tab.TabList;
++import net.md_5.bungee.protocol.packet.PushResourcePack;
++import net.md_5.bungee.protocol.packet.PopResourcePack;
++import net.md_5.bungee.protocol.packet.ResourcePack;
+ 
+ @RequiredArgsConstructor
+ public class DownstreamBridge extends PacketHandler
+@@ -869,6 +872,23 @@ public class DownstreamBridge extends PacketHandler
+         throw CancelSendSignal.INSTANCE;
+     }
+ 
++    @Override
++    public void handle(PushResourcePack packet) throws Exception {
++        if (this.con.getPushedPacks().contains(packet.getUuid())) {
++            this.server.sendPacketQueued(new ResourcePack(packet.getUuid(), 0));
++            throw CancelSendSignal.INSTANCE;
++        }
++    }
++
++    @Override
++    public void handle(PopResourcePack packet) throws Exception {
++        if (packet.getUuid() != null) {
++            this.con.getPushedPacks().remove(packet.getUuid());
++        } else {
++            this.con.getPushedPacks().clear();
++        }
++    }
++
+     @Override
+     public String toString()
+     {
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+index bc1006f5a..965aa50c6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+@@ -43,6 +43,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
+ import net.md_5.bungee.protocol.packet.TabCompleteRequest;
+ import net.md_5.bungee.protocol.packet.TabCompleteResponse;
+ import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
++import net.md_5.bungee.protocol.packet.ResourcePack;
+ import net.md_5.bungee.util.AllowedCharacters;
+ 
+ public class UpstreamBridge extends PacketHandler
+@@ -405,6 +406,13 @@ public class UpstreamBridge extends PacketHandler
+         con.getPendingConnection().handle( cookieResponse );
+     }
+ 
++    @Override
++    public void handle(ResourcePack packet) throws Exception {
++        if (packet.getAction() == 0) { // SUCCESSFULLY_LOADED
++            con.getPushedPacks().add(packet.getUuid());
++        }
++    }
++
+     @Override
+     public String toString()
+     {
+-- 
+2.40.1.windows.1
+
