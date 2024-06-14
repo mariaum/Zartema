@@ -1,4 +1,4 @@
-From c405d20c6e5a23a9f452afd419931fc46fb1baf1 Mon Sep 17 00:00:00 2001
+From 844cce9b106e0986871c88e7c3662dc71808a97c Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Mon, 29 Apr 2024 03:48:33 -0300
 Subject: [PATCH] Add support for resource pack de-duplication.
@@ -6,10 +6,10 @@ Subject: [PATCH] Add support for resource pack de-duplication.
 This adds support for de-duplicating resource packs for version 1.20.3+.
 
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
-index 7f5935c33..37b48f06b 100644
+index 4dde7257..b81aa259 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
-@@ -53,6 +53,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
+@@ -55,6 +55,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
  import net.md_5.bungee.protocol.packet.Transfer;
  import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
  import net.md_5.bungee.protocol.packet.ViewDistance;
@@ -19,7 +19,7 @@ index 7f5935c33..37b48f06b 100644
  
  public abstract class AbstractPacketHandler
  {
-@@ -282,4 +285,14 @@ public abstract class AbstractPacketHandler
+@@ -292,4 +295,14 @@ public abstract class AbstractPacketHandler
      {
      }
      // Waterfall end
@@ -35,10 +35,10 @@ index 7f5935c33..37b48f06b 100644
 +
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index 018d3273b..73950be3d 100644
+index a1abea4b..f885f12a 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-@@ -61,6 +61,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
+@@ -63,6 +63,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
  import net.md_5.bungee.protocol.packet.Transfer;
  import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
  import net.md_5.bungee.protocol.packet.ViewDistance;
@@ -48,7 +48,7 @@ index 018d3273b..73950be3d 100644
  
  public enum Protocol
  {
-@@ -613,6 +616,24 @@ public enum Protocol
+@@ -625,6 +628,24 @@ public enum Protocol
                      CookieResponse::new,
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x11 )
              );
@@ -73,7 +73,7 @@ index 018d3273b..73950be3d 100644
          }
      },
      // 1
-@@ -775,6 +796,24 @@ public enum Protocol
+@@ -797,6 +818,24 @@ public enum Protocol
                      map( ProtocolConstants.MINECRAFT_1_20_2, 0x03 ),
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x04 )
              );
@@ -100,7 +100,7 @@ index 018d3273b..73950be3d 100644
      /*========================================================================*/
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
 new file mode 100644
-index 000000000..e400e56ff
+index 00000000..e400e56f
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
 @@ -0,0 +1,45 @@
@@ -151,7 +151,7 @@ index 000000000..e400e56ff
 +}
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
 new file mode 100644
-index 000000000..d58ea5b1a
+index 00000000..d58ea5b1
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
 @@ -0,0 +1,58 @@
@@ -215,7 +215,7 @@ index 000000000..d58ea5b1a
 +}
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
 new file mode 100644
-index 000000000..f499a6fa8
+index 00000000..f499a6fa
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
 @@ -0,0 +1,43 @@
@@ -263,7 +263,7 @@ index 000000000..f499a6fa8
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 872128b2b..710224da3 100644
+index 872128b2..710224da 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 @@ -138,6 +138,8 @@ public final class UserConnection implements ProxiedPlayer
@@ -276,7 +276,7 @@ index 872128b2b..710224da3 100644
      @Getter
      private String displayName;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index f0b1358c9..9af1c7ff4 100644
+index f0b1358c..9af1c7ff 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -73,6 +73,9 @@ import net.md_5.bungee.protocol.packet.ServerData;
@@ -314,7 +314,7 @@ index f0b1358c9..9af1c7ff4 100644
      public String toString()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index bc1006f5a..965aa50c6 100644
+index bc1006f5..965aa50c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -43,6 +43,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
@@ -340,5 +340,5 @@ index bc1006f5a..965aa50c6 100644
      public String toString()
      {
 -- 
-2.40.1.windows.1
+2.34.1
 
