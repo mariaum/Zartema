@@ -1,4 +1,4 @@
-From 8316834420afddc05242a6573d005a478cbdae8d Mon Sep 17 00:00:00 2001
+From 96933326886a0ce8ea6982b7b41e478a31ab8f2f Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -431,7 +431,7 @@ index f25d3fab..a1abea4b 100644
  
              Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id];
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-index 79b298e3..c2b7f881 100644
+index ef45ea31..daebe1d2 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 @@ -7,6 +7,8 @@ public class ProtocolConstants
@@ -451,8 +451,8 @@ index 79b298e3..c2b7f881 100644
                  "1.8.x",
                  "1.9.x",
                  "1.10.x",
-@@ -68,6 +71,8 @@ public class ProtocolConstants
-                 "1.20.x"
+@@ -69,6 +72,8 @@ public class ProtocolConstants
+                 "1.21.x"
          );
          ImmutableList.Builder<Integer> supportedVersionIds = ImmutableList.<Integer>builder().add(
 +                ProtocolConstants.MINECRAFT_1_7_2,
