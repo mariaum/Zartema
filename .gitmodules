@@ -1,3 +1,4 @@
 [submodule "Waterfall"]
 	path = Waterfall
-	url = https://github.com/papermc/waterfall
+	url = https://github.com/mariaum/Waterfall.git
+	branch = master
