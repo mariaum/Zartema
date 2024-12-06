@@ -1,4 +1,4 @@
-From 31a3d18004dcd290554cc7323c81a60a59a94b8b Mon Sep 17 00:00:00 2001
+From 2ed2d3aa24a5c23df7f70e85f04e695ddfd87ec3 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Mon, 29 Apr 2024 03:48:33 -0300
 Subject: [PATCH] Add support for resource pack de-duplication.
@@ -35,7 +35,7 @@ index 4dde7257e..b81aa259e 100644
 +
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index 8b65fd5af..0c40000e3 100644
+index 8b65fd5af..13655ee56 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 @@ -63,6 +63,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
@@ -48,7 +48,7 @@ index 8b65fd5af..0c40000e3 100644
  
  public enum Protocol
  {
-@@ -658,6 +661,27 @@ public enum Protocol
+@@ -658,6 +661,28 @@ public enum Protocol
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x11 ),
                      map( ProtocolConstants.MINECRAFT_1_21_2, 0x13 )
              );
@@ -71,12 +71,13 @@ index 8b65fd5af..0c40000e3 100644
 +                    ResourcePack::new,
 +                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x28),
 +                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x2B),
-+                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x2D)
++                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x2D),
++                    map(ProtocolConstants.MINECRAFT_1_21_4, 0x2F)
 +            );
          }
      },
      // 1
-@@ -830,6 +854,24 @@ public enum Protocol
+@@ -830,6 +855,24 @@ public enum Protocol
                      map( ProtocolConstants.MINECRAFT_1_20_2, 0x03 ),
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x04 )
              );
@@ -266,7 +267,7 @@ index 000000000..f499a6fa8
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 7ce95bd69..ed78105eb 100644
+index 51b0c46f5..99927bc70 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 @@ -138,6 +138,8 @@ public final class UserConnection implements ProxiedPlayer
@@ -279,7 +280,7 @@ index 7ce95bd69..ed78105eb 100644
      @Getter
      private String displayName;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 70a849988..779c329bc 100644
+index b9f4be945..6696cdcaf 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -73,6 +73,9 @@ import net.md_5.bungee.protocol.packet.ServerData;
@@ -292,7 +293,7 @@ index 70a849988..779c329bc 100644
  
  @RequiredArgsConstructor
  public class DownstreamBridge extends PacketHandler
-@@ -868,6 +871,23 @@ public class DownstreamBridge extends PacketHandler
+@@ -866,6 +869,23 @@ public class DownstreamBridge extends PacketHandler
          throw CancelSendSignal.INSTANCE;
      }
  
@@ -317,10 +318,10 @@ index 70a849988..779c329bc 100644
      public String toString()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 7af700664..9acadd5a0 100644
+index 8585498b5..11f336387 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -43,6 +43,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
+@@ -44,6 +44,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
  import net.md_5.bungee.protocol.packet.TabCompleteRequest;
  import net.md_5.bungee.protocol.packet.TabCompleteResponse;
  import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
@@ -328,8 +329,8 @@ index 7af700664..9acadd5a0 100644
  import net.md_5.bungee.util.AllowedCharacters;
  
  public class UpstreamBridge extends PacketHandler
-@@ -406,6 +407,13 @@ public class UpstreamBridge extends PacketHandler
-         con.getPendingConnection().handle( cookieResponse );
+@@ -413,6 +414,13 @@ public class UpstreamBridge extends PacketHandler
+         con.getPendingConnection().handle( loginPayloadResponse );
      }
  
 +    @Override
