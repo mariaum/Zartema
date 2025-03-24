@@ -1,11 +1,11 @@
-From c0e7f8b3e213a1f85fc2f80be4bcfbe971ff0f06 Mon Sep 17 00:00:00 2001
+From 35ff7dd421bfbe6d38d3abb67e7291dd7c558258 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index 00537b66..4e5ae91d 100644
+index 00537b666..4e5ae91d0 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,42 +4,42 @@
@@ -65,7 +65,7 @@ index 00537b66..4e5ae91d 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index a108e308..a45ad1e7 100644
+index a108e3087..a45ad1e77 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -114,7 +114,7 @@ index a108e308..a45ad1e7 100644
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 7db6020f..dc793948 100644
+index b8c60c9f5..63952a81b 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -4,19 +4,19 @@
@@ -144,7 +144,7 @@ index 7db6020f..dc793948 100644
      <dependencies>
          <dependency>
 diff --git a/config/pom.xml b/config/pom.xml
-index d245a60b..10bbf33d 100644
+index 10d1d4cac..683bf25d7 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -174,7 +174,7 @@ index d245a60b..10bbf33d 100644
      <dependencies>
          <dependency>
 diff --git a/event/pom.xml b/event/pom.xml
-index 2ac455cc..05126f2b 100644
+index 2ac455cc4..05126f2bd 100644
 --- a/event/pom.xml
 +++ b/event/pom.xml
 @@ -4,17 +4,17 @@
@@ -202,7 +202,7 @@ index 2ac455cc..05126f2b 100644
 +    <description>Generic java event dispatching API intended for use with Zartema.</description>
  </project>
 diff --git a/log/pom.xml b/log/pom.xml
-index 3851e6ce..e088fc0a 100644
+index 3851e6ce7..e088fc0ac 100644
 --- a/log/pom.xml
 +++ b/log/pom.xml
 @@ -4,19 +4,19 @@
@@ -243,7 +243,7 @@ index 3851e6ce..e088fc0a 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
-index 81b360eb..baa9b449 100644
+index 81b360ebf..baa9b449c 100644
 --- a/log4j/pom.xml
 +++ b/log4j/pom.xml
 @@ -3,19 +3,19 @@
@@ -273,7 +273,7 @@ index 81b360eb..baa9b449 100644
      <properties>
          <log4j2.version>2.20.0</log4j2.version>
 diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
-index 07b901a3..30fbd210 100644
+index 07b901a3a..30fbd2106 100644
 --- a/module/cmd-alert/pom.xml
 +++ b/module/cmd-alert/pom.xml
 @@ -4,14 +4,14 @@
@@ -296,7 +296,7 @@ index 07b901a3..30fbd210 100644
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
-index e3a8a06d..2076c81b 100644
+index e3a8a06dc..2076c81bc 100644
 --- a/module/cmd-find/pom.xml
 +++ b/module/cmd-find/pom.xml
 @@ -4,14 +4,14 @@
@@ -319,7 +319,7 @@ index e3a8a06d..2076c81b 100644
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-kick/pom.xml b/module/cmd-kick/pom.xml
-index 3a45cb54..83159e9f 100644
+index 3a45cb54a..83159e9f6 100644
 --- a/module/cmd-kick/pom.xml
 +++ b/module/cmd-kick/pom.xml
 @@ -4,14 +4,14 @@
@@ -342,7 +342,7 @@ index 3a45cb54..83159e9f 100644
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
-index 933fc3ed..5c886304 100644
+index 933fc3edd..5c886304b 100644
 --- a/module/cmd-list/pom.xml
 +++ b/module/cmd-list/pom.xml
 @@ -4,14 +4,14 @@
@@ -365,7 +365,7 @@ index 933fc3ed..5c886304 100644
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
-index 6b3e2e87..8dc4bcb3 100644
+index 6b3e2e870..8dc4bcb32 100644
 --- a/module/cmd-send/pom.xml
 +++ b/module/cmd-send/pom.xml
 @@ -4,14 +4,14 @@
@@ -388,7 +388,7 @@ index 6b3e2e87..8dc4bcb3 100644
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
-index 45cca078..48ed1e67 100644
+index 45cca0781..48ed1e671 100644
 --- a/module/cmd-server/pom.xml
 +++ b/module/cmd-server/pom.xml
 @@ -4,14 +4,14 @@
@@ -411,7 +411,7 @@ index 45cca078..48ed1e67 100644
      <packaging>jar</packaging>
  
 diff --git a/module/pom.xml b/module/pom.xml
-index b946e1bd..9b0c1790 100644
+index b946e1bdf..9b0c17901 100644
 --- a/module/pom.xml
 +++ b/module/pom.xml
 @@ -4,19 +4,19 @@
@@ -460,7 +460,7 @@ index b946e1bd..9b0c1790 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
-index 66e8e0b4..bb0a291f 100644
+index 66e8e0b45..bb0a291f2 100644
 --- a/module/reconnect-yaml/pom.xml
 +++ b/module/reconnect-yaml/pom.xml
 @@ -4,14 +4,14 @@
@@ -483,7 +483,7 @@ index 66e8e0b4..bb0a291f 100644
      <packaging>jar</packaging>
  
 diff --git a/native/pom.xml b/native/pom.xml
-index 49347e1d..d6a4056f 100644
+index 49347e1d2..d6a4056fa 100644
 --- a/native/pom.xml
 +++ b/native/pom.xml
 @@ -4,19 +4,19 @@
@@ -513,7 +513,7 @@ index 49347e1d..d6a4056f 100644
      <dependencies>
          <dependency>
 diff --git a/pom.xml b/pom.xml
-index be640f9e..39e246c7 100644
+index e752d067c..60a9cd8c8 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,19 +3,14 @@
@@ -595,9 +595,9 @@ index be640f9e..39e246c7 100644
 +	
      <properties>
          <build.number>unknown</build.number>
-         <lombok.version>1.18.32</lombok.version>
+         <lombok.version>1.18.36</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index b85d2755..e061126e 100644
+index b85d27552..e061126e4 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
 @@ -4,19 +4,19 @@
@@ -638,7 +638,7 @@ index b85d2755..e061126e 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index c3b1ff9f..65ce4397 100644
+index c3b1ff9f6..65ce43978 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -709,7 +709,7 @@ index c3b1ff9f..65ce4397 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/query/pom.xml b/query/pom.xml
-index 5e1b0ac7..14df7640 100644
+index 5e1b0ac70..14df76403 100644
 --- a/query/pom.xml
 +++ b/query/pom.xml
 @@ -4,19 +4,19 @@

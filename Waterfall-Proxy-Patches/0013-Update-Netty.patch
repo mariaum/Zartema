@@ -1,11 +1,11 @@
-From 1686c73d57af450eac8fdad0a08b0e245e667029 Mon Sep 17 00:00:00 2001
+From 60ed9bbd10a8e5d11bd7259fddfe27ca552438e3 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 5 Nov 2024 17:25:50 -0300
 Subject: [PATCH] Update Netty.
 
 
 diff --git a/pom.xml b/pom.xml
-index 4688d3ea8..4cd286c5a 100644
+index 60a9cd8c8..f5407e5dc 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -48,7 +48,7 @@
@@ -42,7 +42,7 @@ index 65ce43978..c5911555b 100644
          </dependency>
          <dependency>
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index aa4d1df84..91a78873c 100644
+index 6747c2d57..0ae1c6927 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 @@ -3,34 +3,18 @@ package net.md_5.bungee.netty;
@@ -84,7 +84,7 @@ index aa4d1df84..91a78873c 100644
  import io.netty.util.AttributeKey;
  import io.netty.util.internal.PlatformDependent;
  import java.net.SocketAddress;
-@@ -142,12 +126,12 @@ public class PipelineUtils
+@@ -164,12 +148,12 @@ public class PipelineUtils
              if ( Boolean.parseBoolean( System.getProperty( "bungee.io_uring", "false" ) ) )
              {
                  ProxyServer.getInstance().getLogger().info( "Not on Windows, attempting to use enhanced IOUringEventLoopGroup" );
@@ -99,9 +99,9 @@ index aa4d1df84..91a78873c 100644
                  }
              }
  
-@@ -164,16 +148,17 @@ public class PipelineUtils
-             }
-         }
+@@ -188,16 +172,17 @@ public class PipelineUtils
+ 
+         setChannelInitializerHolders();
          // Waterfall start: netty reflection -> factory
 -        serverChannelFactory = io_uring ? IOUringServerSocketChannel::new : epoll ? EpollServerSocketChannel::new : NioServerSocketChannel::new;
 -        serverChannelDomainFactory = io_uring ? IOUringServerSocketChannel::new : epoll ? EpollServerDomainSocketChannel::new : null;
@@ -122,7 +122,7 @@ index aa4d1df84..91a78873c 100644
      }
  
      public static Class<? extends ServerChannel> getServerChannel(SocketAddress address)
-@@ -185,7 +170,7 @@ public class PipelineUtils
+@@ -209,7 +194,7 @@ public class PipelineUtils
              return EpollServerDomainSocketChannel.class;
          }
  
@@ -131,7 +131,7 @@ index aa4d1df84..91a78873c 100644
      }
  
      public static Class<? extends Channel> getChannel(SocketAddress address)
-@@ -197,7 +182,7 @@ public class PipelineUtils
+@@ -221,7 +206,7 @@ public class PipelineUtils
              return EpollDomainSocketChannel.class;
          }
  
@@ -140,7 +140,7 @@ index aa4d1df84..91a78873c 100644
      }
  
      // Waterfall start: netty reflection -> factory
-@@ -230,7 +215,7 @@ public class PipelineUtils
+@@ -254,7 +239,7 @@ public class PipelineUtils
  
      public static Class<? extends DatagramChannel> getDatagramChannel()
      {

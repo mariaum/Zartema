@@ -1,4 +1,4 @@
-From be6ae4b6b74746dd902e079c07f8ba7a3ac3694d Mon Sep 17 00:00:00 2001
+From 798dcf81ff19e0e799d37db24a2de0107d4479fc Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Sat, 27 Apr 2024 04:08:32 -0300
 Subject: [PATCH] Allow spoofing chat in 1.19+.
@@ -6,10 +6,10 @@ Subject: [PATCH] Allow spoofing chat in 1.19+.
 Should work with ViaVersion at least.
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 71b4288c6..51b0c46f5 100644
+index 2c2680105..228c5fedd 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -491,7 +491,8 @@ public final class UserConnection implements ProxiedPlayer
+@@ -479,7 +479,8 @@ public final class UserConnection implements ProxiedPlayer
          Preconditions.checkState( server != null, "Not connected to server" );
          if ( getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_19 )
          {
