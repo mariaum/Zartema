@@ -1,4 +1,4 @@
-From 5201201ffc3e9fcf322929216735805e752a0975 Mon Sep 17 00:00:00 2001
+From 62b790eb93d9c680d2fa6875ecf8bc350f471517 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Mon, 29 Apr 2024 03:48:33 -0300
 Subject: [PATCH] Add support for resource pack de-duplication.
@@ -6,7 +6,7 @@ Subject: [PATCH] Add support for resource pack de-duplication.
 This adds support for de-duplicating resource packs for version 1.20.3+.
 
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
-index 4dde7257e..b81aa259e 100644
+index 4dde7257..b81aa259 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
 @@ -55,6 +55,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
@@ -35,7 +35,7 @@ index 4dde7257e..b81aa259e 100644
 +
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index a3c49a00a..76431eab1 100644
+index a3c49a00..21d9b5bf 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 @@ -63,6 +63,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
@@ -48,7 +48,7 @@ index a3c49a00a..76431eab1 100644
  
  public enum Protocol
  {
-@@ -686,6 +689,28 @@ public enum Protocol
+@@ -686,6 +689,30 @@ public enum Protocol
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x11 ),
                      map( ProtocolConstants.MINECRAFT_1_21_2, 0x13 )
              );
@@ -57,14 +57,16 @@ index a3c49a00a..76431eab1 100644
 +                    PushResourcePack::new,
 +                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x44),
 +                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x46),
-+                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x4B)
++                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x4B),
++                    map(ProtocolConstants.MINECRAFT_1_21_5, 0x4A)
 +            );
 +            TO_CLIENT.registerPacket(
 +                    PopResourcePack.class,
 +                    PopResourcePack::new,
 +                    map(ProtocolConstants.MINECRAFT_1_20_3, 0x43),
 +                    map(ProtocolConstants.MINECRAFT_1_20_5, 0x45),
-+                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x4A)
++                    map(ProtocolConstants.MINECRAFT_1_21_2, 0x4A),
++                    map(ProtocolConstants.MINECRAFT_1_21_5, 0x49)
 +            );
 +            TO_SERVER.registerPacket(
 +                    ResourcePack.class,
@@ -77,7 +79,7 @@ index a3c49a00a..76431eab1 100644
          }
      },
      // 1
-@@ -858,6 +883,24 @@ public enum Protocol
+@@ -858,6 +885,24 @@ public enum Protocol
                      map( ProtocolConstants.MINECRAFT_1_20_2, 0x03 ),
                      map( ProtocolConstants.MINECRAFT_1_20_5, 0x04 )
              );
@@ -104,7 +106,7 @@ index a3c49a00a..76431eab1 100644
      /*========================================================================*/
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
 new file mode 100644
-index 000000000..e400e56ff
+index 00000000..e400e56f
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PopResourcePack.java
 @@ -0,0 +1,45 @@
@@ -155,7 +157,7 @@ index 000000000..e400e56ff
 +}
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
 new file mode 100644
-index 000000000..d58ea5b1a
+index 00000000..d58ea5b1
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/PushResourcePack.java
 @@ -0,0 +1,58 @@
@@ -219,7 +221,7 @@ index 000000000..d58ea5b1a
 +}
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
 new file mode 100644
-index 000000000..f499a6fa8
+index 00000000..f499a6fa
 --- /dev/null
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/ResourcePack.java
 @@ -0,0 +1,43 @@
@@ -267,7 +269,7 @@ index 000000000..f499a6fa8
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 228c5fedd..4554404a8 100644
+index 3c603c12..617d6109 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 @@ -134,6 +134,8 @@ public final class UserConnection implements ProxiedPlayer
@@ -280,7 +282,7 @@ index 228c5fedd..4554404a8 100644
      @Getter
      private String displayName;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index c2d085e8f..856e93166 100644
+index c2d085e8..856e9316 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -73,6 +73,9 @@ import net.md_5.bungee.protocol.packet.ServerData;
@@ -318,7 +320,7 @@ index c2d085e8f..856e93166 100644
      public String toString()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index c51692b7e..3e9555d44 100644
+index eebba445..5be8ce60 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -44,6 +44,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
@@ -344,5 +346,5 @@ index c51692b7e..3e9555d44 100644
      public String toString()
      {
 -- 
-2.34.1
+2.45.1.windows.1
 
