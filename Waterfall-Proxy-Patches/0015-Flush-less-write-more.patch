@@ -1,0 +1,158 @@
+From c843447deef10d72eddd84a939b21f2cfd3d541d Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Tue, 25 Mar 2025 01:59:13 -0300
+Subject: [PATCH] Flush less, write more
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+index 685d94fd..1f117c83 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+@@ -93,6 +93,8 @@ public class DownstreamBridge extends PacketHandler
+     private final ServerConnection server;
+     private boolean receivedLogin;
+ 
++    private int pendingFlush; // Zartema
++
+     @Override
+     public void exception(Throwable t) throws Exception
+     {
+@@ -163,7 +165,7 @@ public class DownstreamBridge extends PacketHandler
+         {
+             rewrite.rewriteClientbound( packet.buf, con.getServerEntityId(), con.getClientEntityId(), con.getPendingConnection().getVersion() );
+         }
+-        con.sendPacket( packet );
++        sendPacketDelayed( packet ); // Zartema
+     }
+ 
+     @Override
+@@ -356,7 +358,7 @@ public class DownstreamBridge extends PacketHandler
+             }
+             // Travertine end
+             // changes in the packet are ignored so we need to send it manually
+-            con.unsafe().sendPacket( pluginMessage );
++            sendPacketDelayed( pluginMessage ); // Zartema
+             throw CancelSendSignal.INSTANCE;
+         }
+ 
+@@ -757,7 +759,7 @@ public class DownstreamBridge extends PacketHandler
+                 }
+             }
+ 
+-            con.unsafe().sendPacket( tabCompleteResponse );
++            sendPacketDelayed( tabCompleteResponse ); // Zartema
+         }
+ 
+         throw CancelSendSignal.INSTANCE;
+@@ -850,7 +852,7 @@ public class DownstreamBridge extends PacketHandler
+ 
+         if ( modified )
+         {
+-            con.unsafe().sendPacket( commands );
++            sendPacketDelayed( commands ); // Zartema
+             throw CancelSendSignal.INSTANCE;
+         }
+     }
+@@ -898,4 +900,20 @@ public class DownstreamBridge extends PacketHandler
+     {
+         return "[" + con.getAddress() + "|" + con.getName() + "] <-> DownstreamBridge <-> [" + server.getInfo().getName() + "]";
+     }
++
++    // Zartema start
++    public void sendPacketDelayed( Object packet ) {
++        this.con.getCh().write( packet, false );
++        if ( ++this.pendingFlush >= 8192 ) {
++            this.con.getCh().flush();
++            this.pendingFlush = 0;
++        }
++    }
++
++    @Override
++    public void readComplete( final ChannelWrapper channel ) throws Exception {
++        this.con.getCh().flush();
++        this.pendingFlush = 0;
++    }
++    // Zartema end
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
+index 909941d9..892c4945 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
+@@ -85,7 +85,9 @@ public class ChannelWrapper
+         return getMinecraftEncoder().getProtocolVersion();
+     }
+ 
+-    public void write(Object packet)
++    public void write(Object packet) { write(packet, true); } // Zartema
++
++    public void write(Object packet, boolean flush) // Zartema
+     {
+         if ( !closed )
+         {
+@@ -94,11 +96,19 @@ public class ChannelWrapper
+             {
+                 PacketWrapper wrapper = (PacketWrapper) packet;
+                 wrapper.setReleased( true );
+-                ch.writeAndFlush( wrapper.buf, ch.voidPromise() );
++                if ( flush ) { // Zartema
++                    ch.writeAndFlush( wrapper.buf, ch.voidPromise() );
++                } else {
++                    ch.write( wrapper.buf, ch.voidPromise() );
++                }
+                 defined = wrapper.packet;
+             } else
+             {
+-                ch.writeAndFlush( packet, ch.voidPromise() );
++                if ( flush ) { // Zartema
++                    ch.writeAndFlush( packet, ch.voidPromise() );
++                } else {
++                    ch.write( packet, ch.voidPromise() );
++                }
+                 if ( packet instanceof DefinedPacket )
+                 {
+                     defined = (DefinedPacket) packet;
+@@ -116,6 +126,8 @@ public class ChannelWrapper
+         }
+     }
+ 
++    public void flush() { this.ch.flush(); } // Zartema
++
+     public void markClosed()
+     {
+         closed = closing = true;
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+index 0e2b0172..456961d6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+@@ -240,4 +240,13 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
+             ctx.close();
+         }
+     }
++
++    // Zartema start
++    @Override
++    public void channelReadComplete(final ChannelHandlerContext ctx) throws Exception {
++        if ( handler != null ) {
++            handler.readComplete( channel );
++        }
++    }
++    // Zartema end
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
+index 7bd223d9..88abd2c6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
+@@ -32,4 +32,10 @@ public abstract class PacketHandler extends net.md_5.bungee.protocol.AbstractPac
+     public void writabilityChanged(ChannelWrapper channel) throws Exception
+     {
+     }
++
++    // Zartema start
++    public void readComplete(ChannelWrapper channel) throws Exception
++    {
++    }
++    // Zartema end
+ }
+-- 
+2.45.1.windows.1
+
