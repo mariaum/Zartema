@@ -1,4 +1,4 @@
-From d3db0b7ff0733ed190d362190b3ed75146bf9d96 Mon Sep 17 00:00:00 2001
+From e9cfaf546c0e4d643df86f20d18dfd2ac977be0e Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -431,7 +431,7 @@ index dce064d79..a3c49a00a 100644
  
              Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id];
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-index 52442e28e..cc91de6ad 100644
+index 05e75c02d..b978eb339 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 @@ -7,6 +7,8 @@ public class ProtocolConstants
@@ -1293,7 +1293,7 @@ index 585ac18b8..545475a42 100644
      private ConnectionThrottle connectionThrottle;
      private final ModuleManager moduleManager = new ModuleManager();
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java b/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
-index 9a6ef7a5f..c24ece3a2 100644
+index e75fcaa49..8c2a46f3b 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeTitle.java
 @@ -167,6 +167,7 @@ public class BungeeTitle implements Title
@@ -1421,10 +1421,10 @@ index 0b82fee98..537f5d2a0 100644
                  throw CancelSendSignal.INSTANCE;
              }
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 867c4d4df..2c2680105 100644
+index ea53cf427..68b7ee401 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -234,6 +234,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -248,6 +248,7 @@ public final class UserConnection implements ProxiedPlayer
      public void setDisplayName(String name)
      {
          Preconditions.checkNotNull( name, "displayName" );
@@ -1432,7 +1432,7 @@ index 867c4d4df..2c2680105 100644
          displayName = name;
      }
  
-@@ -539,7 +540,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -553,7 +554,7 @@ public final class UserConnection implements ProxiedPlayer
          // transform score components
          message = ChatComponentTransformer.getInstance().transform( this, true, message );
  
@@ -1441,7 +1441,7 @@ index 867c4d4df..2c2680105 100644
          {
              // Versions older than 1.11 cannot send the Action bar with the new JSON formattings
              // Fix by converting to a legacy message, see https://bugs.mojang.com/browse/MC-119145
-@@ -752,6 +753,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -766,6 +767,7 @@ public final class UserConnection implements ProxiedPlayer
      @Override
      public void setTabHeader(BaseComponent header, BaseComponent footer)
      {
@@ -1449,7 +1449,7 @@ index 867c4d4df..2c2680105 100644
          header = ChatComponentTransformer.getInstance().transform( this, true, header );
          footer = ChatComponentTransformer.getInstance().transform( this, true, footer );
  
-@@ -787,6 +789,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -801,6 +803,7 @@ public final class UserConnection implements ProxiedPlayer
  
      public void setCompressionThreshold(int compressionThreshold)
      {
@@ -1527,7 +1527,7 @@ index 399b4e7d1..c2d085e8f 100644
              con.unsafe().sendPacket( pluginMessage );
              throw CancelSendSignal.INSTANCE;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 220f035eb..8ee1e20eb 100644
+index e18d288a3..9e9bba874 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -3,6 +3,8 @@ package net.md_5.bungee.connection;
@@ -1539,7 +1539,7 @@ index 220f035eb..8ee1e20eb 100644
  import java.math.BigInteger;
  import java.net.InetSocketAddress;
  import java.net.SocketAddress;
-@@ -320,12 +322,28 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -310,12 +312,28 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                      @Override
                      public void done(ProxyPingEvent pingResult, Throwable error)
                      {
@@ -1592,13 +1592,13 @@ index ae97f7990..9da813ec0 100644
          ( (BungeeServerInfo) target ).cachePing( serverPing );
          callback.done( serverPing, null );
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 3aa978490..c51692b7e 100644
+index 3e583f514..eebba4450 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -106,7 +106,7 @@ public class UpstreamBridge extends PacketHandler
                  {
                      // need to queue, because players in config state could receive it
-                     ( (UserConnection) player ).sendPacketQueued( newPacket );
+                     player.unsafe().sendPacketQueued( newPacket );
 -                } else
 +                } else if ( ProtocolConstants.isAfterOrEq( player.getPendingConnection().getVersion(), ProtocolConstants.MINECRAFT_1_8 ) ) // Travertine
                  {

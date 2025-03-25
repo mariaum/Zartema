@@ -1,4 +1,4 @@
-From 60ed9bbd10a8e5d11bd7259fddfe27ca552438e3 Mon Sep 17 00:00:00 2001
+From 4eb98392b1dd26a4b20a4a9bfddd30eb456d6040 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 5 Nov 2024 17:25:50 -0300
 Subject: [PATCH] Update Netty.
@@ -42,40 +42,41 @@ index 65ce43978..c5911555b 100644
          </dependency>
          <dependency>
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index 6747c2d57..0ae1c6927 100644
+index 061a519c3..6824e191a 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-@@ -3,34 +3,18 @@ package net.md_5.bungee.netty;
- import com.google.common.base.Preconditions;
- import io.github.waterfallmc.waterfall.event.ConnectionInitEvent;
- import io.netty.buffer.PooledByteBufAllocator;
--import io.netty.channel.Channel;
--import io.netty.channel.ChannelException;
--import io.netty.channel.ChannelFactory;
--import io.netty.channel.ChannelInitializer;
--import io.netty.channel.ChannelOption;
--import io.netty.channel.EventLoopGroup;
--import io.netty.channel.ServerChannel;
--import io.netty.channel.WriteBufferWaterMark;
--import io.netty.channel.epoll.Epoll;
--import io.netty.channel.epoll.EpollDatagramChannel;
--import io.netty.channel.epoll.EpollDomainSocketChannel;
+@@ -8,30 +8,31 @@ import io.netty.channel.ChannelException;
+ import io.netty.channel.ChannelFactory;
+ import io.netty.channel.ChannelInitializer;
+ import io.netty.channel.ChannelOption;
++import io.netty.channel.IoHandlerFactory;
+ import io.netty.channel.EventLoopGroup;
++import io.netty.channel.MultiThreadIoEventLoopGroup;
+ import io.netty.channel.ServerChannel;
+ import io.netty.channel.WriteBufferWaterMark;
+ import io.netty.channel.epoll.Epoll;
+ import io.netty.channel.epoll.EpollDatagramChannel;
+ import io.netty.channel.epoll.EpollDomainSocketChannel;
 -import io.netty.channel.epoll.EpollEventLoopGroup;
--import io.netty.channel.epoll.EpollServerDomainSocketChannel;
--import io.netty.channel.epoll.EpollServerSocketChannel;
--import io.netty.channel.epoll.EpollSocketChannel;
-+import io.netty.channel.*;
-+import io.netty.channel.epoll.*;
- import io.netty.channel.nio.NioEventLoopGroup;
++import io.netty.channel.epoll.EpollIoHandler;
+ import io.netty.channel.epoll.EpollServerDomainSocketChannel;
+ import io.netty.channel.epoll.EpollServerSocketChannel;
+ import io.netty.channel.epoll.EpollSocketChannel;
+-import io.netty.channel.nio.NioEventLoopGroup;
 +import io.netty.channel.nio.NioIoHandler;
  import io.netty.channel.socket.DatagramChannel;
  import io.netty.channel.socket.nio.NioDatagramChannel;
  import io.netty.channel.socket.nio.NioServerSocketChannel;
  import io.netty.channel.socket.nio.NioSocketChannel;
  import io.netty.channel.unix.DomainSocketAddress;
-+import io.netty.channel.uring.*;
++import io.netty.channel.uring.IoUring;
++import io.netty.channel.uring.IoUringDatagramChannel;
++import io.netty.channel.uring.IoUringIoHandler;
++import io.netty.channel.uring.IoUringServerSocketChannel;
++import io.netty.channel.uring.IoUringSocketChannel;
  import io.netty.handler.codec.haproxy.HAProxyMessageDecoder;
  import io.netty.handler.timeout.ReadTimeoutHandler;
+-import io.netty.handler.timeout.WriteTimeoutHandler;
 -import io.netty.incubator.channel.uring.IOUring;
 -import io.netty.incubator.channel.uring.IOUringDatagramChannel;
 -import io.netty.incubator.channel.uring.IOUringEventLoopGroup;
@@ -84,11 +85,21 @@ index 6747c2d57..0ae1c6927 100644
  import io.netty.util.AttributeKey;
  import io.netty.util.internal.PlatformDependent;
  import java.net.SocketAddress;
-@@ -164,12 +148,12 @@ public class PipelineUtils
+@@ -138,7 +139,6 @@ public class PipelineUtils
+     private static final ChannelAcceptor BASE_SERVERSIDE = new Base( true );
+     private static final KickStringWriter legacyKicker = new KickStringWriter();
+     public static final String TIMEOUT_HANDLER = "timeout";
+-    public static final String WRITE_TIMEOUT_HANDLER = "write-timeout";
+     public static final String PACKET_DECODER = "packet-decoder";
+     public static final String PACKET_ENCODER = "packet-encoder";
+     public static final String BOSS_HANDLER = "inbound-boss";
+@@ -165,13 +165,13 @@ public class PipelineUtils
+             // disable by default (experimental)
              if ( Boolean.parseBoolean( System.getProperty( "bungee.io_uring", "false" ) ) )
              {
-                 ProxyServer.getInstance().getLogger().info( "Not on Windows, attempting to use enhanced IOUringEventLoopGroup" );
+-                ProxyServer.getInstance().getLogger().info( "Not on Windows, attempting to use enhanced IOUringEventLoopGroup" );
 -                if ( io_uring = IOUring.isAvailable() )
++                ProxyServer.getInstance().getLogger().info( "Not on Windows, attempting to use enhanced IoUringEventLoopGroup" );
 +                if ( io_uring = IoUring.isAvailable() )
                  {
                      ProxyServer.getInstance().getLogger().log( Level.WARNING, "io_uring is enabled and working, utilising it! (experimental feature)" );
@@ -99,7 +110,7 @@ index 6747c2d57..0ae1c6927 100644
                  }
              }
  
-@@ -188,16 +172,17 @@ public class PipelineUtils
+@@ -190,16 +190,17 @@ public class PipelineUtils
  
          setChannelInitializerHolders();
          // Waterfall start: netty reflection -> factory
@@ -122,7 +133,7 @@ index 6747c2d57..0ae1c6927 100644
      }
  
      public static Class<? extends ServerChannel> getServerChannel(SocketAddress address)
-@@ -209,7 +194,7 @@ public class PipelineUtils
+@@ -211,7 +212,7 @@ public class PipelineUtils
              return EpollServerDomainSocketChannel.class;
          }
  
@@ -131,7 +142,7 @@ index 6747c2d57..0ae1c6927 100644
      }
  
      public static Class<? extends Channel> getChannel(SocketAddress address)
-@@ -221,7 +206,7 @@ public class PipelineUtils
+@@ -223,7 +224,7 @@ public class PipelineUtils
              return EpollDomainSocketChannel.class;
          }
  
@@ -140,7 +151,7 @@ index 6747c2d57..0ae1c6927 100644
      }
  
      // Waterfall start: netty reflection -> factory
-@@ -254,7 +239,7 @@ public class PipelineUtils
+@@ -256,7 +257,7 @@ public class PipelineUtils
  
      public static Class<? extends DatagramChannel> getDatagramChannel()
      {
@@ -149,6 +160,14 @@ index 6747c2d57..0ae1c6927 100644
      }
  
      private static final int LOW_MARK = Integer.getInteger( "net.md_5.bungee.low_mark", 2 << 18 ); // 0.5 mb
+@@ -286,7 +287,6 @@ public class PipelineUtils
+ 
+             ch.pipeline().addLast( FRAME_DECODER, new Varint21FrameDecoder() );
+             ch.pipeline().addLast( TIMEOUT_HANDLER, new ReadTimeoutHandler( BungeeCord.getInstance().config.getTimeout(), TimeUnit.MILLISECONDS ) );
+-            ch.pipeline().addLast( WRITE_TIMEOUT_HANDLER, new WriteTimeoutHandler( BungeeCord.getInstance().config.getTimeout(), TimeUnit.MILLISECONDS ) );
+             // No encryption bungee -> server, therefore use extra buffer to avoid copying everything for length prepending
+             // Not used bungee -> client as header would need to be encrypted separately through expensive JNI call
+             // TODO: evaluate difference compose vs two buffers
 -- 
 2.34.1
 

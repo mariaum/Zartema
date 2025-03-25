@@ -1,4 +1,4 @@
-From 0a6774adadc0b07e78fcc547ffd60b79ed22c3f8 Mon Sep 17 00:00:00 2001
+From eeb1469dd2f26e8022798ebf90d51590c59071c2 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Thu, 5 Nov 2020 21:33:37 -0300
 Subject: [PATCH] Don't disable connection throttle for every listener when
@@ -25,10 +25,10 @@ index 545475a42..e1b0ae209 100644
  
              ChannelFutureListener listener = new ChannelFutureListener()
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index b318deab9..6747c2d57 100644
+index 1899bd755..061a519c3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-@@ -65,13 +65,14 @@ public class PipelineUtils
+@@ -66,13 +66,14 @@ public class PipelineUtils
          ProxyServer.getInstance().unsafe().setFrontendChannelInitializer( BungeeChannelInitializer.create( ch ->
          {
              SocketAddress remoteAddress = ( ch.remoteAddress() == null ) ? ch.parent().localAddress() : ch.remoteAddress();

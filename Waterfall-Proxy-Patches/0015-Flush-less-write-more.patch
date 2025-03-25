@@ -1,11 +1,11 @@
-From c843447deef10d72eddd84a939b21f2cfd3d541d Mon Sep 17 00:00:00 2001
+From baadb6af077c6840996756c74bdfa7e1b7ddbd74 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 25 Mar 2025 01:59:13 -0300
 Subject: [PATCH] Flush less, write more
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 685d94fd..1f117c83 100644
+index 685d94fd8..1f117c83b 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -93,6 +93,8 @@ public class DownstreamBridge extends PacketHandler
@@ -75,7 +75,7 @@ index 685d94fd..1f117c83 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
-index 909941d9..892c4945 100644
+index f19e0cd8f..aba2f6006 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 @@ -85,7 +85,9 @@ public class ChannelWrapper
@@ -121,10 +121,10 @@ index 909941d9..892c4945 100644
      {
          closed = closing = true;
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
-index 0e2b0172..456961d6 100644
+index 925cc346a..c336f1b3c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
-@@ -240,4 +240,13 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
+@@ -244,4 +244,13 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
              ctx.close();
          }
      }
@@ -139,7 +139,7 @@ index 0e2b0172..456961d6 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
-index 7bd223d9..88abd2c6 100644
+index 7bd223d9c..88abd2c6e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
 @@ -32,4 +32,10 @@ public abstract class PacketHandler extends net.md_5.bungee.protocol.AbstractPac
@@ -154,5 +154,5 @@ index 7bd223d9..88abd2c6 100644
 +    // Zartema end
  }
 -- 
-2.45.1.windows.1
+2.34.1
 
