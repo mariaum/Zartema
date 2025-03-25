@@ -1,11 +1,11 @@
-From 4eb98392b1dd26a4b20a4a9bfddd30eb456d6040 Mon Sep 17 00:00:00 2001
+From 9c074b393db6df94e47078ee0256bac93c2ea115 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 5 Nov 2024 17:25:50 -0300
 Subject: [PATCH] Update Netty.
 
 
 diff --git a/pom.xml b/pom.xml
-index 60a9cd8c8..f5407e5dc 100644
+index 60a9cd8c..1e3f1863 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -48,7 +48,7 @@
@@ -13,12 +13,12 @@ index 60a9cd8c8..f5407e5dc 100644
                  <groupId>io.netty</groupId>
                  <artifactId>netty-bom</artifactId>
 -                <version>4.1.115.Final</version>
-+                <version>4.2.0.Beta1</version>
++                <version>4.2.0.RC4</version>
                  <type>pom</type>
                  <scope>import</scope>
              </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index 65ce43978..c5911555b 100644
+index 65ce4397..c5911555 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -64,15 +64,13 @@
@@ -42,7 +42,7 @@ index 65ce43978..c5911555b 100644
          </dependency>
          <dependency>
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index 061a519c3..6824e191a 100644
+index 061a519c..6824e191 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 @@ -8,30 +8,31 @@ import io.netty.channel.ChannelException;
@@ -169,5 +169,5 @@ index 061a519c3..6824e191a 100644
              // Not used bungee -> client as header would need to be encrypted separately through expensive JNI call
              // TODO: evaluate difference compose vs two buffers
 -- 
-2.34.1
+2.45.1.windows.1
 
