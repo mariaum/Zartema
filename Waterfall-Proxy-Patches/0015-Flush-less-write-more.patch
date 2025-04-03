@@ -1,11 +1,61 @@
-From baadb6af077c6840996756c74bdfa7e1b7ddbd74 Mon Sep 17 00:00:00 2001
+From 755cd12e6a9627cd13b623008eaac5d0de0e554e Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 25 Mar 2025 01:59:13 -0300
 Subject: [PATCH] Flush less, write more
 
 
+diff --git a/api/src/main/java/net/md_5/bungee/api/connection/Connection.java b/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
+index 392490d1..8881e12e 100644
+--- a/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
++++ b/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
+@@ -94,5 +94,7 @@ public interface Connection
+          * @throws UnsupportedOperationException if used for a PendingConnection
+          */
+         void sendPacketQueued(DefinedPacket packet);
++
++        void sendPacketDelayed(DefinedPacket packet); // Zartema
+     }
+ }
+diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnection.java b/proxy/src/main/java/net/md_5/bungee/ServerConnection.java
+index a5a3c61a..79a334c2 100644
+--- a/proxy/src/main/java/net/md_5/bungee/ServerConnection.java
++++ b/proxy/src/main/java/net/md_5/bungee/ServerConnection.java
+@@ -53,6 +53,14 @@ public class ServerConnection implements Server
+                 sendPacket( packet );
+             }
+         }
++
++        // Zartema start
++        @Override
++        public void sendPacketDelayed(final DefinedPacket packet)
++        {
++            ch.write( packet, false );
++        }
++        // Zartema end
+     };
+ 
+     public void sendPacketQueued(DefinedPacket packet)
+diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+index 617d6109..37160c77 100644
+--- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
++++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
+@@ -170,6 +170,14 @@ public final class UserConnection implements ProxiedPlayer
+                 sendPacket( packet );
+             }
+         }
++
++        // Zartema start
++        @Override
++        public void sendPacketDelayed(final DefinedPacket packet)
++        {
++            ch.write( packet, false );
++        }
++        // Zartema end
+     };
+ 
+     public boolean init()
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 685d94fd8..1f117c83b 100644
+index 685d94fd..1f117c83 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -93,6 +93,8 @@ public class DownstreamBridge extends PacketHandler
@@ -74,8 +124,27 @@ index 685d94fd8..1f117c83b 100644
 +    }
 +    // Zartema end
  }
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
+index 5da42fd6..91eff1c6 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
+@@ -135,6 +135,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+         {
+             throw new UnsupportedOperationException( "Not supported" );
+         }
++
++        // Zartema start
++        @Override
++        public void sendPacketDelayed(final DefinedPacket packet)
++        {
++            ch.write( packet, false );
++        }
++        // Zartema end
+     };
+     @Getter
+     private boolean onlineMode = BungeeCord.getInstance().config.isOnlineMode();
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
-index f19e0cd8f..aba2f6006 100644
+index f19e0cd8..aba2f600 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 @@ -85,7 +85,9 @@ public class ChannelWrapper
@@ -121,7 +190,7 @@ index f19e0cd8f..aba2f6006 100644
      {
          closed = closing = true;
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
-index 925cc346a..c336f1b3c 100644
+index 925cc346..c336f1b3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
 @@ -244,4 +244,13 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
@@ -139,7 +208,7 @@ index 925cc346a..c336f1b3c 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
-index 7bd223d9c..88abd2c6e 100644
+index 7bd223d9..88abd2c6 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PacketHandler.java
 @@ -32,4 +32,10 @@ public abstract class PacketHandler extends net.md_5.bungee.protocol.AbstractPac
@@ -153,6 +222,55 @@ index 7bd223d9c..88abd2c6e 100644
 +    }
 +    // Zartema end
  }
+diff --git a/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java b/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
+index 78b2c2a8..4a562b95 100644
+--- a/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
++++ b/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
+@@ -49,7 +49,7 @@ public class ServerUnique extends TabList
+                 // Travertine end
+             }
+         }
+-        player.unsafe().sendPacket( playerListItem );
++        player.unsafe().sendPacketDelayed( playerListItem );
+     }
+ 
+     @Override
+@@ -59,7 +59,7 @@ public class ServerUnique extends TabList
+         {
+             uuids.remove( uuid );
+         }
+-        player.unsafe().sendPacket( playerListItem );
++        player.unsafe().sendPacketDelayed( playerListItem );
+     }
+ 
+     @Override
+@@ -75,7 +75,7 @@ public class ServerUnique extends TabList
+                 }
+             }
+         }
+-        player.unsafe().sendPacket( playerListItem );
++        player.unsafe().sendPacketDelayed( playerListItem );
+     }
+ 
+     @Override
+@@ -114,7 +114,7 @@ public class ServerUnique extends TabList
+             // Travertine start
+             if ( ProtocolConstants.isAfterOrEq( player.getPendingConnection().getVersion(), ProtocolConstants.MINECRAFT_1_8 ) )
+             {
+-                player.unsafe().sendPacket( packet );
++                player.unsafe().sendPacketDelayed( packet );
+             } else
+             {
+                 // Split up the packet
+@@ -127,7 +127,7 @@ public class ServerUnique extends TabList
+                             {
+                                     item
+                             } );
+-                    player.unsafe().sendPacket( p2 );
++                    player.unsafe().sendPacketDelayed( p2 );
+                 }
+             }
+             // Travertine end
 -- 
-2.34.1
+2.45.1.windows.1
 
