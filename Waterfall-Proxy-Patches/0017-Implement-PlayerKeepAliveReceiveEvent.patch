@@ -1,0 +1,62 @@
+From e90bd42aaddda9aa05f79b4daa91452d3ecacace Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Wed, 9 Apr 2025 03:43:10 -0300
+Subject: [PATCH] Implement PlayerKeepAliveReceiveEvent.
+
+
+diff --git a/api/src/main/java/com/mariaum/zartema/event/PlayerKeepAliveReceiveEvent.java b/api/src/main/java/com/mariaum/zartema/event/PlayerKeepAliveReceiveEvent.java
+new file mode 100644
+index 00000000..c34cbe77
+--- /dev/null
++++ b/api/src/main/java/com/mariaum/zartema/event/PlayerKeepAliveReceiveEvent.java
+@@ -0,0 +1,27 @@
++package com.mariaum.zartema.event;
++
++import net.md_5.bungee.api.connection.ProxiedPlayer;
++import net.md_5.bungee.api.plugin.Event;
++
++/**
++ * Written by mariaum <mariaumhere@gmail.com>, 09 Apr 2025
++ */
++public final class PlayerKeepAliveReceiveEvent extends Event {
++
++    private final ProxiedPlayer player;
++    private final int ping;
++
++    public PlayerKeepAliveReceiveEvent(final ProxiedPlayer player, final int ping) {
++        this.player = player;
++        this.ping = ping;
++    }
++
++    public ProxiedPlayer player() {
++        return this.player;
++    }
++
++    public int ping() {
++        return this.ping;
++    }
++
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+index 5be8ce60..d3b4c646 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
+@@ -1,6 +1,7 @@
+ package net.md_5.bungee.connection;
+ 
+ import com.google.common.base.Preconditions;
++import com.mariaum.zartema.event.PlayerKeepAliveReceiveEvent;
+ import com.mojang.brigadier.context.StringRange;
+ import com.mojang.brigadier.suggestion.Suggestion;
+ import com.mojang.brigadier.suggestion.Suggestions;
+@@ -171,6 +172,7 @@ public class UpstreamBridge extends PacketHandler
+             int newPing = (int) ( System.currentTimeMillis() - keepAliveData.getTime() );
+             con.getTabListHandler().onPingChange( newPing );
+             con.setPing( newPing );
++            bungee.getPluginManager().callEvent(new PlayerKeepAliveReceiveEvent(con, newPing)); // Zartema
+         } else
+         {
+             throw CancelSendSignal.INSTANCE;
+-- 
+2.45.1.windows.1
+
