@@ -1,11 +1,11 @@
-From 4fb1b557971b57a07854ac4821961430a3785e3a Mon Sep 17 00:00:00 2001
+From c8525389b0c9043bc4868fb93f8b98f2d5282947 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Waterfall occurrences with Zartema
 
 
 diff --git a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
-index a4516ed96..7312813f7 100644
+index a4516ed9..7312813f 100644
 --- a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 +++ b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 @@ -7,7 +7,7 @@ public class Bootstrap
@@ -18,7 +18,7 @@ index a4516ed96..7312813f7 100644
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 63952a81b..6a487b401 100644
+index ceccf491..b03a383b 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -16,7 +16,7 @@
@@ -31,7 +31,7 @@ index 63952a81b..6a487b401 100644
      <dependencies>
          <dependency>
 diff --git a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
-index d703d6d24..3c9f73b16 100644
+index d703d6d2..3c9f73b1 100644
 --- a/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 +++ b/log/src/main/java/net/md_5/bungee/log/LogDispatcher.java
 @@ -12,7 +12,7 @@ public class LogDispatcher extends Thread
@@ -44,10 +44,10 @@ index d703d6d24..3c9f73b16 100644
      }
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 2222791db..585ac18b8 100644
+index c30c2746..62b865c9 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -208,7 +208,7 @@ public class BungeeCord extends ProxyServer
+@@ -181,7 +181,7 @@ public class BungeeCord extends ProxyServer
      public BungeeCord() throws IOException
      {
          // Java uses ! to indicate a resource inside of a jar/zip/other container. Running Bungee from within a directory that has a ! will cause this to muck up.
@@ -56,7 +56,7 @@ index 2222791db..585ac18b8 100644
  
          reloadMessages();
  
-@@ -564,7 +564,7 @@ public class BungeeCord extends ProxyServer
+@@ -548,7 +548,7 @@ public class BungeeCord extends ProxyServer
      @Override
      public String getName()
      {
@@ -66,10 +66,10 @@ index 2222791db..585ac18b8 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 72d6a15d4..c0da1b0ed 100644
+index c7d13591..1dc7b3f7 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -63,7 +63,7 @@ public class BungeeCordLauncher
+@@ -65,7 +65,7 @@ public class BungeeCordLauncher
  
          BungeeCord bungee = new BungeeCord();
          ProxyServer.setInstance( bungee );
@@ -79,7 +79,7 @@ index 72d6a15d4..c0da1b0ed 100644
          bungee.start();
  
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
-index b26035cf9..6a331d11c 100644
+index b26035cf..6a331d11 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandBungee.java
 @@ -16,6 +16,6 @@ public class CommandBungee extends Command
@@ -91,7 +91,7 @@ index b26035cf9..6a331d11c 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
-index 720d0c3b5..f1e74ad0f 100644
+index 720d0c3b..f1e74ad0 100644
 --- a/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 +++ b/proxy/src/main/java/net/md_5/bungee/command/CommandReload.java
 @@ -23,7 +23,7 @@ public class CommandReload extends Command
@@ -105,10 +105,10 @@ index 720d0c3b5..f1e74ad0f 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-index 915cfedad..e8f99d20e 100644
+index 3d97d674..8aa1f41f 100644
 --- a/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
 +++ b/proxy/src/main/java/net/md_5/bungee/conf/YamlConfig.java
-@@ -229,7 +229,7 @@ public class YamlConfig implements ConfigurationAdapter
+@@ -228,7 +228,7 @@ public class YamlConfig implements ConfigurationAdapter
              Map<String, Object> val = entry.getValue();
              String name = entry.getKey();
              String addr = get( "address", "localhost:25565", val );

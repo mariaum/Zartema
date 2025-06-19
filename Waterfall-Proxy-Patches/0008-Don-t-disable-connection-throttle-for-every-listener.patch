@@ -1,4 +1,4 @@
-From eeb1469dd2f26e8022798ebf90d51590c59071c2 Mon Sep 17 00:00:00 2001
+From 44675b7b5aabe28cbb905b03217d7e3e5df0a3d4 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Thu, 5 Nov 2020 21:33:37 -0300
 Subject: [PATCH] Don't disable connection throttle for every listener when
@@ -6,10 +6,10 @@ Subject: [PATCH] Don't disable connection throttle for every listener when
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 545475a42..e1b0ae209 100644
+index 62b865c9..8df102e3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -361,12 +361,12 @@ public class BungeeCord extends ProxyServer
+@@ -339,12 +339,12 @@ public class BungeeCord extends ProxyServer
              if ( info.isProxyProtocol() )
              {
                  getLogger().log( Level.WARNING, "Using PROXY protocol for listener {0}, please ensure this listener is adequately firewalled.", info.getSocketAddress() );
@@ -25,10 +25,10 @@ index 545475a42..e1b0ae209 100644
  
              ChannelFutureListener listener = new ChannelFutureListener()
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-index 1899bd755..061a519c3 100644
+index cb216a8c..2ba47b6e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
-@@ -66,13 +66,14 @@ public class PipelineUtils
+@@ -65,13 +65,14 @@ public class PipelineUtils
          ProxyServer.getInstance().unsafe().setFrontendChannelInitializer( BungeeChannelInitializer.create( ch ->
          {
              SocketAddress remoteAddress = ( ch.remoteAddress() == null ) ? ch.parent().localAddress() : ch.remoteAddress();

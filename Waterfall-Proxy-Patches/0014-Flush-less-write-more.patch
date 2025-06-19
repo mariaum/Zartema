@@ -1,4 +1,4 @@
-From 755cd12e6a9627cd13b623008eaac5d0de0e554e Mon Sep 17 00:00:00 2001
+From 768c2aebbe97c8954f5d544903664abf68af51cc Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 25 Mar 2025 01:59:13 -0300
 Subject: [PATCH] Flush less, write more
@@ -36,10 +36,10 @@ index a5a3c61a..79a334c2 100644
  
      public void sendPacketQueued(DefinedPacket packet)
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 617d6109..37160c77 100644
+index 94c4c528..8629a6ac 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -170,6 +170,14 @@ public final class UserConnection implements ProxiedPlayer
+@@ -186,6 +186,14 @@ public final class UserConnection implements ProxiedPlayer
                  sendPacket( packet );
              }
          }
@@ -55,10 +55,10 @@ index 617d6109..37160c77 100644
  
      public boolean init()
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 685d94fd..1f117c83 100644
+index 3183be34..5255496f 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-@@ -93,6 +93,8 @@ public class DownstreamBridge extends PacketHandler
+@@ -94,6 +94,8 @@ public class DownstreamBridge extends PacketHandler
      private final ServerConnection server;
      private boolean receivedLogin;
  
@@ -67,7 +67,7 @@ index 685d94fd..1f117c83 100644
      @Override
      public void exception(Throwable t) throws Exception
      {
-@@ -163,7 +165,7 @@ public class DownstreamBridge extends PacketHandler
+@@ -164,7 +166,7 @@ public class DownstreamBridge extends PacketHandler
          {
              rewrite.rewriteClientbound( packet.buf, con.getServerEntityId(), con.getClientEntityId(), con.getPendingConnection().getVersion() );
          }
@@ -76,7 +76,7 @@ index 685d94fd..1f117c83 100644
      }
  
      @Override
-@@ -356,7 +358,7 @@ public class DownstreamBridge extends PacketHandler
+@@ -357,7 +359,7 @@ public class DownstreamBridge extends PacketHandler
              }
              // Travertine end
              // changes in the packet are ignored so we need to send it manually
@@ -85,7 +85,7 @@ index 685d94fd..1f117c83 100644
              throw CancelSendSignal.INSTANCE;
          }
  
-@@ -757,7 +759,7 @@ public class DownstreamBridge extends PacketHandler
+@@ -758,7 +760,7 @@ public class DownstreamBridge extends PacketHandler
                  }
              }
  
@@ -94,7 +94,7 @@ index 685d94fd..1f117c83 100644
          }
  
          throw CancelSendSignal.INSTANCE;
-@@ -850,7 +852,7 @@ public class DownstreamBridge extends PacketHandler
+@@ -851,7 +853,7 @@ public class DownstreamBridge extends PacketHandler
  
          if ( modified )
          {
@@ -103,7 +103,7 @@ index 685d94fd..1f117c83 100644
              throw CancelSendSignal.INSTANCE;
          }
      }
-@@ -898,4 +900,20 @@ public class DownstreamBridge extends PacketHandler
+@@ -915,4 +917,20 @@ public class DownstreamBridge extends PacketHandler
      {
          return "[" + con.getAddress() + "|" + con.getName() + "] <-> DownstreamBridge <-> [" + server.getInfo().getName() + "]";
      }
@@ -125,10 +125,10 @@ index 685d94fd..1f117c83 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 5da42fd6..91eff1c6 100644
+index d061bdcf..701a329c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -135,6 +135,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -137,6 +137,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
          {
              throw new UnsupportedOperationException( "Not supported" );
          }
@@ -144,7 +144,7 @@ index 5da42fd6..91eff1c6 100644
      @Getter
      private boolean onlineMode = BungeeCord.getInstance().config.isOnlineMode();
 diff --git a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
-index f19e0cd8..aba2f600 100644
+index 7abe0a29..822b22f3 100644
 --- a/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 +++ b/proxy/src/main/java/net/md_5/bungee/netty/ChannelWrapper.java
 @@ -85,7 +85,9 @@ public class ChannelWrapper
@@ -272,5 +272,5 @@ index 78b2c2a8..4a562b95 100644
              }
              // Travertine end
 -- 
-2.45.1.windows.1
+2.34.1
 

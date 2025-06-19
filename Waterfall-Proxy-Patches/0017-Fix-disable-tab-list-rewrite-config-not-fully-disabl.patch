@@ -1,4 +1,4 @@
-From e0e190e33a25d6091cde37a2a25e14698e4ec729 Mon Sep 17 00:00:00 2001
+From 82b4f05b4ff1e0e4202839455ac9adfa9f98049b Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 15 Apr 2025 17:51:30 -0300
 Subject: [PATCH] Fix disable tab list rewrite config not fully disabling
@@ -6,10 +6,10 @@ Subject: [PATCH] Fix disable tab list rewrite config not fully disabling
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 1f117c83..f8841670 100644
+index 5255496f..90772ae2 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-@@ -194,15 +194,27 @@ public class DownstreamBridge extends PacketHandler
+@@ -195,15 +195,27 @@ public class DownstreamBridge extends PacketHandler
      @Override
      public void handle(PlayerListItemRemove playerList) throws Exception
      {
@@ -42,10 +42,10 @@ index 1f117c83..f8841670 100644
  
      @Override
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index d3b4c646..83788c10 100644
+index 00e7015c..33afca71 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -81,38 +81,42 @@ public class UpstreamBridge extends PacketHandler
+@@ -83,38 +83,42 @@ public class UpstreamBridge extends PacketHandler
  
          if ( con.getServer() != null )
          {
@@ -118,10 +118,10 @@ index d3b4c646..83788c10 100644
          }
      }
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_10.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_10.java
-index f42dc722..a0bf1401 100644
+index e30492cb..80da6f8f 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_10.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_10.java
-@@ -122,7 +122,7 @@ class EntityMap_1_10 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_10 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -130,7 +130,7 @@ index f42dc722..a0bf1401 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -164,7 +164,7 @@ class EntityMap_1_10 extends EntityMap
+@@ -162,7 +162,7 @@ class EntityMap_1_10 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -140,10 +140,10 @@ index f42dc722..a0bf1401 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_11.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_11.java
-index dc711f34..2b1ea354 100644
+index 42c6d56f..dd2ab0cc 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_11.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_11.java
-@@ -122,7 +122,7 @@ class EntityMap_1_11 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_11 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -152,7 +152,7 @@ index dc711f34..2b1ea354 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -165,7 +165,7 @@ class EntityMap_1_11 extends EntityMap
+@@ -163,7 +163,7 @@ class EntityMap_1_11 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -162,10 +162,10 @@ index dc711f34..2b1ea354 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12.java
-index c15ab1a1..462fc2c3 100644
+index 811bcac8..2dfc2ce7 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12.java
-@@ -122,7 +122,7 @@ class EntityMap_1_12 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_12 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -174,7 +174,7 @@ index c15ab1a1..462fc2c3 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -165,7 +165,7 @@ class EntityMap_1_12 extends EntityMap
+@@ -163,7 +163,7 @@ class EntityMap_1_12 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -184,10 +184,10 @@ index c15ab1a1..462fc2c3 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12_1.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12_1.java
-index c3e6f8c7..38e09789 100644
+index e8c38c6e..f6ef338c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12_1.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_12_1.java
-@@ -122,7 +122,7 @@ class EntityMap_1_12_1 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_12_1 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -196,7 +196,7 @@ index c3e6f8c7..38e09789 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -165,7 +165,7 @@ class EntityMap_1_12_1 extends EntityMap
+@@ -163,7 +163,7 @@ class EntityMap_1_12_1 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -206,10 +206,10 @@ index c3e6f8c7..38e09789 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_13.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_13.java
-index c653d664..f6210391 100644
+index 5fa12256..22b4a435 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_13.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_13.java
-@@ -122,7 +122,7 @@ class EntityMap_1_13 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_13 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -218,7 +218,7 @@ index c653d664..f6210391 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -165,7 +165,7 @@ class EntityMap_1_13 extends EntityMap
+@@ -163,7 +163,7 @@ class EntityMap_1_13 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -228,10 +228,10 @@ index c653d664..f6210391 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_14.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_14.java
-index e9b28f0d..6497107b 100644
+index 33f25c92..07c710fe 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_14.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_14.java
-@@ -121,7 +121,7 @@ class EntityMap_1_14 extends EntityMap
+@@ -119,7 +119,7 @@ class EntityMap_1_14 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -240,7 +240,7 @@ index e9b28f0d..6497107b 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -169,7 +169,7 @@ class EntityMap_1_14 extends EntityMap
+@@ -167,7 +167,7 @@ class EntityMap_1_14 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -250,10 +250,10 @@ index e9b28f0d..6497107b 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_15.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_15.java
-index eafca587..97b49bd2 100644
+index 60cdf04c..3cfc0eda 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_15.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_15.java
-@@ -121,7 +121,7 @@ class EntityMap_1_15 extends EntityMap
+@@ -119,7 +119,7 @@ class EntityMap_1_15 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -262,7 +262,7 @@ index eafca587..97b49bd2 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -169,7 +169,7 @@ class EntityMap_1_15 extends EntityMap
+@@ -167,7 +167,7 @@ class EntityMap_1_15 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -272,10 +272,10 @@ index eafca587..97b49bd2 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16.java
-index 98b1a155..71154810 100644
+index 735bd6df..e52578f2 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16.java
-@@ -121,7 +121,7 @@ class EntityMap_1_16 extends EntityMap
+@@ -119,7 +119,7 @@ class EntityMap_1_16 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -284,7 +284,7 @@ index 98b1a155..71154810 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -169,7 +169,7 @@ class EntityMap_1_16 extends EntityMap
+@@ -167,7 +167,7 @@ class EntityMap_1_16 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -294,10 +294,10 @@ index 98b1a155..71154810 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16_2.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16_2.java
-index ce96ac9e..23b6a8d2 100644
+index 9560ff3d..8189516e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16_2.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_16_2.java
-@@ -49,7 +49,7 @@ class EntityMap_1_16_2 extends EntityMap
+@@ -41,7 +41,7 @@ class EntityMap_1_16_2 extends EntityMap
              int idLength = packet.readerIndex() - readerIndex - packetIdLength;
              UUID uuid = DefinedPacket.readUUID( packet );
              UserConnection player;
@@ -306,7 +306,7 @@ index ce96ac9e..23b6a8d2 100644
              {
                  int previous = packet.writerIndex();
                  packet.readerIndex( readerIndex );
-@@ -69,7 +69,7 @@ class EntityMap_1_16_2 extends EntityMap
+@@ -61,7 +61,7 @@ class EntityMap_1_16_2 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -316,10 +316,10 @@ index ce96ac9e..23b6a8d2 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_8.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_8.java
-index 42a53153..49df1e02 100644
+index d3b52da4..bfca1ad8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_8.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_8.java
-@@ -122,7 +122,7 @@ class EntityMap_1_8 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_8 extends EntityMap
              int idLength = packet.readerIndex() - readerIndex - packetIdLength;
              UUID uuid = DefinedPacket.readUUID( packet );
              UserConnection player;
@@ -328,7 +328,7 @@ index 42a53153..49df1e02 100644
              {
                  int previous = packet.writerIndex();
                  packet.readerIndex( readerIndex );
-@@ -158,7 +158,7 @@ class EntityMap_1_8 extends EntityMap
+@@ -156,7 +156,7 @@ class EntityMap_1_8 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -338,10 +338,10 @@ index 42a53153..49df1e02 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9.java
-index 657e5846..52313483 100644
+index 0cd0bf06..37d9dc99 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9.java
-@@ -122,7 +122,7 @@ class EntityMap_1_9 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_9 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -350,7 +350,7 @@ index 657e5846..52313483 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -164,7 +164,7 @@ class EntityMap_1_9 extends EntityMap
+@@ -162,7 +162,7 @@ class EntityMap_1_9 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -360,10 +360,10 @@ index 657e5846..52313483 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9_4.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9_4.java
-index 11d8e0e3..6d5c8d99 100644
+index 930a7b5a..271f53f8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9_4.java
 +++ b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap_1_9_4.java
-@@ -122,7 +122,7 @@ class EntityMap_1_9_4 extends EntityMap
+@@ -120,7 +120,7 @@ class EntityMap_1_9_4 extends EntityMap
                  int idLength = packet.readerIndex() - readerIndex - packetIdLength;
                  UUID uuid = DefinedPacket.readUUID( packet );
                  UserConnection player;
@@ -372,7 +372,7 @@ index 11d8e0e3..6d5c8d99 100644
                  {
                      int previous = packet.writerIndex();
                      packet.readerIndex( readerIndex );
-@@ -164,7 +164,7 @@ class EntityMap_1_9_4 extends EntityMap
+@@ -162,7 +162,7 @@ class EntityMap_1_9_4 extends EntityMap
          int packetId = DefinedPacket.readVarInt( packet );
          int packetIdLength = packet.readerIndex() - readerIndex;
  
@@ -382,5 +382,5 @@ index 11d8e0e3..6d5c8d99 100644
              UUID uuid = DefinedPacket.readUUID( packet );
              ProxiedPlayer player;
 -- 
-2.45.1.windows.1
+2.34.1
 

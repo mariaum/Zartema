@@ -1,14 +1,14 @@
-From 1893f608e2fba563c5c8895c1083dfcc95b09597 Mon Sep 17 00:00:00 2001
+From b3e47d8699c9b63d4d21861f69485beeaeb2a570 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:32:00 -0300
 Subject: [PATCH] Remove outdaded build warning
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-index 3635b0bec..7297fc73e 100644
+index 1dc7b3f7..dd4945d1 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCordLauncher.java
-@@ -45,7 +45,7 @@ public class BungeeCordLauncher
+@@ -47,7 +47,7 @@ public class BungeeCordLauncher
              return;
          }
  
@@ -18,5 +18,5 @@ index 3635b0bec..7297fc73e 100644
              Date buildDate = new SimpleDateFormat( "yyyyMMdd" ).parse( BungeeCord.class.getPackage().getSpecificationVersion() );
  
 -- 
-2.32.0
+2.34.1
 

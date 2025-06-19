@@ -1,4 +1,4 @@
-From 896b2e659756930fcd9139b330a95d4434db6460 Mon Sep 17 00:00:00 2001
+From 0be8eee69731e50dc4688ce577bf317d2b9dde46 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Mon, 26 Sep 2022 05:04:29 -0300
 Subject: [PATCH] Implement ConnectionErrorHandler.
@@ -6,7 +6,7 @@ Subject: [PATCH] Implement ConnectionErrorHandler.
 
 diff --git a/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java b/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java
 new file mode 100644
-index 000000000..d045bf308
+index 00000000..d045bf30
 --- /dev/null
 +++ b/proxy/src/main/java/com/mariaum/zartema/ConnectionErrorHandler.java
 @@ -0,0 +1,22 @@
@@ -33,10 +33,10 @@ index 000000000..d045bf308
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index e1b0ae209..4ce134a58 100644
+index 8df102e3..ec478d60 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -186,6 +186,9 @@ public class BungeeCord extends ProxyServer
+@@ -152,6 +152,9 @@ public class BungeeCord extends ProxyServer
      @Getter
      private ConnectionThrottle connectionThrottle;
      private final ModuleManager moduleManager = new ModuleManager();
@@ -47,10 +47,10 @@ index e1b0ae209..4ce134a58 100644
      {
          // TODO: Proper fallback when we interface the manager
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 0cf1d83af..921bd90af 100644
+index 1b403518..f70408b2 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -197,6 +197,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -199,6 +199,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
      {
          if ( packet.packet == null )
          {

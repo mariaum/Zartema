@@ -1,14 +1,14 @@
-From b635ddb808ed4597263fe78f0eac25ecbe96ba20 Mon Sep 17 00:00:00 2001
+From c78fba14cfc52aa13a165b46dfa215bbd3f4bb21 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Fri, 24 May 2024 17:34:44 -0300
 Subject: [PATCH] Allow replacing the login profile through LoginEvent.
 
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 921bd90a..e951a0c2 100644
+index f70408b2..d061bdcf 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-@@ -656,6 +656,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
+@@ -674,6 +674,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                      return;
                  }
  
@@ -17,5 +17,5 @@ index 921bd90a..e951a0c2 100644
                  userCon.setCompressionThreshold( BungeeCord.getInstance().config.getCompressionThreshold() );
  
 -- 
-2.45.1.windows.1
+2.34.1
 

@@ -1,4 +1,4 @@
-From e90bd42aaddda9aa05f79b4daa91452d3ecacace Mon Sep 17 00:00:00 2001
+From 6593b8f71e511a905dc506b63929e5ea41340c3b Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Wed, 9 Apr 2025 03:43:10 -0300
 Subject: [PATCH] Implement PlayerKeepAliveReceiveEvent.
@@ -38,7 +38,7 @@ index 00000000..c34cbe77
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 5be8ce60..d3b4c646 100644
+index b9b2e608..00e7015c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -1,6 +1,7 @@
@@ -49,7 +49,7 @@ index 5be8ce60..d3b4c646 100644
  import com.mojang.brigadier.context.StringRange;
  import com.mojang.brigadier.suggestion.Suggestion;
  import com.mojang.brigadier.suggestion.Suggestions;
-@@ -171,6 +172,7 @@ public class UpstreamBridge extends PacketHandler
+@@ -173,6 +174,7 @@ public class UpstreamBridge extends PacketHandler
              int newPing = (int) ( System.currentTimeMillis() - keepAliveData.getTime() );
              con.getTabListHandler().onPingChange( newPing );
              con.setPing( newPing );
@@ -58,5 +58,5 @@ index 5be8ce60..d3b4c646 100644
          {
              throw CancelSendSignal.INSTANCE;
 -- 
-2.45.1.windows.1
+2.34.1
 
