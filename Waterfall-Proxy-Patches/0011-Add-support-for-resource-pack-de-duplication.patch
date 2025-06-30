@@ -1,4 +1,4 @@
-From 48d9a48a8e89bbb944d6089dc6841c92c2524a71 Mon Sep 17 00:00:00 2001
+From 522c80cfcd85cb64f9c2758f5c96f26a6c84c32f Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Mon, 29 Apr 2024 03:48:33 -0300
 Subject: [PATCH] Add support for resource pack de-duplication.
@@ -6,10 +6,10 @@ Subject: [PATCH] Add support for resource pack de-duplication.
 This adds support for de-duplicating resource packs for version 1.20.3+.
 
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
-index 9c5240e5..98ee490f 100644
+index 48048202..5270a2d6 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/AbstractPacketHandler.java
-@@ -60,6 +60,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
+@@ -59,6 +59,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
  import net.md_5.bungee.protocol.packet.Transfer;
  import net.md_5.bungee.protocol.packet.UnsignedClientCommand;
  import net.md_5.bungee.protocol.packet.ViewDistance;
@@ -19,7 +19,7 @@ index 9c5240e5..98ee490f 100644
  
  public abstract class AbstractPacketHandler
  {
-@@ -317,4 +320,14 @@ public abstract class AbstractPacketHandler
+@@ -312,4 +315,14 @@ public abstract class AbstractPacketHandler
      {
      }
      // Waterfall end
@@ -35,7 +35,7 @@ index 9c5240e5..98ee490f 100644
 +
  }
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
-index f75067a8..120e191c 100644
+index 4172f257..d306dfff 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/Protocol.java
 @@ -66,6 +66,9 @@ import net.md_5.bungee.protocol.packet.TitleTimes;
@@ -48,7 +48,7 @@ index f75067a8..120e191c 100644
  
  public enum Protocol
  {
-@@ -717,6 +720,33 @@ public enum Protocol
+@@ -733,6 +736,33 @@ public enum Protocol
                      CustomClickAction::new,
                      map( ProtocolConstants.MINECRAFT_1_21_6, 0x41 )
              );
@@ -82,7 +82,7 @@ index f75067a8..120e191c 100644
          }
      },
      // 1
-@@ -904,6 +934,26 @@ public enum Protocol
+@@ -926,6 +956,26 @@ public enum Protocol
                      CustomClickAction::new,
                      map( ProtocolConstants.MINECRAFT_1_21_6, 0x08 )
              );
@@ -287,7 +287,7 @@ index 257f4e4a..94c4c528 100644
      @Getter
      private String displayName;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 63a9aaef..5cd298f6 100644
+index 20baa1e5..8c42e69e 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -74,6 +74,9 @@ import net.md_5.bungee.protocol.packet.ServerData;
@@ -325,7 +325,7 @@ index 63a9aaef..5cd298f6 100644
      public String toString()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 9a1ed248..b9b2e608 100644
+index ec8c7a3f..96aff20c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -46,6 +46,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
