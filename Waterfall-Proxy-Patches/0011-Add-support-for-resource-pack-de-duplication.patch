@@ -1,4 +1,4 @@
-From 522c80cfcd85cb64f9c2758f5c96f26a6c84c32f Mon Sep 17 00:00:00 2001
+From 655445f3d2bde61d2e3bd3fbe7b7ee4859cd6c34 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Mon, 29 Apr 2024 03:48:33 -0300
 Subject: [PATCH] Add support for resource pack de-duplication.
@@ -325,7 +325,7 @@ index 20baa1e5..8c42e69e 100644
      public String toString()
      {
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index ec8c7a3f..96aff20c 100644
+index f652b672..03ac1551 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -46,6 +46,7 @@ import net.md_5.bungee.protocol.packet.StartConfiguration;
@@ -336,7 +336,7 @@ index ec8c7a3f..96aff20c 100644
  import net.md_5.bungee.util.AllowedCharacters;
  
  public class UpstreamBridge extends PacketHandler
-@@ -419,6 +420,13 @@ public class UpstreamBridge extends PacketHandler
+@@ -454,6 +455,13 @@ public class UpstreamBridge extends PacketHandler
          }
      }
  
@@ -351,5 +351,5 @@ index ec8c7a3f..96aff20c 100644
      public String toString()
      {
 -- 
-2.34.1
+2.51.0.windows.1
 
