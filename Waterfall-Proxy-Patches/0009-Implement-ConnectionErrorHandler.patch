@@ -1,4 +1,4 @@
-From 0be8eee69731e50dc4688ce577bf317d2b9dde46 Mon Sep 17 00:00:00 2001
+From 43732537f7d939ec0e0fd182b58081029e37fdc8 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Mon, 26 Sep 2022 05:04:29 -0300
 Subject: [PATCH] Implement ConnectionErrorHandler.
@@ -33,10 +33,10 @@ index 00000000..d045bf30
 +
 +}
 diff --git a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-index 8df102e3..ec478d60 100644
+index 1a534ff7..25d40537 100644
 --- a/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
 +++ b/proxy/src/main/java/net/md_5/bungee/BungeeCord.java
-@@ -152,6 +152,9 @@ public class BungeeCord extends ProxyServer
+@@ -153,6 +153,9 @@ public class BungeeCord extends ProxyServer
      @Getter
      private ConnectionThrottle connectionThrottle;
      private final ModuleManager moduleManager = new ModuleManager();
@@ -47,7 +47,7 @@ index 8df102e3..ec478d60 100644
      {
          // TODO: Proper fallback when we interface the manager
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index 1b403518..f70408b2 100644
+index eadec3b6..ebf7d485 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -199,6 +199,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection

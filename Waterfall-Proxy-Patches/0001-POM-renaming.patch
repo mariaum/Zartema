@@ -1,11 +1,11 @@
-From 1e5c53778c92c66d8ee7a63ebe37a962c605b052 Mon Sep 17 00:00:00 2001
+From a81b254da1d39b298e8a9d313148589e57733283 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
 
 
 diff --git a/api/pom.xml b/api/pom.xml
-index 74a835d1..c315c5a6 100644
+index 86da49a8..08506501 100644
 --- a/api/pom.xml
 +++ b/api/pom.xml
 @@ -4,48 +4,48 @@
@@ -16,7 +16,7 @@ index 74a835d1..c315c5a6 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -24,7 +24,7 @@ index 74a835d1..c315c5a6 100644
 -    <artifactId>waterfall-api</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-api</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-API</name>
@@ -73,7 +73,7 @@ index 74a835d1..c315c5a6 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/bootstrap/pom.xml b/bootstrap/pom.xml
-index 14a154aa..03596d65 100644
+index b30ce4dd..cd369802 100644
 --- a/bootstrap/pom.xml
 +++ b/bootstrap/pom.xml
 @@ -4,19 +4,19 @@
@@ -84,7 +84,7 @@ index 14a154aa..03596d65 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -92,7 +92,7 @@ index 14a154aa..03596d65 100644
 -    <artifactId>waterfall-bootstrap</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-bootstrap</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Bootstrap</name>
@@ -101,8 +101,8 @@ index 14a154aa..03596d65 100644
 +    <description>Java 1.6 loader for Zartema</description>
  
      <properties>
-         <maven.deploy.skip>true</maven.deploy.skip>
-@@ -29,15 +29,15 @@
+         <skipPublishing>true</skipPublishing>
+@@ -30,15 +30,15 @@
  
      <dependencies>
          <dependency>
@@ -122,7 +122,7 @@ index 14a154aa..03596d65 100644
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 4f2d69b9..ceccf491 100644
+index b5180fb8..86085635 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -4,19 +4,19 @@
@@ -133,7 +133,7 @@ index 4f2d69b9..ceccf491 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -141,7 +141,7 @@ index 4f2d69b9..ceccf491 100644
 -    <artifactId>waterfall-chat</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-chat</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Chat</name>
@@ -152,7 +152,7 @@ index 4f2d69b9..ceccf491 100644
      <dependencies>
          <dependency>
 diff --git a/config/pom.xml b/config/pom.xml
-index 51f24491..20b3fac0 100644
+index 0832a8cb..76565430 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -163,7 +163,7 @@ index 51f24491..20b3fac0 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -171,7 +171,7 @@ index 51f24491..20b3fac0 100644
 -    <artifactId>waterfall-config</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-config</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Config</name>
@@ -182,7 +182,7 @@ index 51f24491..20b3fac0 100644
      <dependencies>
          <dependency>
 diff --git a/dialog/pom.xml b/dialog/pom.xml
-index 00b6f1f0..8a2914ad 100644
+index 280bc617..6009fbf8 100644
 --- a/dialog/pom.xml
 +++ b/dialog/pom.xml
 @@ -4,19 +4,19 @@
@@ -193,7 +193,7 @@ index 00b6f1f0..8a2914ad 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -201,7 +201,7 @@ index 00b6f1f0..8a2914ad 100644
 -    <artifactId>waterfall-dialog</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-dialog</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Dialog</name>
@@ -223,7 +223,7 @@ index 00b6f1f0..8a2914ad 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/event/pom.xml b/event/pom.xml
-index 52576022..a1186aca 100644
+index 1fdbea07..e2758a2c 100644
 --- a/event/pom.xml
 +++ b/event/pom.xml
 @@ -4,17 +4,17 @@
@@ -234,7 +234,7 @@ index 52576022..a1186aca 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -242,7 +242,7 @@ index 52576022..a1186aca 100644
 -    <artifactId>waterfall-event</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-event</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Event</name>
@@ -251,7 +251,7 @@ index 52576022..a1186aca 100644
 +    <description>Generic java event dispatching API intended for use with Zartema.</description>
  </project>
 diff --git a/log/pom.xml b/log/pom.xml
-index 03ec2dd6..dfb4c24d 100644
+index 3d936b77..6bc5f25e 100644
 --- a/log/pom.xml
 +++ b/log/pom.xml
 @@ -4,19 +4,19 @@
@@ -262,7 +262,7 @@ index 03ec2dd6..dfb4c24d 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -270,7 +270,7 @@ index 03ec2dd6..dfb4c24d 100644
 -    <artifactId>waterfall-log</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Log</name>
@@ -292,7 +292,7 @@ index 03ec2dd6..dfb4c24d 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/log4j/pom.xml b/log4j/pom.xml
-index 8e32e004..71ba862c 100644
+index 1f89eed2..49fa4435 100644
 --- a/log4j/pom.xml
 +++ b/log4j/pom.xml
 @@ -3,19 +3,19 @@
@@ -303,7 +303,7 @@ index 8e32e004..71ba862c 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -311,7 +311,7 @@ index 8e32e004..71ba862c 100644
 -    <artifactId>waterfall-log4j</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-log4j</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Log4J</name>
@@ -322,7 +322,7 @@ index 8e32e004..71ba862c 100644
      <properties>
          <log4j2.version>2.20.0</log4j2.version>
 diff --git a/module/cmd-alert/pom.xml b/module/cmd-alert/pom.xml
-index f537352e..6e335298 100644
+index 1d4f36a5..a30cfacb 100644
 --- a/module/cmd-alert/pom.xml
 +++ b/module/cmd-alert/pom.xml
 @@ -4,14 +4,14 @@
@@ -333,7 +333,7 @@ index f537352e..6e335298 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -341,11 +341,11 @@ index f537352e..6e335298 100644
 -    <artifactId>waterfall-module-cmd-alert</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-alert</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-find/pom.xml b/module/cmd-find/pom.xml
-index 0c0e86c1..8b7a3803 100644
+index 91133358..c9f30154 100644
 --- a/module/cmd-find/pom.xml
 +++ b/module/cmd-find/pom.xml
 @@ -4,14 +4,14 @@
@@ -356,7 +356,7 @@ index 0c0e86c1..8b7a3803 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -364,11 +364,11 @@ index 0c0e86c1..8b7a3803 100644
 -    <artifactId>waterfall-module-cmd-find</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-find</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-kick/pom.xml b/module/cmd-kick/pom.xml
-index 4c01cd17..f35afb29 100644
+index f216d1e5..a1a749fa 100644
 --- a/module/cmd-kick/pom.xml
 +++ b/module/cmd-kick/pom.xml
 @@ -4,14 +4,14 @@
@@ -379,7 +379,7 @@ index 4c01cd17..f35afb29 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -387,11 +387,11 @@ index 4c01cd17..f35afb29 100644
 -    <artifactId>waterfall-module-cmd-kick</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-kick</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-list/pom.xml b/module/cmd-list/pom.xml
-index 77fa4bc5..e4d20be5 100644
+index 4eb8ecc2..19b36c26 100644
 --- a/module/cmd-list/pom.xml
 +++ b/module/cmd-list/pom.xml
 @@ -4,14 +4,14 @@
@@ -402,7 +402,7 @@ index 77fa4bc5..e4d20be5 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -410,11 +410,11 @@ index 77fa4bc5..e4d20be5 100644
 -    <artifactId>waterfall-module-cmd-list</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-list</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-send/pom.xml b/module/cmd-send/pom.xml
-index 7520c969..20599c88 100644
+index 4df56eeb..f987e6ea 100644
 --- a/module/cmd-send/pom.xml
 +++ b/module/cmd-send/pom.xml
 @@ -4,14 +4,14 @@
@@ -425,7 +425,7 @@ index 7520c969..20599c88 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -433,11 +433,11 @@ index 7520c969..20599c88 100644
 -    <artifactId>waterfall-module-cmd-send</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-send</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/cmd-server/pom.xml b/module/cmd-server/pom.xml
-index 32883016..09d95b2a 100644
+index a6019518..f765d715 100644
 --- a/module/cmd-server/pom.xml
 +++ b/module/cmd-server/pom.xml
 @@ -4,14 +4,14 @@
@@ -448,7 +448,7 @@ index 32883016..09d95b2a 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -456,11 +456,11 @@ index 32883016..09d95b2a 100644
 -    <artifactId>waterfall-module-cmd-server</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-cmd-server</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/module/pom.xml b/module/pom.xml
-index 1f35de0e..705811be 100644
+index 55ca6cbd..7dc578fa 100644
 --- a/module/pom.xml
 +++ b/module/pom.xml
 @@ -4,19 +4,19 @@
@@ -471,7 +471,7 @@ index 1f35de0e..705811be 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -479,7 +479,7 @@ index 1f35de0e..705811be 100644
 -    <artifactId>waterfall-module</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>pom</packaging>
  
 -    <name>Waterfall Modules</name>
@@ -489,15 +489,16 @@ index 1f35de0e..705811be 100644
  
      <modules>
          <module>cmd-alert</module>
-@@ -29,15 +29,15 @@
+@@ -29,7 +29,7 @@
      </modules>
  
      <properties>
 -        <module.author>WaterfallMC</module.author>
 +        <module.author>Zartema</module.author>
+         <skipPublishing>true</skipPublishing>
          <maven.deploy.skip>true</maven.deploy.skip>
          <maven.javadoc.skip>true</maven.javadoc.skip>
-     </properties>
+@@ -37,8 +37,8 @@
  
      <dependencies>
          <dependency>
@@ -509,7 +510,7 @@ index 1f35de0e..705811be 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/module/reconnect-yaml/pom.xml b/module/reconnect-yaml/pom.xml
-index 11198e0b..215c4aee 100644
+index b35c7df6..9aa33858 100644
 --- a/module/reconnect-yaml/pom.xml
 +++ b/module/reconnect-yaml/pom.xml
 @@ -4,14 +4,14 @@
@@ -520,7 +521,7 @@ index 11198e0b..215c4aee 100644
 -        <artifactId>waterfall-module</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-module</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -528,11 +529,11 @@ index 11198e0b..215c4aee 100644
 -    <artifactId>waterfall-module-reconnect-yaml</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-module-reconnect-yaml</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 diff --git a/native/pom.xml b/native/pom.xml
-index 26e762c7..d5ae9431 100644
+index 3ca06403..58c4d721 100644
 --- a/native/pom.xml
 +++ b/native/pom.xml
 @@ -4,19 +4,19 @@
@@ -543,7 +544,7 @@ index 26e762c7..d5ae9431 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -551,7 +552,7 @@ index 26e762c7..d5ae9431 100644
 -    <artifactId>waterfall-native</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-native</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Native</name>
@@ -562,7 +563,7 @@ index 26e762c7..d5ae9431 100644
      <dependencies>
          <dependency>
 diff --git a/nbt/pom.xml b/nbt/pom.xml
-index 023ce639..e3ae12cf 100644
+index ecfaeb7e..c2199376 100644
 --- a/nbt/pom.xml
 +++ b/nbt/pom.xml
 @@ -4,19 +4,19 @@
@@ -573,7 +574,7 @@ index 023ce639..e3ae12cf 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -581,7 +582,7 @@ index 023ce639..e3ae12cf 100644
 -    <artifactId>waterfall-nbt</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-nbt</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-NBT</name>
@@ -592,7 +593,7 @@ index 023ce639..e3ae12cf 100644
          <license>
              <name>BSD-3-Clause</name>
 diff --git a/pom.xml b/pom.xml
-index 70bdee0c..dff8914f 100644
+index 012bdb54..09942063 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,19 +3,14 @@
@@ -603,7 +604,7 @@ index 70bdee0c..dff8914f 100644
 -    <artifactId>waterfall-parent</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-parent</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>pom</packaging>
  
 -    <name>Waterfall-Parent</name>
@@ -648,11 +649,10 @@ index 70bdee0c..dff8914f 100644
      <modules>
          <module>api</module>
          <module>bootstrap</module>
-@@ -63,28 +37,7 @@
-         <module>native</module>
+@@ -64,27 +38,6 @@
          <module>nbt</module>
      </modules>
--
+ 
 -    <scm>
 -        <connection>scm:git:git@github.com:com:PaperMC/Waterfall.git</connection>
 -        <developerConnection>scm:git:git@github.com:PaperMC/Waterfall.git</developerConnection>
@@ -666,20 +666,19 @@ index 70bdee0c..dff8914f 100644
 -    <distributionManagement>
 -        <repository>
 -            <id>papermc-releases</id>
--            <url>https://repo.papermc.io/repository/maven-releases/</url>
+-            <url>https://artifactory.papermc.io/artifactory/releases/</url>
 -        </repository>
 -        <snapshotRepository>
 -            <id>papermc-snapshots</id>
--            <url>https://repo.papermc.io/repository/maven-snapshots/</url>
+-            <url>https://artifactory.papermc.io/artifactory/snapshots/</url>
 -        </snapshotRepository>
 -    </distributionManagement>
 -
-+	
      <properties>
          <build.number>unknown</build.number>
          <lombok.version>1.18.38</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
-index 8b34bc3a..d46c7fee 100644
+index d98dc06b..9f2eb4cf 100644
 --- a/protocol/pom.xml
 +++ b/protocol/pom.xml
 @@ -4,19 +4,19 @@
@@ -690,7 +689,7 @@ index 8b34bc3a..d46c7fee 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -698,7 +697,7 @@ index 8b34bc3a..d46c7fee 100644
 -    <artifactId>waterfall-protocol</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-protocol</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Protocol</name>
@@ -728,7 +727,7 @@ index 8b34bc3a..d46c7fee 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index b95c2939..869864e4 100644
+index d2d64947..d5716a99 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@
@@ -739,7 +738,7 @@ index b95c2939..869864e4 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -747,7 +746,7 @@ index b95c2939..869864e4 100644
 -    <artifactId>waterfall-proxy</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-proxy</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Proxy</name>
@@ -755,7 +754,7 @@ index b95c2939..869864e4 100644
      <description>Proxy component of the Elastic Portal Suite</description>
  
      <properties>
-@@ -76,32 +76,32 @@
+@@ -77,32 +77,32 @@
              <scope>compile</scope>
          </dependency>
          <dependency>
@@ -799,7 +798,7 @@ index b95c2939..869864e4 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/query/pom.xml b/query/pom.xml
-index e282206e..2cfd4f21 100644
+index c57c6b13..2bbba03e 100644
 --- a/query/pom.xml
 +++ b/query/pom.xml
 @@ -4,19 +4,19 @@
@@ -810,7 +809,7 @@ index e282206e..2cfd4f21 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -818,7 +817,7 @@ index e282206e..2cfd4f21 100644
 -    <artifactId>waterfall-query</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-query</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Query</name>
@@ -840,7 +839,7 @@ index e282206e..2cfd4f21 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/serializer/pom.xml b/serializer/pom.xml
-index 0d115f3a..88a7daca 100644
+index c5cb6c2d..8d7b06c5 100644
 --- a/serializer/pom.xml
 +++ b/serializer/pom.xml
 @@ -4,19 +4,19 @@
@@ -851,7 +850,7 @@ index 0d115f3a..88a7daca 100644
 -        <artifactId>waterfall-parent</artifactId>
 +        <groupId>com.mariaum</groupId>
 +        <artifactId>zartema-parent</artifactId>
-         <version>1.21-R0.4-SNAPSHOT</version>
+         <version>1.21-R0.5-SNAPSHOT</version>
          <relativePath>../pom.xml</relativePath>
      </parent>
  
@@ -859,7 +858,7 @@ index 0d115f3a..88a7daca 100644
 -    <artifactId>waterfall-serializer</artifactId>
 +    <groupId>com.mariaum</groupId>
 +    <artifactId>zartema-serializer</artifactId>
-     <version>1.21-R0.4-SNAPSHOT</version>
+     <version>1.21-R0.5-SNAPSHOT</version>
      <packaging>jar</packaging>
  
 -    <name>Waterfall-Serializer</name>

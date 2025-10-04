@@ -1,4 +1,4 @@
-From 4f6df564ecbe07c230aee78002c9070692f04a42 Mon Sep 17 00:00:00 2001
+From bbde68a80e3c5351b546527b0636ab85c9e07b79 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Sat, 27 Apr 2024 04:08:32 -0300
 Subject: [PATCH] Allow spoofing chat in 1.19+.
@@ -6,21 +6,21 @@ Subject: [PATCH] Allow spoofing chat in 1.19+.
 Should work with ViaVersion at least.
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 60f506c7..257f4e4a 100644
+index 95280258..276bf6d5 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -509,7 +509,8 @@ public final class UserConnection implements ProxiedPlayer
+@@ -512,7 +512,8 @@ public final class UserConnection implements ProxiedPlayer
          Preconditions.checkState( server != null, "Not connected to server" );
          if ( getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_19 )
          {
 -            throw new UnsupportedOperationException( "Cannot spoof chat on this client version!" );
-+            server.getCh().write( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) ); // Zartema - Allow spoofing chat in 1.19+.
++            server.getCh().write( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.data.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.data.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) ); // Zartema - Allow spoofing chat in 1.19+.
 +            return;
          }
          server.getCh().write( new Chat( message ) );
      }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index ec8c7a3f..f652b672 100644
+index 8099ea7f..94cb4a96 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -194,19 +194,54 @@ public class UpstreamBridge extends PacketHandler
@@ -33,7 +33,7 @@ index ec8c7a3f..f652b672 100644
 +        if ( !java.util.Objects.equals( message, chat.getMessage() ) )
 +        {
 +            if ( message != null ) {
-+                con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
++                con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.data.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.data.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
 +            }
 +            throw CancelSendSignal.INSTANCE;
 +        }
@@ -52,7 +52,7 @@ index ec8c7a3f..f652b672 100644
 +                if ( message.startsWith("/") ) {
 +                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.UnsignedClientCommand( message.substring(1) ) );
 +                } else {
-+                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
++                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.data.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.data.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
 +                }
 +            }
 +            throw CancelSendSignal.INSTANCE;
@@ -72,7 +72,7 @@ index ec8c7a3f..f652b672 100644
 +                if ( message.startsWith("/") ) {
 +                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.UnsignedClientCommand( message.substring(1) ) );
 +                } else {
-+                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
++                    con.getServer().unsafe().sendPacket( new net.md_5.bungee.protocol.packet.ClientChat( message, 0, 0, new byte[256], false, new net.md_5.bungee.protocol.data.ChatChain( com.google.common.collect.ImmutableList.of(), com.google.common.collect.ImmutableList.of() ), new net.md_5.bungee.protocol.data.SeenMessages( 0, new java.util.BitSet() ), (byte) 0 ) );
 +                }
 +            }
 +            throw CancelSendSignal.INSTANCE;
@@ -82,5 +82,5 @@ index ec8c7a3f..f652b672 100644
  
      private String handleChat(String message)
 -- 
-2.51.0.windows.1
+2.34.1
 

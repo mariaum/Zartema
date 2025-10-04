@@ -1,14 +1,14 @@
-From 768c2aebbe97c8954f5d544903664abf68af51cc Mon Sep 17 00:00:00 2001
+From 5b9397df9f11d0a591ce99b45808552bcef632f0 Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Tue, 25 Mar 2025 01:59:13 -0300
 Subject: [PATCH] Flush less, write more
 
 
 diff --git a/api/src/main/java/net/md_5/bungee/api/connection/Connection.java b/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
-index 392490d1..8881e12e 100644
+index a953c553..85a2a5fd 100644
 --- a/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
 +++ b/api/src/main/java/net/md_5/bungee/api/connection/Connection.java
-@@ -94,5 +94,7 @@ public interface Connection
+@@ -96,5 +96,7 @@ public interface Connection
           * @throws UnsupportedOperationException if used for a PendingConnection
           */
          void sendPacketQueued(DefinedPacket packet);
@@ -36,10 +36,10 @@ index a5a3c61a..79a334c2 100644
  
      public void sendPacketQueued(DefinedPacket packet)
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 94c4c528..8629a6ac 100644
+index 0713c517..849ead36 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -186,6 +186,14 @@ public final class UserConnection implements ProxiedPlayer
+@@ -189,6 +189,14 @@ public final class UserConnection implements ProxiedPlayer
                  sendPacket( packet );
              }
          }
@@ -55,7 +55,7 @@ index 94c4c528..8629a6ac 100644
  
      public boolean init()
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index 3183be34..5255496f 100644
+index b1796a87..b348d669 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -94,6 +94,8 @@ public class DownstreamBridge extends PacketHandler
@@ -125,7 +125,7 @@ index 3183be34..5255496f 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index d061bdcf..701a329c 100644
+index 4dcf10da..d6c36ca8 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -137,6 +137,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
@@ -223,10 +223,10 @@ index 7bd223d9..88abd2c6 100644
 +    // Zartema end
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java b/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
-index 78b2c2a8..4a562b95 100644
+index af761a03..dcb2148c 100644
 --- a/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
 +++ b/proxy/src/main/java/net/md_5/bungee/tab/ServerUnique.java
-@@ -49,7 +49,7 @@ public class ServerUnique extends TabList
+@@ -54,7 +54,7 @@ public class ServerUnique extends TabList
                  // Travertine end
              }
          }
@@ -235,7 +235,7 @@ index 78b2c2a8..4a562b95 100644
      }
  
      @Override
-@@ -59,7 +59,7 @@ public class ServerUnique extends TabList
+@@ -64,7 +64,7 @@ public class ServerUnique extends TabList
          {
              uuids.remove( uuid );
          }
@@ -244,8 +244,8 @@ index 78b2c2a8..4a562b95 100644
      }
  
      @Override
-@@ -75,7 +75,7 @@ public class ServerUnique extends TabList
-                 }
+@@ -77,7 +77,7 @@ public class ServerUnique extends TabList
+                 uuids.add( item.getUuid() );
              }
          }
 -        player.unsafe().sendPacket( playerListItem );
@@ -253,7 +253,7 @@ index 78b2c2a8..4a562b95 100644
      }
  
      @Override
-@@ -114,7 +114,7 @@ public class ServerUnique extends TabList
+@@ -116,7 +116,7 @@ public class ServerUnique extends TabList
              // Travertine start
              if ( ProtocolConstants.isAfterOrEq( player.getPendingConnection().getVersion(), ProtocolConstants.MINECRAFT_1_8 ) )
              {
@@ -262,7 +262,7 @@ index 78b2c2a8..4a562b95 100644
              } else
              {
                  // Split up the packet
-@@ -127,7 +127,7 @@ public class ServerUnique extends TabList
+@@ -129,7 +129,7 @@ public class ServerUnique extends TabList
                              {
                                      item
                              } );
