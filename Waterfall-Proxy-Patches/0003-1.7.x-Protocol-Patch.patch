@@ -1,4 +1,4 @@
-From 441561bef551a22bfcb6aa0261a2185c0d9e70af Mon Sep 17 00:00:00 2001
+From 734b116f555a0a20fc4670934ba08189db867177 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -431,7 +431,7 @@ index 4d3337ec..ae159af8 100644
  
              Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id];
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-index ced78076..bfe2dcea 100644
+index 5f7faa2c..abd9abd4 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 @@ -7,6 +7,8 @@ public class ProtocolConstants
@@ -443,7 +443,7 @@ index ced78076..bfe2dcea 100644
      public static final int MINECRAFT_1_8 = 47;
      public static final int MINECRAFT_1_9 = 107;
      public static final int MINECRAFT_1_9_1 = 108;
-@@ -59,6 +61,7 @@ public class ProtocolConstants
+@@ -60,6 +62,7 @@ public class ProtocolConstants
      static
      {
          ImmutableList.Builder<String> supportedVersions = ImmutableList.<String>builder().add(
@@ -451,7 +451,7 @@ index ced78076..bfe2dcea 100644
                  "1.8.x",
                  "1.9.x",
                  "1.10.x",
-@@ -75,6 +78,8 @@ public class ProtocolConstants
+@@ -76,6 +79,8 @@ public class ProtocolConstants
                  "1.21.x"
          );
          ImmutableList.Builder<Integer> supportedVersionIds = ImmutableList.<Integer>builder().add(
@@ -1341,7 +1341,7 @@ index 491cf1a1..299a216c 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index 5b49c447..aca381cd 100644
+index 602f8b95..bafd3954 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 @@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
@@ -1352,7 +1352,7 @@ index 5b49c447..aca381cd 100644
  import java.util.Queue;
  import java.util.Set;
  import java.util.UUID;
-@@ -319,10 +320,20 @@ public class ServerConnector extends PacketHandler
+@@ -323,10 +324,20 @@ public class ServerConnector extends PacketHandler
              {
                  user.unsafe().sendPacket( BungeeCord.getInstance().registerChannels( user.getPendingConnection().getVersion() ) );
  
@@ -1377,7 +1377,7 @@ index 5b49c447..aca381cd 100644
              }
  
              user.setDimension( login.getDimension() );
-@@ -338,7 +349,7 @@ public class ServerConnector extends PacketHandler
+@@ -342,7 +353,7 @@ public class ServerConnector extends PacketHandler
                  user.unsafe().sendPacket( new ScoreboardObjective(
                          objective.getName(),
                          ( user.getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_13 ) ? Either.right( user.getChatSerializer().deserialize( objective.getValue() ) ) : Either.left( objective.getValue() ),
@@ -1386,7 +1386,7 @@ index 5b49c447..aca381cd 100644
                          (byte) 1, null )
                  );
              }
-@@ -545,6 +556,14 @@ public class ServerConnector extends PacketHandler
+@@ -549,6 +560,14 @@ public class ServerConnector extends PacketHandler
              {
                  this.handshakeHandler.handle( pluginMessage );
  
@@ -1589,19 +1589,6 @@ index 0004d990..2763f26f 100644
          ServerPing serverPing = gson.fromJson( statusResponse.getResponse(), ServerPing.class );
          ( (BungeeServerInfo) target ).cachePing( serverPing );
          callback.done( serverPing, null );
-diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 707e1ff2..8099ea7f 100644
---- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-+++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-@@ -108,7 +108,7 @@ public class UpstreamBridge extends PacketHandler
-                 {
-                     // need to queue, because players in config state could receive it
-                     player.unsafe().sendPacketQueued( newPacket );
--                } else
-+                } else if ( ProtocolConstants.isAfterOrEq( player.getPendingConnection().getVersion(), ProtocolConstants.MINECRAFT_1_8 ) ) // Travertine
-                 {
-                     player.unsafe().sendPacket( oldPacket );
-                 }
 diff --git a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java b/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java
 index 01a60130..d65bb8ad 100644
 --- a/proxy/src/main/java/net/md_5/bungee/entitymap/EntityMap.java
@@ -1967,5 +1954,5 @@ index 29ae9e46..af761a03 100644
  
      @Override
 -- 
-2.34.1
+2.43.0
 

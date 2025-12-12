@@ -1,4 +1,4 @@
-From a81b254da1d39b298e8a9d313148589e57733283 Mon Sep 17 00:00:00 2001
+From c8b6952768165ea6cc82652a46234b89c4a56221 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -122,7 +122,7 @@ index b30ce4dd..cd369802 100644
              <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
 diff --git a/chat/pom.xml b/chat/pom.xml
-index b5180fb8..86085635 100644
+index 79a94905..d0b7df73 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -4,19 +4,19 @@
@@ -152,7 +152,7 @@ index b5180fb8..86085635 100644
      <dependencies>
          <dependency>
 diff --git a/config/pom.xml b/config/pom.xml
-index 0832a8cb..76565430 100644
+index b8d4d69a..7229251b 100644
 --- a/config/pom.xml
 +++ b/config/pom.xml
 @@ -4,19 +4,19 @@
@@ -593,7 +593,7 @@ index ecfaeb7e..c2199376 100644
          <license>
              <name>BSD-3-Clause</name>
 diff --git a/pom.xml b/pom.xml
-index 012bdb54..09942063 100644
+index e5696e3d..c1e9859d 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,19 +3,14 @@
@@ -649,7 +649,7 @@ index 012bdb54..09942063 100644
      <modules>
          <module>api</module>
          <module>bootstrap</module>
-@@ -64,27 +38,6 @@
+@@ -64,31 +38,6 @@
          <module>nbt</module>
      </modules>
  
@@ -662,6 +662,10 @@ index 012bdb54..09942063 100644
 -        <system>GitHub</system>
 -        <url>https://github.com/PaperMC/Waterfall/issues</url>
 -    </issueManagement>
+-    <ciManagement>
+-        <system>jenkins</system>
+-        <url>https://papermc.io/downloads/waterfall</url>
+-    </ciManagement>
 -
 -    <distributionManagement>
 -        <repository>
@@ -839,7 +843,7 @@ index c57c6b13..2bbba03e 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/serializer/pom.xml b/serializer/pom.xml
-index c5cb6c2d..8d7b06c5 100644
+index 2159b626..7165f72d 100644
 --- a/serializer/pom.xml
 +++ b/serializer/pom.xml
 @@ -4,19 +4,19 @@
@@ -885,5 +889,5 @@ index c5cb6c2d..8d7b06c5 100644
              <scope>compile</scope>
          </dependency>
 -- 
-2.34.1
+2.43.0
 
