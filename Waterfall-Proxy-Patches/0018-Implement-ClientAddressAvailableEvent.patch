@@ -1,0 +1,80 @@
+From 36538f3583cb03e6ae1d6d558dbbccc64bcf8f98 Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Tue, 10 Mar 2026 21:40:50 -0300
+Subject: [PATCH] Implement ClientAddressAvailableEvent.
+
+
+diff --git a/api/src/main/java/com/mariaum/zartema/event/ClientAddressAvailableEvent.java b/api/src/main/java/com/mariaum/zartema/event/ClientAddressAvailableEvent.java
+new file mode 100644
+index 00000000..d628d040
+--- /dev/null
++++ b/api/src/main/java/com/mariaum/zartema/event/ClientAddressAvailableEvent.java
+@@ -0,0 +1,18 @@
++package com.mariaum.zartema.event;
++
++import lombok.Data;
++import lombok.EqualsAndHashCode;
++import lombok.ToString;
++import net.md_5.bungee.api.plugin.Cancellable;
++import net.md_5.bungee.api.plugin.Event;
++
++import java.net.SocketAddress;
++
++@Data
++@ToString(callSuper = false)
++@EqualsAndHashCode(callSuper = false)
++public class ClientAddressAvailableEvent extends Event implements Cancellable
++{
++    private boolean cancelled;
++    private final SocketAddress socketAddress;
++}
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+index c336f1b3..969c2db4 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/HandlerBoss.java
+@@ -12,6 +12,7 @@ import java.io.IOException;
+ import java.net.InetSocketAddress;
+ import java.util.logging.Level;
+ import lombok.Setter;
++import net.md_5.bungee.BungeeCord;
+ import net.md_5.bungee.api.ProxyServer;
+ import net.md_5.bungee.api.chat.TextComponent;
+ import net.md_5.bungee.connection.CancelSendSignal;
+@@ -103,6 +104,14 @@ public class HandlerBoss extends ChannelInboundHandlerAdapter
+                     } );
+ 
+                     channel.setRemoteAddress( newAddress );
++
++                    // Zartema start
++                    if ( BungeeCord.getInstance().getPluginManager().callEvent( new com.mariaum.zartema.event.ClientAddressAvailableEvent( newAddress )).isCancelled() )
++                    {
++                        this.channel.close();
++                        return;
++                    }
++                    // Zartema end
+                 } else
+                 {
+                     healthCheck = true;
+diff --git a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+index 2ba47b6e..a2be36d4 100644
+--- a/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
++++ b/proxy/src/main/java/net/md_5/bungee/netty/PipelineUtils.java
+@@ -78,6 +78,15 @@ public class PipelineUtils
+             {
+                 return false;
+             }
++            // Zartema start
++            if (!listener.isProxyProtocol()) {
++                if ( BungeeCord.getInstance().getPluginManager().callEvent( new com.mariaum.zartema.event.ClientAddressAvailableEvent( remoteAddress ) ).isCancelled() )
++                {
++                    return false;
++                }
++            }
++            // Zartema end
++
+             // Waterfall start - ConnectionInitEvent
+             io.github.waterfallmc.waterfall.event.ConnectionInitEvent connectionInitEvent = new io.github.waterfallmc.waterfall.event.ConnectionInitEvent(ch.remoteAddress(), listener, (result, throwable) -> { // Waterfall
+ 
+-- 
+2.51.0.windows.1
+
