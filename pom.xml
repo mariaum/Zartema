@@ -5,7 +5,7 @@
 
     <groupId>com.mariaum</groupId>
     <artifactId>zartema-super</artifactId>
-    <version>dev-SNAPSHOT</version>
+    <version>26.1-R0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Zartema-Super</name>

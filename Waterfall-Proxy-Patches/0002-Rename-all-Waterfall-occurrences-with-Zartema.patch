@@ -1,24 +1,24 @@
-From 4a7148f156ce497df709b6493c45cc9d5dd4c03d Mon Sep 17 00:00:00 2001
+From 2078367902746284c378f672fd19a1f0d9be88c2 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:31:10 -0300
 Subject: [PATCH] Rename all Waterfall occurrences with Zartema
 
 
 diff --git a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
-index a4516ed9..7312813f 100644
+index cbb740c9..597f6cca 100644
 --- a/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 +++ b/bootstrap/src/main/java/net/md_5/bungee/Bootstrap.java
 @@ -7,7 +7,7 @@ public class Bootstrap
      {
-         if ( Float.parseFloat( System.getProperty( "java.class.version" ) ) < 52.0 )
+         if ( Float.parseFloat( System.getProperty( "java.class.version" ) ) < 61.0 )
          {
--            System.err.println( "*** ERROR *** Waterfall requires Java 8 or above to function! Please download and install it!" );
-+            System.err.println( "*** ERROR *** Zartema requires Java 8 or above to function! Please download and install it!" );
+-            System.err.println( "*** ERROR *** Waterfall requires Java 17 or above to function! Please download and install it!" );
++            System.err.println( "*** ERROR *** Zartema requires Java 17 or above to function! Please download and install it!" );
              System.out.println( "You can check your Java version with the command: java -version" );
              return;
          }
 diff --git a/chat/pom.xml b/chat/pom.xml
-index 86085635..ccfa04a3 100644
+index 592f8747..44142261 100644
 --- a/chat/pom.xml
 +++ b/chat/pom.xml
 @@ -16,7 +16,7 @@
@@ -118,5 +118,5 @@ index f8df7d10..846c47e8 100644
              SocketAddress address = Util.getAddr( addr );
              ServerInfo info = ProxyServer.getInstance().constructServerInfo( name, address, motd, restricted );
 -- 
-2.34.1
+2.43.0
 
