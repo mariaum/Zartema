@@ -1,4 +1,4 @@
-From d49dbfb835d9236177f156f84302cdd689bc1ca5 Mon Sep 17 00:00:00 2001
+From 4f1df12046a30a14742a9a0ac9c0e07db9ea92c2 Mon Sep 17 00:00:00 2001
 From: Mariaum <me@mariaum.com>
 Date: Sat, 13 Oct 2018 00:27:11 -0300
 Subject: [PATCH] POM renaming
@@ -333,7 +333,7 @@ index c4692781..6aa008e4 100644
      <dependencies>
          <!-- Log4j -->
 diff --git a/maven-resolver/pom.xml b/maven-resolver/pom.xml
-index abdd8bab..29e21e94 100644
+index c33746f1..23b3e70d 100644
 --- a/maven-resolver/pom.xml
 +++ b/maven-resolver/pom.xml
 @@ -4,14 +4,14 @@
@@ -627,7 +627,7 @@ index be74fd49..8f6304bf 100644
          <license>
              <name>BSD-3-Clause</name>
 diff --git a/pom.xml b/pom.xml
-index 40a1cc35..cccf5959 100644
+index 03246559..e1e20c73 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -4,24 +4,19 @@
@@ -717,17 +717,7 @@ index 40a1cc35..cccf5959 100644
 -
      <properties>
          <build.number>unknown</build.number>
-         <lombok.version>1.18.44</lombok.version>
-@@ -257,6 +210,9 @@
-                                     <ignoreClasses>
-                                         <ignoreClass>org.jline.terminal.impl.ffm.*</ignoreClass>
-                                     </ignoreClasses>
-+                                    <excludes>
-+                                        <exclude>org.jline:jline-terminal-ffm</exclude>
-+                                    </excludes>
-                                 </enforceBytecodeVersion>
-                             </rules>
-                         </configuration>
+         <lombok.version>1.18.46</lombok.version>
 diff --git a/protocol/pom.xml b/protocol/pom.xml
 index 51c8e3a3..5c7b523f 100644
 --- a/protocol/pom.xml
@@ -778,7 +768,7 @@ index 51c8e3a3..5c7b523f 100644
              <scope>compile</scope>
          </dependency>
 diff --git a/proxy/pom.xml b/proxy/pom.xml
-index cec44945..c6b7c8e2 100644
+index 0b4ca23a..12f7e4a6 100644
 --- a/proxy/pom.xml
 +++ b/proxy/pom.xml
 @@ -4,18 +4,18 @@

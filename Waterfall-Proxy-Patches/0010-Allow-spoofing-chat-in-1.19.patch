@@ -1,4 +1,4 @@
-From 9c2ab4baf9963b444b99a685f3b39eaac01a7bba Mon Sep 17 00:00:00 2001
+From 866ae292989820395fcef632f60d9698443e78ad Mon Sep 17 00:00:00 2001
 From: mariaum <me@mariaum.com>
 Date: Sat, 27 Apr 2024 04:08:32 -0300
 Subject: [PATCH] Allow spoofing chat in 1.19+.
@@ -6,10 +6,10 @@ Subject: [PATCH] Allow spoofing chat in 1.19+.
 Should work with ViaVersion at least.
 
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index 95280258..276bf6d5 100644
+index b917c6ec..1d20eb06 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -512,7 +512,8 @@ public final class UserConnection implements ProxiedPlayer
+@@ -514,7 +514,8 @@ public final class UserConnection implements ProxiedPlayer
          Preconditions.checkState( server != null, "Not connected to server" );
          if ( getPendingConnection().getVersion() >= ProtocolConstants.MINECRAFT_1_19 )
          {
@@ -20,7 +20,7 @@ index 95280258..276bf6d5 100644
          server.getCh().write( new Chat( message ) );
      }
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
-index 0152d492..e6a1ccde 100644
+index f8c64785..023d4907 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/UpstreamBridge.java
 @@ -158,19 +158,54 @@ public class UpstreamBridge extends PacketHandler

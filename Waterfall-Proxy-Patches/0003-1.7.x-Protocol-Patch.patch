@@ -1,4 +1,4 @@
-From ceea68b6490943503fcc98a3e461a3d49bddc457 Mon Sep 17 00:00:00 2001
+From e879cf8bc1bef64b95336cb53a4dbd571415a938 Mon Sep 17 00:00:00 2001
 From: Troy Frew <fuzzy_bot@arenaga.me>
 Date: Tue, 15 Nov 2016 10:31:04 -0500
 Subject: [PATCH] 1.7.x Protocol Patch
@@ -102,10 +102,10 @@ index 00000000..8725090e
 +    }
 +}
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/DefinedPacket.java b/protocol/src/main/java/net/md_5/bungee/protocol/DefinedPacket.java
-index 156b01ae..feb7d0b2 100644
+index 486dfad2..efabf5e8 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/DefinedPacket.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/DefinedPacket.java
-@@ -610,6 +610,11 @@ public abstract class DefinedPacket
+@@ -628,6 +628,11 @@ public abstract class DefinedPacket
          read( buf );
      }
  
@@ -117,7 +117,7 @@ index 156b01ae..feb7d0b2 100644
      public void write(ByteBuf buf)
      {
          throw new UnsupportedOperationException( "Packet must implement write method" );
-@@ -625,6 +630,11 @@ public abstract class DefinedPacket
+@@ -643,6 +648,11 @@ public abstract class DefinedPacket
          write( buf );
      }
  
@@ -431,7 +431,7 @@ index b6779092..0edb8c7a 100644
  
              Supplier<? extends DefinedPacket> constructor = protocolData.packetConstructors[id];
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
-index 80da91a8..c1926684 100644
+index 31d04a0e..dc04553e 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/ProtocolConstants.java
 @@ -7,6 +7,8 @@ public class ProtocolConstants
@@ -443,7 +443,7 @@ index 80da91a8..c1926684 100644
      public static final int MINECRAFT_1_8 = 47;
      public static final int MINECRAFT_1_9 = 107;
      public static final int MINECRAFT_1_9_1 = 108;
-@@ -61,6 +63,7 @@ public class ProtocolConstants
+@@ -62,6 +64,7 @@ public class ProtocolConstants
      static
      {
          ImmutableList.Builder<String> supportedVersions = ImmutableList.<String>builder().add(
@@ -451,8 +451,8 @@ index 80da91a8..c1926684 100644
                  "1.8.x",
                  "1.9.x",
                  "1.10.x",
-@@ -78,6 +81,8 @@ public class ProtocolConstants
-                 "26.1.x"
+@@ -79,6 +82,8 @@ public class ProtocolConstants
+                 "26.x"
          );
          ImmutableList.Builder<Integer> supportedVersionIds = ImmutableList.<Integer>builder().add(
 +                ProtocolConstants.MINECRAFT_1_7_2,
@@ -872,10 +872,10 @@ index b004bc41..0c2eb022 100644
      public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/LoginSuccess.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/LoginSuccess.java
-index 4da4d147..af2a863e 100644
+index a9d9e21a..22297467 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/packet/LoginSuccess.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/LoginSuccess.java
-@@ -25,6 +25,11 @@ public class LoginSuccess extends DefinedPacket
+@@ -26,6 +26,11 @@ public class LoginSuccess extends DefinedPacket
      @Override
      public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
@@ -887,7 +887,7 @@ index 4da4d147..af2a863e 100644
          if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_16 )
          {
              uuid = readUUID( buf );
-@@ -47,6 +52,11 @@ public class LoginSuccess extends DefinedPacket
+@@ -52,6 +57,11 @@ public class LoginSuccess extends DefinedPacket
      @Override
      public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
@@ -899,7 +899,7 @@ index 4da4d147..af2a863e 100644
          if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_16 )
          {
              writeUUID( uuid, buf );
-@@ -72,4 +82,14 @@ public class LoginSuccess extends DefinedPacket
+@@ -81,4 +91,14 @@ public class LoginSuccess extends DefinedPacket
      {
          handler.handle( this );
      }
@@ -1190,7 +1190,7 @@ index 80e4f85a..579b9c4d 100644
      public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
 diff --git a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Team.java b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Team.java
-index 496d694a..8f060cdc 100644
+index 5915d4de..a8b41d41 100644
 --- a/protocol/src/main/java/net/md_5/bungee/protocol/packet/Team.java
 +++ b/protocol/src/main/java/net/md_5/bungee/protocol/packet/Team.java
 @@ -1,5 +1,6 @@
@@ -1198,9 +1198,9 @@ index 496d694a..8f060cdc 100644
  
 +import io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17;
  import io.netty.buffer.ByteBuf;
+ import java.util.Optional;
  import lombok.AllArgsConstructor;
- import lombok.Data;
-@@ -17,7 +18,7 @@ import net.md_5.bungee.protocol.util.Either;
+@@ -18,7 +19,7 @@ import net.md_5.bungee.protocol.util.Either;
  @NoArgsConstructor
  @AllArgsConstructor
  @EqualsAndHashCode(callSuper = false)
@@ -1209,7 +1209,7 @@ index 496d694a..8f060cdc 100644
  {
  
      private String name;
-@@ -47,6 +48,32 @@ public class Team extends DefinedPacket
+@@ -48,6 +49,32 @@ public class Team extends DefinedPacket
          this.mode = 1;
      }
  
@@ -1242,7 +1242,7 @@ index 496d694a..8f060cdc 100644
      @Override
      public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
      {
-@@ -94,6 +121,30 @@ public class Team extends DefinedPacket
+@@ -108,6 +135,30 @@ public class Team extends DefinedPacket
          }
      }
  
@@ -1341,7 +1341,7 @@ index 491cf1a1..299a216c 100644
      }
  }
 diff --git a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
-index ab68635a..abaaba02 100644
+index 04cd9893..28d6784f 100644
 --- a/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 +++ b/proxy/src/main/java/net/md_5/bungee/ServerConnector.java
 @@ -8,6 +8,7 @@ import java.net.InetSocketAddress;
@@ -1401,10 +1401,10 @@ index ab68635a..abaaba02 100644
                  throw CancelSendSignal.INSTANCE;
              }
 diff --git a/proxy/src/main/java/net/md_5/bungee/UserConnection.java b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-index e2361011..95280258 100644
+index dbd50a8a..b917c6ec 100644
 --- a/proxy/src/main/java/net/md_5/bungee/UserConnection.java
 +++ b/proxy/src/main/java/net/md_5/bungee/UserConnection.java
-@@ -268,6 +268,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -270,6 +270,7 @@ public final class UserConnection implements ProxiedPlayer
      public void setDisplayName(String name)
      {
          Preconditions.checkNotNull( name, "displayName" );
@@ -1412,7 +1412,7 @@ index e2361011..95280258 100644
          displayName = name;
      }
  
-@@ -572,7 +573,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -574,7 +575,7 @@ public final class UserConnection implements ProxiedPlayer
          // transform score components
          message = ChatComponentTransformer.getInstance().transform( this, true, message );
  
@@ -1421,7 +1421,7 @@ index e2361011..95280258 100644
          {
              // Versions older than 1.11 cannot send the Action bar with the new JSON formattings
              // Fix by converting to a legacy message, see https://bugs.mojang.com/browse/MC-119145
-@@ -785,6 +786,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -787,6 +788,7 @@ public final class UserConnection implements ProxiedPlayer
      @Override
      public void setTabHeader(BaseComponent header, BaseComponent footer)
      {
@@ -1429,7 +1429,7 @@ index e2361011..95280258 100644
          header = ChatComponentTransformer.getInstance().transform( this, true, header );
          footer = ChatComponentTransformer.getInstance().transform( this, true, footer );
  
-@@ -825,6 +827,7 @@ public final class UserConnection implements ProxiedPlayer
+@@ -827,6 +829,7 @@ public final class UserConnection implements ProxiedPlayer
  
      public void setCompressionThreshold(int compressionThreshold)
      {
@@ -1438,7 +1438,7 @@ index e2361011..95280258 100644
          {
              this.compressionThreshold = compressionThreshold;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
-index d993a677..d98ec791 100644
+index 79dd4563..d7172c62 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
 @@ -18,6 +18,7 @@ import io.netty.buffer.Unpooled;
@@ -1507,7 +1507,7 @@ index d993a677..d98ec791 100644
              con.unsafe().sendPacket( pluginMessage );
              throw CancelSendSignal.INSTANCE;
 diff --git a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
-index c5302868..47a78f16 100644
+index 9d29bf32..4be3993a 100644
 --- a/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 +++ b/proxy/src/main/java/net/md_5/bungee/connection/InitialHandler.java
 @@ -3,6 +3,8 @@ package net.md_5.bungee.connection;
