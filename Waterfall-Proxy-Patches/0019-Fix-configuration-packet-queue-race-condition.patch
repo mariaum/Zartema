@@ -1,0 +1,30 @@
+From 7c128c3d8484d76751205d3971703787d52355c7 Mon Sep 17 00:00:00 2001
+From: mariaum <me@mariaum.com>
+Date: Wed, 8 Jul 2026 11:36:21 -0300
+Subject: [PATCH] Fix configuration packet queue race condition.
+
+
+diff --git a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+index a074eb60..f787f596 100644
+--- a/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
++++ b/proxy/src/main/java/net/md_5/bungee/connection/DownstreamBridge.java
+@@ -914,6 +914,7 @@ public class DownstreamBridge extends PacketHandler
+ 
+         receivedLogin = true;
+         ServerConnector.handleLogin( bungee, server.getCh(), con, server.getInfo(), null, server, login );
++        this.con.sendQueuedPackets(); // zartema - packet queue fix
+ 
+         throw CancelSendSignal.INSTANCE;
+     }
+@@ -924,7 +925,7 @@ public class DownstreamBridge extends PacketHandler
+         Runnable finish = () ->
+         {
+             con.unsafe().sendPacket( finishConfiguration );
+-            con.sendQueuedPackets();
++            // zartema - packet queue fix con.sendQueuedPackets();
+         };
+         // fire the event here as we can keep the connection alive pre 1.20.5.
+         // for newer clients use the KnownPacks packet.
+-- 
+2.51.0.windows.1
+
